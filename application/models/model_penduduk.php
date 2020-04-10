@@ -84,7 +84,7 @@ class model_penduduk extends CI_Model {
             'id_penduduk'           => $this->db->insert_id(),
 			'tanggal_pindah'	    => $this->input->post('tanggal_pindahan',true),
 			'alamat_sebelumnya'	    => $this->input->post('alamat_sebelumnya',true),
-			'kode_pos'	            => $this->input->post('kode_pos_sebelumnya',true),
+			// 'kode_pos'	            => $this->input->post('kode_pos_sebelumnya',true),
 			'keterangan'	        => $this->input->post('keterangan',true)
         ];
         //insert data pindahan
