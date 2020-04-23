@@ -1,7 +1,7 @@
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('pesan') ?>"></div>
 <div class="card">
 	<div class="card-header">
-		<h3 class="card-title">Data Donor Darah</h3>
+		<h3 class="card-title">Data Surat</h3>
 		<a href="<?= base_url('buat_surat/add_buat_surat') ?>" class="btn btn-primary float-right">Tambah</a>
 	</div>
 	<!-- /.card-header -->
@@ -23,7 +23,7 @@
 					<td>1</td>
 					<td><?= $key->nama_lengkap ?></td>
 					<td><?= $key->no_surat ?></td>
-					<td><?= $key->id_master_surat ?></td>
+					<td><?= $key->nama_surat_dinas ?></td>
 					<td><?= $key->tanggal_surat ?></td>
 					<td style="width:105px">
 						<a href="<?= base_url('buat_surat/edit_buat_surat/'.$key->id_master_surat) ?>"

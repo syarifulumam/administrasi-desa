@@ -3,10 +3,10 @@
 		Edit Kelahiran
 	</div>
 	<div class="card-body">
-		<?= form_open('','',array('id'=>$kelahiran->id_kelahiran));?>
+		<?= form_open('','',array('id_kelahiran'=>$kelahiran->id_kelahiran,'id_penduduk'=>$kelahiran->id_penduduk));?>
 		<div class="form-group">
 			<label>Nama Balita</label>
-			<input type="text" class="form-control " name="nama_balita" value="<?= $kelahiran->nama ?>"
+			<input type="text" class="form-control " name="nama_balita" value="<?= $kelahiran->nama_lengkap ?>"
 				autocomplete="off">
 			<?= form_error('nama_balita','<small class="text-danger pl-1">','</small>') ?>
 		</div>
@@ -87,7 +87,7 @@
 			<select class="form-control select2" style="width: 100%;" name="nama_ayah" id="nama_ayah">
 				<option value="">-- Pilih Nama Ayah --</option>
 				<?php foreach ($ayah as $key):?>
-				<option <?= $kelahiran->nama_ayah == $key->nama_lengkap ? 'selected':'' ?>><?= $key->nama_lengkap ?>
+				<option <?= $kelahiran->nama_bapak == $key->nama_lengkap ? 'selected':'' ?>><?= $key->nama_lengkap ?>
 				</option>
 				<?php endforeach; ?>
 			</select>

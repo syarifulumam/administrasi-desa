@@ -1,6 +1,6 @@
 <div class="card">
 	<div class="card-header">
-		Edit Provinsi
+		Edit Kecamatan
 	</div>
 	<div class="card-body">
 		<?= form_open('','',array('id'=>$kecamatan->id_kecamatan));?>

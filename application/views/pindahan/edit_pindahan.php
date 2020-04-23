@@ -1,6 +1,6 @@
 <div class="card">
 	<div class="card-header">
-		Edit User
+		Edit Pidah Kependudukan
 	</div>
 	<div class="card-body">
 		<?= form_open_multipart('','',array('id'=>$pindahan->id_pindah_kependudukan));?>
@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<div class="card-footer">
-		<a href="<?= base_url('users')?>" class="btn btn-default">Kembali</a>
+		<a href="<?= base_url('pindahan')?>" class="btn btn-default">Kembali</a>
 		<input type="submit" class="btn btn-primary float-right" value="Submit">
 		</form>
 	</div>

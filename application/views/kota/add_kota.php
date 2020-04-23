@@ -1,6 +1,6 @@
 <div class="card">
 	<div class="card-header">
-		Add Provinsi
+		Add Kota / Kabupaten
 	</div>
 	<div class="card-body">
 		<?= form_open('');?>

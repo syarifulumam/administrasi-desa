@@ -1,6 +1,6 @@
 <div class="card">
 	<div class="card-header">
-		Add Kelahiran
+		Add Surat
 	</div>
 	<div class="card-body">
 		<?= form_open('');?>

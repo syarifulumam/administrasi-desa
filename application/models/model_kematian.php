@@ -13,11 +13,14 @@ class model_kematian extends CI_Model {
     }
     public function get_data_penduduk()
     {
-        return $this->db->get('penduduk')->result();
+        return $this->db->get_where('penduduk',array('status_hidup'=>0))->result();
     }
     public function insert_data()
     {
-        $data = [
+        $this->db->set('status_hidup',1);
+        $this->db->where('id_penduduk',$this->input->post('nama',true));
+        $this->db->update('penduduk');
+        $data_kematian = [
 			'sebab'	    => $this->input->post('sebab',true),
 			'id_penduduk' 		=> $this->input->post('nama',true),
 			'keterangan'	    => $this->input->post('keterangan',true),
@@ -26,7 +29,7 @@ class model_kematian extends CI_Model {
 			'tanggal_pemakaman'	    => $this->input->post('tanggal_pemakaman',true),
 			'tempat_pemakaman'	    => $this->input->post('tempat_pemakaman',true),
         ];
-		$this->db->insert('kematian',$data);
+        $this->db->insert('kematian',$data_kematian);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('kematian');
     }

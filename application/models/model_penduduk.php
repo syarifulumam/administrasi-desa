@@ -5,6 +5,8 @@ class model_penduduk extends CI_Model {
     public function get_data($id = null)
     {
         if ($id == null) {
+            $this->db->order_by('id_penduduk','desc');
+            $this->db->where('status_hidup',0);
             return $this->db->get('penduduk')->result();
         }else{
             $query = "SELECT penduduk.* , kota.nama_kota , kecamatan.nama_kecamatan , kelurahan.nama_kelurahan , dusun.nama_dusun FROM `penduduk` INNER JOIN kota ON penduduk.kota=kota.id_kota INNER JOIN kecamatan ON penduduk.kecamatan=kecamatan.id_kecamatan INNER JOIN kelurahan ON penduduk.kelurahan=kelurahan.id_kelurahan INNER JOIN dusun ON penduduk.dusun=dusun.id_dusun WHERE penduduk.id_penduduk=$id";
@@ -54,6 +56,7 @@ class model_penduduk extends CI_Model {
 			'status_penduduk' 	  => $this->input->post('status_penduduk',true),
 			'no_kk'	              => $this->input->post('nomor_kk',true),
 			'status_perkawinan'	  => $this->input->post('status_pernikahan',true),
+			'status_dalam_keluarga'=> $this->input->post('status_dalam_keluarga',true),
 			'nik'	              => $this->input->post('nomor_ktp',true),
 			'nama_lengkap'	      => $this->input->post('nama',true),
 			'tempat_lahir'	      => $this->input->post('tempat_lahir',true),
@@ -106,6 +109,7 @@ class model_penduduk extends CI_Model {
 			'status_penduduk' 	  => $this->input->post('status_penduduk',true),
 			'no_kk'	              => $this->input->post('nomor_kk',true),
 			'status_perkawinan'	  => $this->input->post('status_pernikahan',true),
+			'status_dalam_keluarga'=> $this->input->post('status_dalam_keluarga',true),
 			'nik'	              => $this->input->post('nomor_ktp',true),
 			'nama_lengkap'	      => $this->input->post('nama',true),
 			'tempat_lahir'	      => $this->input->post('tempat_lahir',true),
@@ -139,6 +143,8 @@ class model_penduduk extends CI_Model {
     {
         $this->db->where('id_penduduk',$id);
         $this->db->delete('penduduk');
+        $this->db->where('id_penduduk',$id);
+        $this->db->delete('kelahiran');
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('penduduk');
     }

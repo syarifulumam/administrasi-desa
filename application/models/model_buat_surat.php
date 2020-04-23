@@ -5,9 +5,10 @@ class model_buat_surat extends CI_Model {
     public function get_data($id = null)
     {
         if ($id == null) {
-            $this->db->select('surat.*,penduduk.nama_lengkap');
+            $this->db->select('surat.*,penduduk.nama_lengkap,master_surat.nama_surat_dinas');
             $this->db->from('surat');
             $this->db->join('penduduk', 'surat.id_penduduk = penduduk.id_penduduk');
+            $this->db->join('master_surat', 'master_surat.id_master_surat = surat.id_master_surat');
             return $this->db->get()->result();
         }else{
             return $this->db->get_where('kelahiran',array('id_kelahiran'=>$id))->row();

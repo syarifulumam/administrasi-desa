@@ -186,7 +186,7 @@
 		</div>
 	</div>
 	<div class="card-footer">
-		<a href="<?= base_url('kepdes')?>" class="btn btn-default">Kembali</a>
+		<a href="<?= base_url('tkd')?>" class="btn btn-default">Kembali</a>
 		<input type="submit" class="btn btn-primary float-right" value="Submit">
 		</form>
 	</div>

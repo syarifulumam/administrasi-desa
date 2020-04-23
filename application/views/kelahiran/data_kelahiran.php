@@ -1,7 +1,7 @@
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('pesan') ?>"></div>
 <div class="card">
 	<div class="card-header">
-		<h3 class="card-title">Data Donor Darah</h3>
+		<h3 class="card-title">Data Kelahiran</h3>
 		<a href="<?= base_url('kelahiran/add_kelahiran') ?>" class="btn btn-primary float-right">Tambah</a>
 	</div>
 	<!-- /.card-header -->
@@ -26,7 +26,7 @@
 					<td>1</td>
 					<td><?= $key->no_akte ?></td>
 					<td><?= $key->no_kk ?></td>
-					<td><?= $key->nama ?></td>
+					<td><?= $key->nama_lengkap ?></td>
 					<td><?= $key->tempat_lahir . "," . $key->tanggal_lahir ?></td>
 					<td><?= $key->anak_ke_berapa ?></td>
 					<td><?= $key->nama_ibu ?></td>

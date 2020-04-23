@@ -1,6 +1,6 @@
 <div class="card">
 	<div class="card-header">
-		Add Keputusan BPD
+		Edit Keputusan BPD
 	</div>
 	<div class="card-body">
 		<?= form_open_multipart('','',array('id'=>$keputusan_bpd->id_keputusan_bpd));?>

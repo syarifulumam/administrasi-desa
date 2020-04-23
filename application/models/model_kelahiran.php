@@ -5,54 +5,97 @@ class model_kelahiran extends CI_Model {
     public function get_data($id = null)
     {
         if ($id == null) {
+            $this->db->select('kelahiran.*,penduduk.nama_lengkap,penduduk.no_kk,penduduk.tempat_lahir,penduduk.tanggal_lahir,penduduk.jenis_kelamin,penduduk.agama,penduduk.nama_ibu,penduduk.nama_bapak');
+            $this->db->from('kelahiran');
+            $this->db->join('penduduk', 'kelahiran.id_penduduk = penduduk.id_penduduk');
             $this->db->order_by('id_kelahiran','DESC');
-            return $this->db->get('kelahiran')->result();
+            return $this->db->get()->result();
         }else{
-            return $this->db->get_where('kelahiran',array('id_kelahiran'=>$id))->row();
+            $this->db->select('kelahiran.*,penduduk.nama_lengkap,penduduk.no_kk,penduduk.tempat_lahir,penduduk.tanggal_lahir,penduduk.jenis_kelamin,penduduk.agama,penduduk.nama_ibu,penduduk.nama_bapak');
+            $this->db->from('kelahiran');
+            $this->db->join('penduduk', 'kelahiran.id_penduduk = penduduk.id_penduduk');
+            $this->db->order_by('id_kelahiran','DESC');
+            $this->db->where('id_kelahiran',$id);
+            return $this->db->get()->row();
         }
     }
     public function get_data_ayah()
     {
-        return $this->db->get_where('penduduk',array('jenis_kelamin'=>'Laki - Laki'))->result();
+        return $this->db->get_where('penduduk',array('status_dalam_keluarga'=>'Ayah'))->result();
     }
     public function get_data_ibu()
     {
-        return $this->db->get_where('penduduk',array('jenis_kelamin'=>'Perempuan'))->result();
+        return $this->db->get_where('penduduk',array('status_dalam_keluarga'=>'Ibu'))->result();
     }
     public function insert_data()
     {
-        $data = [
-			'agama' 		=> $this->input->post('agama',true),
-			'anak_ke_berapa'=> $this->input->post('anak_ke',true),
-			'nama_ibu' 		=> $this->input->post('nama_ibu',true),
-			'no_kk' 		=> $this->input->post('nomor_kk',true),
-			'nama_ayah' 	=> $this->input->post('nama_ayah',true),
-			'no_akte' 		=> $this->input->post('nomor_akte',true),
-			'nama' 		    => $this->input->post('nama_balita',true),
-			'tempat_lahir' 	=> $this->input->post('tempat_lahir',true),
-			'tanggal_lahir' => $this->input->post('tanggal_lahir',true),
-			'jenis_kelamin' => $this->input->post('jenis_kelamin',true)
+        $get_data_ibu = $this->db->get_where('penduduk',array('nama_lengkap'=>$this->input->post('nama_ibu',true)))->row();
+        $data_penduduk = [
+			'status_penduduk' 	  => 'Tetap',
+			'status_perkawinan'	  => 'Belum Menikah',
+			'status_dalam_keluarga'=>'Anak',
+			'no_kk'	              => $this->input->post('nomor_kk',true),
+			'nama_lengkap'	      => $this->input->post('nama_balita',true),
+			'tempat_lahir'	      => $this->input->post('tempat_lahir',true),
+			'tanggal_lahir'	      => $this->input->post('tanggal_lahir',true),
+			'jenis_kelamin'	      => $this->input->post('jenis_kelamin',true),
+			'agama'	              => $this->input->post('agama',true),
+			'kewarganegaraan'     => $get_data_ibu->kewarganegaraan,
+			'provinsi'	          => $get_data_ibu->provinsi,
+			'kota'	              => $get_data_ibu->kota,
+			'kecamatan'	          => $get_data_ibu->kecamatan,
+			'kelurahan'	          => $get_data_ibu->kelurahan,
+			'dusun'	              => $get_data_ibu->dusun,
+			'rt'	              => $get_data_ibu->rt,
+			'rw'	              => $get_data_ibu->rw,
+			'alamat'	          => $get_data_ibu->alamat,
+			'kode_pos'	          => $get_data_ibu->kode_pos,
+			'nama_ibu'	          => $this->input->post('nama_ibu',true),
+			'nama_bapak'	      => $this->input->post('nama_ayah',true),
         ];
-		$this->db->insert('kelahiran',$data);
+		$this->db->insert('penduduk',$data_penduduk);
+        $id_penduduk = $this->db->order_by('id_penduduk',"desc")->get('penduduk')->row();
+        $data_kelahiran = [
+            'id_penduduk'   => intval($id_penduduk->id_penduduk),
+			'anak_ke_berapa'=> $this->input->post('anak_ke',true),
+			'no_akte' 		=> $this->input->post('nomor_akte',true),
+        ];
+
+		$this->db->insert('kelahiran',$data_kelahiran);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('kelahiran');
     }
     public function edit_data()
     {
-        $data = [
-			'agama' 		=> $this->input->post('agama',true),
-			'anak_ke_berapa'=> $this->input->post('anak_ke',true),
-			'nama_ibu' 		=> $this->input->post('nama_ibu',true),
-			'no_kk' 		=> $this->input->post('nomor_kk',true),
-			'nama_ayah' 	=> $this->input->post('nama_ayah',true),
-			'no_akte' 		=> $this->input->post('nomor_akte',true),
-			'nama' 		    => $this->input->post('nama_balita',true),
-			'tempat_lahir' 	=> $this->input->post('tempat_lahir',true),
-			'tanggal_lahir' => $this->input->post('tanggal_lahir',true),
-			'jenis_kelamin' => $this->input->post('jenis_kelamin',true)
+        $get_data_ibu = $this->db->get_where('penduduk',array('nama_lengkap'=>$this->input->post('nama_ibu',true)))->row();
+        $data_penduduk = [
+			'no_kk'	              => $this->input->post('nomor_kk',true),
+			'nama_lengkap'	      => $this->input->post('nama_balita',true),
+			'tempat_lahir'	      => $this->input->post('tempat_lahir',true),
+			'tanggal_lahir'	      => $this->input->post('tanggal_lahir',true),
+			'jenis_kelamin'	      => $this->input->post('jenis_kelamin',true),
+			'agama'	              => $this->input->post('agama',true),
+			'kewarganegaraan'     => $get_data_ibu->kewarganegaraan,
+			'provinsi'	          => $get_data_ibu->provinsi,
+			'kota'	              => $get_data_ibu->kota,
+			'kecamatan'	          => $get_data_ibu->kecamatan,
+			'kelurahan'	          => $get_data_ibu->kelurahan,
+			'dusun'	              => $get_data_ibu->dusun,
+			'rt'	              => $get_data_ibu->rt,
+			'rw'	              => $get_data_ibu->rw,
+			'alamat'	          => $get_data_ibu->alamat,
+			'kode_pos'	          => $get_data_ibu->kode_pos,
+			'nama_ibu'	          => $this->input->post('nama_ibu',true),
+			'nama_bapak'	      => $this->input->post('nama_ayah',true),
         ];
-        $this->db->where('id_kelahiran',$this->input->post('id'));
-		$this->db->update('kelahiran',$data);
+        $this->db->where('id_penduduk',$this->input->post('id_penduduk'));
+		$this->db->update('penduduk',$data_penduduk);
+        $data_kelahiran = [
+			'anak_ke_berapa'=> $this->input->post('anak_ke',true),
+			'no_akte' 		=> $this->input->post('nomor_akte',true),
+        ];
+        $this->db->where('id_kelahiran',$this->input->post('id_kelahiran'));
+		$this->db->update('kelahiran',$data_kelahiran);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('kelahiran');
     }

@@ -1,6 +1,6 @@
 <div class="card">
 	<div class="card-header">
-		Add kelurahan
+		Add Kelurahan
 	</div>
 	<div class="card-body">
 		<?= form_open('');?>
@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<div class="card-footer">
-		<a href="<?= base_url('kecamatan')?>" class="btn btn-default">Kembali</a>
+		<a href="<?= base_url('kelurahan')?>" class="btn btn-default">Kembali</a>
 		<input type="submit" class="btn btn-primary float-right" value="Submit">
 		</form>
 	</div>

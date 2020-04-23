@@ -24,7 +24,7 @@
 		</div>
 	</div>
 	<div class="card-footer">
-		<a href="<?= base_url('master_surat')?>" class="btn btn-default">Kembali</a>
+		<a href="<?= base_url('struktur_organisasi')?>" class="btn btn-default">Kembali</a>
 		<input type="submit" class="btn btn-primary float-right" value="Submit">
 		</form>
 	</div>

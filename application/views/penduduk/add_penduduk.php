@@ -1,6 +1,6 @@
 <div class="card">
 	<div class="card-header">
-		Add User
+		Add Penduduk
 	</div>
 	<div class="card-body">
 		<?= form_open_multipart('');?>
@@ -27,17 +27,17 @@
 			<label>Status Pernikahan</label><br>
 			<div class="icheck-primary d-inline">
 				<input type="radio" id="belumkawin" name="status_pernikahan" value="Belum Menikah" checked>
-				<label for="belumkawin">belumkawin
+				<label for="belumkawin">Belum Kawin
 				</label>
 			</div>
 			<div class="icheck-primary d-inline">
 				<input type="radio" id="sudahkawin" name="status_pernikahan" value="Sudah Menikah">
-				<label for="sudahkawin">sudahkawin
+				<label for="sudahkawin">Sudah Kawin
 				</label>
 			</div>
 			<div class="icheck-primary d-inline">
 				<input type="radio" id="cerai" name="status_pernikahan" value="Cerai">
-				<label for="cerai">cerai
+				<label for="cerai">Cerai
 				</label>
 			</div>
 		</div>
@@ -92,6 +92,24 @@
 				<option>Budha</option>
 			</select>
 			<?= form_error('agama','<small class="text-danger pl-1">','</small>') ?>
+		</div>
+		<div class="form-group clearfix">
+			<label>Status Dalam Keluarga</label><br>
+			<div class="icheck-primary d-inline">
+				<input type="radio" id="Ayah" name="status_dalam_keluarga" value="Ayah" checked>
+				<label for="Ayah">Ayah
+				</label>
+			</div>
+			<div class="icheck-primary d-inline">
+				<input type="radio" id="Ibu" name="status_dalam_keluarga" value="Ibu">
+				<label for="Ibu">Ibu
+				</label>
+			</div>
+			<div class="icheck-primary d-inline">
+				<input type="radio" id="Anak" name="status_dalam_keluarga" value="Anak">
+				<label for="Anak">Anak
+				</label>
+			</div>
 		</div>
 		<div class="form-group">
 			<label>Pekerjaan</label>

@@ -1,6 +1,6 @@
 <div class="card">
 	<div class="card-header">
-		Add User
+		Add Pidah Kependudukan
 	</div>
 	<div class="card-body">
 		<?= form_open_multipart('');?>
@@ -37,7 +37,7 @@
 		</div>
 	</div>
 	<div class="card-footer">
-		<a href="<?= base_url('users')?>" class="btn btn-default">Kembali</a>
+		<a href="<?= base_url('pindahan')?>" class="btn btn-default">Kembali</a>
 		<input type="submit" class="btn btn-primary float-right" value="Submit">
 		</form>
 	</div>

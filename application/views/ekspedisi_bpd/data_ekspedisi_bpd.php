@@ -1,7 +1,7 @@
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('pesan') ?>"></div>
 <div class="card">
 	<div class="card-header">
-		<h3 class="card-title">Data ekspedisi BPD</h3>
+		<h3 class="card-title">Data Ekspedisi BPD</h3>
 		<a href="<?= base_url('ekspedisi_bpd/add_ekspedisi_bpd') ?>" class="btn btn-primary float-right">Tambah</a>
 	</div>
 	<!-- /.card-header -->

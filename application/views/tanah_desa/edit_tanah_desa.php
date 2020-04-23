@@ -156,7 +156,7 @@
 		</div>
 	</div>
 	<div class="card-footer">
-		<a href="<?= base_url('inventaris')?>" class="btn btn-default">Kembali</a>
+		<a href="<?= base_url('tanah_desa')?>" class="btn btn-default">Kembali</a>
 		<input type="submit" class="btn btn-primary float-right" value="Submit">
 		</form>
 	</div>

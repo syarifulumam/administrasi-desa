@@ -1,6 +1,6 @@
 <div class="card">
 	<div class="card-header">
-		Edit User
+		Edit Penduduk
 	</div>
 	<div class="card-body">
 		<?= form_open_multipart('','',array('id'=>$penduduk->id_penduduk,'foto_db'=>$penduduk->foto));?>
@@ -98,6 +98,27 @@
 				<option <?= $penduduk->agama == 'Budha' ? 'selected':''?>>Budha</option>
 			</select>
 			<?= form_error('agama','<small class="text-danger pl-1">','</small>') ?>
+		</div>
+		<div class="form-group clearfix">
+			<label>Status Dalam Keluarga</label><br>
+			<div class="icheck-primary d-inline">
+				<input type="radio" id="Ayah" name="status_dalam_keluarga" value="Ayah"
+					<?= $penduduk->status_dalam_keluarga == 'Ayah' ? 'checked':''?>>
+				<label for="Ayah">Ayah
+				</label>
+			</div>
+			<div class="icheck-primary d-inline">
+				<input type="radio" id="Ibu" name="status_dalam_keluarga" value="Ibu"
+					<?= $penduduk->status_dalam_keluarga == 'Ibu' ? 'checked':''?>>
+				<label for="Ibu">Ibu
+				</label>
+			</div>
+			<div class="icheck-primary d-inline">
+				<input type="radio" id="Anak" name="status_dalam_keluarga" value="Anak"
+					<?= $penduduk->status_dalam_keluarga == 'Anak' ? 'checked':''?>>
+				<label for="Anak">Anak
+				</label>
+			</div>
 		</div>
 		<div class="form-group">
 			<label>Pekerjaan</label>
