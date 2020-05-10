@@ -16,7 +16,7 @@ class model_ekspedisi_bpd extends CI_Model {
         $data = [
             'tanggal_pengiriman'	 => $this->input->post('tanggal_pengiriman',true),
 			'tanggal_surat'	         => $this->input->post('tanggal_surat',true),
-			'no_surat'	             => $this->input->post('nomor_surat',true),
+			'nomor_surat'	         => $this->input->post('nomor_surat',true),
 			'isi_singkat'	         => $this->input->post('isi_singkat',true),
 			'tujuan'	             => $this->input->post('tujuan',true),
 			'keterangan'	         => $this->input->post('keterangan',true),
@@ -40,7 +40,7 @@ class model_ekspedisi_bpd extends CI_Model {
         $data = [
             'tanggal_pengiriman'	 => $this->input->post('tanggal_pengiriman',true),
 			'tanggal_surat'	         => $this->input->post('tanggal_surat',true),
-			'no_surat'	             => $this->input->post('nomor_surat',true),
+			'nomor_surat'	         => $this->input->post('nomor_surat',true),
 			'isi_singkat'	         => $this->input->post('isi_singkat',true),
 			'tujuan'	             => $this->input->post('tujuan',true),
 			'keterangan'	         => $this->input->post('keterangan',true),

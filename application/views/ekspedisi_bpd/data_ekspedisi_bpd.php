@@ -23,7 +23,7 @@
 					<td>1</td>
 					<td><?= $key->tanggal_pengiriman ?></td>
 					<td><?= $key->tanggal_surat ?></td>
-					<td><?= $key->no_surat ?></td>
+					<td><?= $key->nomor_surat ?></td>
 					<td><?= $key->tujuan ?></td>
 					<td style="width:105px">
 						<a href="<?= base_url('ekspedisi_bpd/edit_ekspedisi_bpd/'.$key->id_ekspedisi_bpd) ?>"

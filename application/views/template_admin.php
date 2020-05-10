@@ -14,6 +14,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 	<!-- Font Awesome Icons -->
 	<link rel="stylesheet" href="<?=base_url('assets/adminlte/')?>plugins/fontawesome-free/css/all.min.css">
+	<!-- daterange picker -->
+	<link rel="stylesheet" href="<?=base_url('assets/adminlte/')?>plugins/daterangepicker/daterangepicker.css">
 	<!-- iCheck for checkboxes and radio inputs -->
 	<link rel="stylesheet" href="<?=base_url('assets/adminlte/')?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 	<!-- Select2 |tanggal-->
@@ -55,7 +57,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<a href="index3.html" class="brand-link">
 				<img src="<?=base_url('assets/adminlte/')?>dist/img/logoprov.png" alt="AdminLTE Logo"
 					class="brand-image img-circle elevation-3" style="opacity: .8">
-				<span class="brand-text font-weight-light">Administrasi Desa</span>
+				<span class="brand-text font-weight-light">SIDISA</span>
 			</a>
 
 			<!-- Sidebar -->
@@ -66,43 +68,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						data-accordion="false">
 						<li class="nav-item">
 							<a href="<?=base_url('users')?>" class="nav-link">
-								<i class="nav-icon fas fa-medkit"></i>
+								<i class="nav-icon fas fa-user"></i>
 								<p>Data Users</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="<?=base_url('penduduk')?>" class="nav-link">
-								<i class="nav-icon fas fa-medkit"></i>
+								<i class="nav-icon fas fa-database"></i>
 								<p>Data Penduduk</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="<?=base_url('kelahiran')?>" class="nav-link">
-								<i class="nav-icon fas fa-medkit"></i>
+								<i class="nav-icon fas fa-address-book"></i>
 								<p>Data Kelahiran</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="<?=base_url('pindahan')?>" class="nav-link">
-								<i class="nav-icon fas fa-medkit"></i>
+								<i class="nav-icon fas fa-suitcase-rolling"></i>
 								<p>Pindah kependudukan</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="<?=base_url('kematian')?>" class="nav-link">
-								<i class="nav-icon fas fa-medkit"></i>
+								<i class="nav-icon fas fa-ambulance"></i>
 								<p>Data Kematian</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="<?=base_url('buat_surat')?>" class="nav-link">
-								<i class="nav-icon fas fa-medkit"></i>
+								<i class="nav-icon fas fa-file"></i>
 								<p>Buat Surat</p>
 							</a>
 						</li>
 						<li class="nav-item has-treeview">
 							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-tachometer-alt"></i>
+								<i class="nav-icon fas fa-folder-open"></i>
 								<p>
 									Kearsipan
 									<i class="right fas fa-angle-left"></i>
@@ -156,7 +158,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						</li>
 						<li class="nav-item has-treeview">
 							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-tachometer-alt"></i>
+								<i class="nav-icon fas fa-folder-open"></i>
 								<p>
 									Pembangunan
 									<i class="right fas fa-angle-left"></i>
@@ -192,7 +194,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						</li>
 						<li class="nav-item has-treeview">
 							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-tachometer-alt"></i>
+								<i class="nav-icon fas fa-folder-open"></i>
 								<p>
 									BPD/BPKamp
 									<i class="right fas fa-angle-left"></i>
@@ -228,7 +230,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						</li>
 						<li class="nav-item has-treeview">
 							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-tachometer-alt"></i>
+								<i class="nav-icon fas fa-print"></i>
 								<p>
 									Laporan
 									<i class="right fas fa-angle-left"></i>
@@ -237,31 +239,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="#" class="nav-link">
+									<a href="<?=base_url('laporan')?>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Pembuatan Surat</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="#" class="nav-link">
+									<a href="<?=base_url('laporan/ekspedisi_kearsipan_bpd')?>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Ekspedisi Kearsipan BPD</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="#" class="nav-link">
+									<a href="<?=base_url('laporan/ekspedisi_kearsipan')?>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Ekspedisi Kearsipan</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="#" class="nav-link">
+									<a href="<?=base_url('laporan/kependudukan')?>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Kependudukan</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="#" class="nav-link">
+									<a href="<?=base_url('laporan/perdusun')?>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Perdusun</p>
 									</a>
@@ -270,7 +272,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						</li>
 						<li class="nav-item has-treeview">
 							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-tachometer-alt"></i>
+								<i class="nav-icon fas fa-cubes"></i>
 								<p>
 									Master Data
 									<i class="right fas fa-angle-left"></i>
@@ -324,7 +326,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						</li>
 						<li class="nav-item has-treeview">
 							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-tachometer-alt"></i>
+								<i class="nav-icon fas fa-cogs"></i>
 								<p>
 									Setting
 									<i class="right fas fa-angle-left"></i>
@@ -394,6 +396,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<!-- InputMask |tanggal-->
 	<script src="<?= base_url('assets/adminlte/')?>plugins/moment/moment.min.js"></script>
 	<script src="<?= base_url('assets/adminlte/')?>plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+	<!-- date-range-picker -->
+	<script src="<?= base_url('assets/adminlte/')?>plugins/daterangepicker/daterangepicker.js"></script>
 	<!-- DataTables -->
 	<script src="<?=base_url('assets/adminlte/')?>plugins/datatables/jquery.dataTables.js"></script>
 	<script src="<?=base_url('assets/adminlte/')?>plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
@@ -417,6 +421,45 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			})
 			//Money Euro
 			$('[data-mask]').inputmask()
+
+			//Date range picker
+			$('#reservation').daterangepicker({
+				locale: {
+					format: 'DD/MM/YYYY'
+				}
+			})
+			//Date range picker with time picker
+			$('#reservationtime').daterangepicker({
+				timePicker: true,
+				timePickerIncrement: 30,
+				locale: {
+					format: 'MM/DD/YYYY hh:mm A'
+				}
+			})
+			//Date range as a button
+			$('#daterange-btn').daterangepicker({
+					ranges: {
+						'Today': [moment(), moment()],
+						'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+						'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+						'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+						'This Month': [moment().startOf('month'), moment().endOf('month')],
+						'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
+							'month').endOf(
+							'month')]
+					},
+					startDate: moment().subtract(29, 'days'),
+					endDate: moment()
+				},
+				function (start, end) {
+					$('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+				}
+			)
+
+			//Timepicker
+			$('#timepicker').datetimepicker({
+				format: 'LT'
+			})
 
 		})
 
