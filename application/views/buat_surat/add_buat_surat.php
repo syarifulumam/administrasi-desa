@@ -17,23 +17,23 @@
 		</div>
 		<div class="form-group">
 			<label>Nama</label>
-			<select class="form-control select2" style="width: 100%;" name="nama_ibu" id="nama_ibu">
+			<select class="form-control select2" style="width: 100%;" name="nama" id="nama">
 				<option value="">-- Pilih Nama--</option>
 				<?php foreach ($penduduk as $key):?>
-				<option><?= $key->nama_lengkap ?></option>
+				<option value="<?= $key->id_penduduk ?>"><?= $key->nama_lengkap ?></option>
 				<?php endforeach; ?>
 			</select>
-			<?= form_error('nama_ibu','<small class="text-danger pl-1">','</small>') ?>
+			<?= form_error('nama','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Jenis Surat</label>
-			<select class="form-control select2" style="width: 100%;" name="nama_ayah" id="nama_ayah">
+			<select class="form-control select2" style="width: 100%;" name="jenis_surat" id="jenis_surat">
 				<option value="">-- Pilih Jenis Surat --</option>
 				<?php foreach ($master_surat as $key):?>
-				<option><?= $key->nama_surat_dinas ?></option>
+				<option value="<?= $key->id_master_surat ?>"><?= $key->nama_surat_dinas ?></option>
 				<?php endforeach; ?>
 			</select>
-			<?= form_error('nama_ayah','<small class="text-danger pl-1">','</small>') ?>
+			<?= form_error('jenis_surat','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 	</div>
 	<div class="card-footer">

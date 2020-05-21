@@ -52,6 +52,7 @@ class model_kelahiran extends CI_Model {
 			'kode_pos'	          => $get_data_ibu->kode_pos,
 			'nama_ibu'	          => $this->input->post('nama_ibu',true),
 			'nama_bapak'	      => $this->input->post('nama_ayah',true),
+            'tanggal_input'       => date('Y-m-d')
         ];
 		$this->db->insert('penduduk',$data_penduduk);
         $id_penduduk = $this->db->order_by('id_penduduk',"desc")->get('penduduk')->row();

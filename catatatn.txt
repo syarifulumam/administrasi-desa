@@ -1,1 +1,0 @@
-perbaiki pindah penduduk, saat add penduduk, muncul juga di modul pindah penduduk

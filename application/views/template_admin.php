@@ -67,6 +67,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
 						data-accordion="false">
 						<li class="nav-item">
+							<a href="<?=base_url('dashboard')?>" class="nav-link">
+								<i class="nav-icon fas fa-tachometer-alt"></i>
+								<p>Dashboard</p>
+							</a>
+						</li>
+						<li class="nav-item">
 							<a href="<?=base_url('users')?>" class="nav-link">
 								<i class="nav-icon fas fa-user"></i>
 								<p>Data Users</p>
@@ -391,6 +397,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<script src="<?=base_url('assets/adminlte/')?>plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
 	<script src="<?=base_url('assets/adminlte/')?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- ChartJS -->
+	<script src="<?=base_url('assets/adminlte/')?>plugins/chart.js/Chart.min.js"></script>
 	<!-- Select2 |tanggal-->
 	<script src="<?= base_url('assets/adminlte/')?>plugins/select2/js/select2.full.min.js"></script>
 	<!-- InputMask |tanggal-->
@@ -607,6 +615,149 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			});
 
 		});
+
+	</script>
+	<!-- Chart js -->
+	<script>
+		$(function () {
+			/* ChartJS
+			 * -------
+			 * Here we will create a few charts using ChartJS
+			 */
+
+			//--------------
+			//- AREA CHART -
+			//--------------
+			// Get context with jQuery - using jQuery's .get() method.
+			var areaChartData = {
+				labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agust', 'Sep', 'Okt', 'Nov', 'Des'],
+				datasets: [
+					{
+						label: 'Penduduk',
+						backgroundColor: 'rgba(60,141,188,0.9)',
+						// backgroundColor: [
+						// 				'rgba(255, 99, 132, 0.2)',
+						// 				'rgba(54, 162, 235, 0.2)',
+						// 				'rgba(255, 206, 86, 0.2)',
+						// 				'rgba(75, 192, 192, 0.2)',
+						// 				],
+						borderColor: 'rgba(60,141,188,0.8)',
+						pointRadius: false,
+						pointColor: '#3b8bba',
+						pointStrokeColor: 'rgba(60,141,188,1)',
+						pointHighlightFill: '#fff',
+						pointHighlightStroke: 'rgba(60,141,188,1)',
+						data: [<?php foreach ($penduduk_perbulan as $key) echo $key. ","; ?>]
+					},
+					{
+						label: 'Kelahiran',
+						backgroundColor: 'rgba(210, 214, 222, 1)',
+						borderColor: 'rgba(210, 214, 222, 1)',
+						pointRadius: false,
+						pointColor: 'rgba(210, 214, 222, 1)',
+						pointStrokeColor: '#c1c7d1',
+						pointHighlightFill: '#fff',
+						pointHighlightStroke: 'rgba(220,220,220,1)',
+						data: [<?php foreach ($kelahiran_perbulan as $key) echo $key. ","; ?>]
+					},
+					{
+						label: 'Kematian',
+						backgroundColor: 'RGBA(255,150,80,1)',
+						borderColor: 'RGBA(255,150,80,1)',
+						pointRadius: false,
+						pointColor: 'RGBA(255,150,80,1)',
+						pointStrokeColor: '#c1c7d1',
+						pointHighlightFill: '#fff',
+						pointHighlightStroke: 'rgba(220,220,220,1)',
+						data: [<?php foreach ($kematian_perbulan as $key) echo $key. ","; ?>]
+					},
+					{
+						label: 'Pindah Kependudukan',
+						backgroundColor: 'RGBA(127,198,80,1)',
+						borderColor: 'RGBA(127,198,80,1)',
+						pointRadius: false,
+						pointColor: 'RGBA(127,198,80,1)',
+						pointStrokeColor: '#c1c7d1',
+						pointHighlightFill: '#fff',
+						pointHighlightStroke: 'rgba(220,220,220,1)',
+						data: [<?php foreach ($pindah_perbulan as $key) echo $key. ","; ?>]
+					},
+				]
+			}
+
+			//-------------
+			//- BAR CHART -
+			//-------------
+			var barChartCanvas = $('#barChart').get(0).getContext('2d')
+			var barChartData = jQuery.extend(true, {}, areaChartData)
+			var temp0 = areaChartData.datasets[0]
+			var temp1 = areaChartData.datasets[1]
+			barChartData.datasets[0] = temp0
+			barChartData.datasets[1] = temp1
+
+			var barChartOptions = {
+				responsive: true,
+				maintainAspectRatio: false,
+				datasetFill: false,
+					
+			}
+
+			var barChart = new Chart(barChartCanvas, {
+				type: 'bar',
+				data: barChartData,
+				options: barChartOptions
+			})
+
+			//gender chart
+			var areaChartData2 = {
+				labels: ['Penduduk', 'Kelahiran', 'Kematian', 'Pindah Kependudukan'],
+				datasets: [
+					{
+						label: 'Pria',
+						backgroundColor: 'RGBA(86,91,182,1)',
+						borderColor: 'RGBA(86,91,182,1)',
+						pointRadius: false,
+						pointColor: '#3b8bba',
+						pointStrokeColor: 'RGBA(86,91,182,1)',
+						pointHighlightFill: '#fff',
+						pointHighlightStroke: 'RGBA(86,91,182,1)',
+						data: [<?= $gender_penduduk[0].','.$gender_kelahiran[0].','.$gender_kematian[0].','.$gender_pindah_kependudukan[0] ?>]
+					},
+					{
+						label: 'Wanita',
+						backgroundColor: 'RGBA(255,54,88,1)',
+						borderColor: 'RGBA(255,54,88,1)',
+						pointRadius: false,
+						pointColor: '#3b8bba',
+						pointStrokeColor: 'RGBA(255,54,88,1)',
+						pointHighlightFill: '#fff',
+						pointHighlightStroke: 'RGBA(255,54,88,1)',
+						data: [<?= $gender_penduduk[1].','.$gender_kelahiran[1].','.$gender_kematian[1].','.$gender_pindah_kependudukan[1] ?>]
+					},
+				]
+			}
+
+			
+			var barChartCanvas2 = $('#gender').get(0).getContext('2d')
+			var barChartData2 = jQuery.extend(true, {}, areaChartData2)
+			var temp2 = areaChartData2.datasets[0]
+			var temp3 = areaChartData2.datasets[1]
+			barChartData2.datasets[0] = temp2
+			barChartData2.datasets[1] = temp3
+
+			var barChartOptions2 = {
+				responsive: true,
+				maintainAspectRatio: false,
+				datasetFill: false,
+					
+			}
+			var barChart2 = new Chart(barChartCanvas2, {
+				type: 'bar',
+				data: barChartData2,
+				options: barChartOptions2
+			})
+
+		})
 
 	</script>
 

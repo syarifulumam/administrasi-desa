@@ -9,9 +9,15 @@ class model_buat_surat extends CI_Model {
             $this->db->from('surat');
             $this->db->join('penduduk', 'surat.id_penduduk = penduduk.id_penduduk');
             $this->db->join('master_surat', 'master_surat.id_master_surat = surat.id_master_surat');
+            $this->db->order_by('id_surat','DESC');
             return $this->db->get()->result();
         }else{
-            return $this->db->get_where('kelahiran',array('id_kelahiran'=>$id))->row();
+            $this->db->select('surat.*,penduduk.*,master_surat.nama_surat_dinas');
+            $this->db->from('surat');
+            $this->db->join('penduduk', 'surat.id_penduduk = penduduk.id_penduduk');
+            $this->db->join('master_surat', 'master_surat.id_master_surat = surat.id_master_surat');
+            $this->db->where('id_surat',$id);
+            return $this->db->get()->row();
         }
     }
     public function get_data_penduduk()
@@ -25,45 +31,33 @@ class model_buat_surat extends CI_Model {
     public function insert_data()
     {
         $data = [
-			'agama' 		=> $this->input->post('agama',true),
-			'anak_ke_berapa'=> $this->input->post('anak_ke',true),
-			'nama_ibu' 		=> $this->input->post('nama_ibu',true),
-			'no_kk' 		=> $this->input->post('nomor_kk',true),
-			'nama_ayah' 	=> $this->input->post('nama_ayah',true),
-			'no_akte' 		=> $this->input->post('nomor_akte',true),
-			'nama' 		    => $this->input->post('nama_balita',true),
-			'tempat_lahir' 	=> $this->input->post('tempat_lahir',true),
-			'tanggal_lahir' => $this->input->post('tanggal_lahir',true),
-			'jenis_kelamin' => $this->input->post('jenis_kelamin',true)
+			'tanggal_surat' 	=> $this->input->post('tanggal_surat',true),
+			'id_penduduk' 		=> $this->input->post('nama',true),
+			'id_master_surat' 	=> $this->input->post('jenis_surat',true),
+			'no_surat'       	=> date('ynjhis')
         ];
-		$this->db->insert('kelahiran',$data);
+		$this->db->insert('surat',$data);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
-        redirect('kelahiran');
+        redirect('buat_surat');
     }
     public function edit_data()
     {
         $data = [
-			'agama' 		=> $this->input->post('agama',true),
-			'anak_ke_berapa'=> $this->input->post('anak_ke',true),
-			'nama_ibu' 		=> $this->input->post('nama_ibu',true),
-			'no_kk' 		=> $this->input->post('nomor_kk',true),
-			'nama_ayah' 	=> $this->input->post('nama_ayah',true),
-			'no_akte' 		=> $this->input->post('nomor_akte',true),
-			'nama' 		    => $this->input->post('nama_balita',true),
-			'tempat_lahir' 	=> $this->input->post('tempat_lahir',true),
-			'tanggal_lahir' => $this->input->post('tanggal_lahir',true),
-			'jenis_kelamin' => $this->input->post('jenis_kelamin',true)
+			'tanggal_surat' 	=> $this->input->post('tanggal_surat',true),
+			'id_penduduk' 		=> $this->input->post('nama',true),
+			'id_master_surat' 	=> $this->input->post('jenis_surat',true),
+			'no_surat'       	=> date('ynjhis')
         ];
-        $this->db->where('id_kelahiran',$this->input->post('id'));
-		$this->db->update('kelahiran',$data);
+        $this->db->where('id_surat',$this->input->post('id'));
+		$this->db->update('surat',$data);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
-        redirect('kelahiran');
+        redirect('buat_surat');
     }
     public function delete_data($id)
     {
-        $this->db->where('id_kelahiran',$id);
-        $this->db->delete('kelahiran');
-        $this->session->set_flashdata('pesan','Akun berhasil hapus');
-        redirect('kelahiran');
+        $this->db->where('id_surat',$id);
+        $this->db->delete('surat');
+        $this->session->set_flashdata('pesan','Surat berhasil hapus');
+        redirect('buat_surat');
     }
 }

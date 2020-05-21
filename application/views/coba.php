@@ -1,170 +1,103 @@
-<!DOCTYPE html>
-<html>
+<div class="row">
+	<!-- /.col (LEFT) -->
+	<div class="col-md-6">
+		<!-- BAR CHART -->
+		<div class="card card-success">
+			<div class="card-header">
+				<h3 class="card-title">Bar Chart</h3>
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Sistem Informasi Management Desa</title>
-	<!-- Tell the browser to be responsive to screen width -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="<?=base_url('assets/adminlte/')?>plugins/fontawesome-free/css/all.min.css">
-	<!-- Ionicons -->
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<!-- icheck bootstrap -->
-	<link rel="stylesheet" href="<?=base_url('assets/adminlte/')?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-	<!-- Theme style -->
-	<link rel="stylesheet" href="<?=base_url('assets/adminlte/')?>dist/css/adminlte.min.css">
-	<!-- Google Font: Source Sans Pro -->
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
-
-<body class="hold-transition login-page">
-	<div class="login-box">
-		<div class="login-logo">
-			<a href="<?=base_url('assets/adminlte/')?>index2.html"><b>Sistem Informasi Desa</b></a>
-		</div>
-		<!-- /.login-logo -->
-		<div class="card">
-			<div class="card-body login-card-body">
-				<p class="login-box-msg">Masuk untuk memulai sesi Anda</p>
-				<?php if(!empty($this->session->flashdata('pesan'))): ?>
-				<div class="alert alert-danger" role="alert">
-					<?= $this->session->flashdata('pesan') ?>
+				<div class="card-tools">
+					<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-tool" data-card-widget="remove"><i
+							class="fas fa-times"></i></button>
 				</div>
-				<?php endif;?>
-				<form action="<?= base_url() ?>" method="post">
-					<div class="form-group">
-						<select name="provinsi" id="provinsi" class="form-control">
-							<option value="">-- Pilih Provinsi --</option>
-							<?php foreach ($provinsi as $key):?>
-							<option value="<?= $key->id_provinsi ?>"><?= $key->nama_provinsi ?></option>
-							<?php endforeach; ?>
-						</select>
-						<?= form_error('password','<small class="text-danger pl-1">','</small>') ?>
-					</div>
-					<div class="form-group">
-						<select name="kota" id="kota" class="form-control">
-							<option value="">-- Pilih Kota --</option>
-						</select>
-						<?= form_error('password','<small class="text-danger pl-1">','</small>') ?>
-					</div>
-					<div class="form-group">
-						<select name="kecamatan" id="kecamatan" class="form-control">
-							<option value="">-- Pilih Kecamatan --</option>
-						</select>
-						<?= form_error('password','<small class="text-danger pl-1">','</small>') ?>
-					</div>
-					<div class="form-group">
-						<select name="kelurahan" id="kelurahan" class="form-control">
-							<option value="">-- Pilih Kelurahan --</option>
-						</select>
-						<?= form_error('password','<small class="text-danger pl-1">','</small>') ?>
-					</div>
-					<div class="form-group">
-						<select name="dusun" id="dusun" class="form-control">
-							<option value="">-- Pilih Dusun --</option>
-						</select>
-						<?= form_error('password','<small class="text-danger pl-1">','</small>') ?>
-					</div>
-					<div class="row">
-						<div class="col-8">
-							<div class="icheck-primary">
-								<input type="checkbox" id="remember">
-								<label for="remember">
-									Ingat saya
-								</label>
-							</div>
-						</div>
-						<!-- /.col -->
-						<div class="col-4">
-							<button type="submit" class="btn btn-primary btn-block">Sign In</button>
-						</div>
-						<!-- /.col -->
-					</div>
-				</form>
 			</div>
-			<!-- /.login-card-body -->
+			<div class="card-body">
+				<div class="chart">
+					<canvas id="barChart"
+						style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+				</div>
+			</div>
+			<!-- /.card-body -->
 		</div>
+		<!-- /.card -->
 	</div>
-	<!-- /.login-box -->
+	<!-- /.col (RIGHT) -->
+</div>
+<!-- /.row -->
 
-	<!-- jQuery -->
-	<script src="<?=base_url('assets/adminlte/')?>plugins/jquery/jquery.min.js"></script>
-	<!-- Bootstrap 4 -->
-	<script src="<?=base_url('assets/adminlte/')?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- AdminLTE App -->
-	<script src="<?=base_url('assets/adminlte/')?>dist/js/adminlte.min.js"></script>
-	<script>
-		$(function () {
-			$.ajaxSetup({
-				type: 'POST',
-				url: "<?php echo base_url('penduduk/get_data_daerah') ?>",
-				cache: false
-			});
 
-			$("#provinsi").change(function () {
-				var value = $(this).val();
-				if (value > 0) {
-					$.ajax({
-						data: {
-							modul: 'kota',
-							id: value
-						},
-						success: function (respon) {
-							$("#kota").html(respon);
-						}
-					});
-				}
-			});
-			$("#kota").change(function () {
-				var value = $(this).val();
-				if (value > 0) {
-					$.ajax({
-						data: {
-							modul: 'kecamatan',
-							id: value
-						},
-						success: function (respon) {
-							$("#kecamatan").html(respon);
-						}
-					});
-				}
-			});
-			$("#kecamatan").change(function () {
-				var value = $(this).val();
-				if (value > 0) {
-					$.ajax({
-						data: {
-							modul: 'kelurahan',
-							id: value
-						},
-						success: function (respon) {
-							$("#kelurahan").html(respon);
-						}
-					});
-				}
-			});
-			$("#kelurahan").change(function () {
-				var value = $(this).val();
-				if (value > 0) {
-					$.ajax({
-						data: {
-							modul: 'dusun',
-							id: value
-						},
-						success: function (respon) {
-							$("#dusun").html(respon);
-						}
-					});
-				}
-			});
+<!-- jQuery -->
+<script src="<?=base_url('assets/adminlte/')?>plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?=base_url('assets/adminlte/')?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="<?=base_url('assets/adminlte/')?>plugins/chart.js/Chart.min.js"></script>
+<script>
+	$(function () {
+		/* ChartJS
+		 * -------
+		 * Here we will create a few charts using ChartJS
+		 */
 
-		});
+		//--------------
+		//- AREA CHART -
+		//--------------
 
-	</script>
+		// Get context with jQuery - using jQuery's .get() method.
+		var areaChartCanvas = $('#barChart').get(0).getContext('2d')
 
-</body>
+		var areaChartData = {
+			labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+			datasets: [{
+					label: 'Digital Goods',
+					backgroundColor: 'rgba(60,141,188,0.9)',
+					borderColor: 'rgba(60,141,188,0.8)',
+					pointRadius: false,
+					pointColor: '#3b8bba',
+					pointStrokeColor: 'rgba(60,141,188,1)',
+					pointHighlightFill: '#fff',
+					pointHighlightStroke: 'rgba(60,141,188,1)',
+					data: [2, 4, 4, 3, 8, 7, 9, 3, 5, 6, 8, 2]
+				},
+				{
+					label: 'Electronics',
+					backgroundColor: 'rgba(210, 214, 222, 1)',
+					borderColor: 'rgba(210, 214, 222, 1)',
+					pointRadius: false,
+					pointColor: 'rgba(210, 214, 222, 1)',
+					pointStrokeColor: '#c1c7d1',
+					pointHighlightFill: '#fff',
+					pointHighlightStroke: 'rgba(220,220,220,1)',
+					data: [5, 9, 8, 2, 6, 5, 4, 8, 4, 6, 8, 2]
+				},
+			]
+		}
 
-</html>
+		//-------------
+		//- BAR CHART -
+		//-------------
+		var barChartCanvas = $('#barChart').get(0).getContext('2d')
+		var barChartData = jQuery.extend(true, {}, areaChartData)
+		var temp0 = areaChartData.datasets[0]
+		var temp1 = areaChartData.datasets[1]
+		barChartData.datasets[0] = temp1
+		barChartData.datasets[1] = temp0
+
+		var barChartOptions = {
+			responsive: true,
+			maintainAspectRatio: false,
+			datasetFill: false
+		}
+
+		var barChart = new Chart(barChartCanvas, {
+			type: 'bar',
+			data: barChartData,
+			options: barChartOptions
+		})
+
+
+	})
+
+</script>

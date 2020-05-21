@@ -7,6 +7,7 @@ class model_penduduk extends CI_Model {
         if ($id == null) {
             $this->db->order_by('id_penduduk','desc');
             $this->db->where('status_hidup',0);
+            $this->db->not_like('status_penduduk','Pindah');
             return $this->db->get('penduduk')->result();
         }else{
             $query = "SELECT penduduk.* , kota.nama_kota , kecamatan.nama_kecamatan , kelurahan.nama_kelurahan , dusun.nama_dusun FROM `penduduk` INNER JOIN kota ON penduduk.kota=kota.id_kota INNER JOIN kecamatan ON penduduk.kecamatan=kecamatan.id_kecamatan INNER JOIN kelurahan ON penduduk.kelurahan=kelurahan.id_kelurahan INNER JOIN dusun ON penduduk.dusun=dusun.id_dusun WHERE penduduk.id_penduduk=$id";
@@ -78,7 +79,8 @@ class model_penduduk extends CI_Model {
 			'nama_ibu'	          => $this->input->post('nama_ibu',true),
 			'nama_bapak'	      => $this->input->post('nama_ayah',true),
 			'pendidikan_terakhir' => $this->input->post('pendidikan',true),
-			'foto' 		          => $this->_upload()
+            'foto' 		          => $this->_upload(),
+            'tanggal_input'       => date('Y-m-d')
         ];
         //insert data penduduk
         $this->db->insert('penduduk',$data_penduduk);

@@ -26,21 +26,21 @@
 					<td><?= $key->nama_surat_dinas ?></td>
 					<td><?= $key->tanggal_surat ?></td>
 					<td style="width:105px">
-						<a href="<?= base_url('buat_surat/edit_buat_surat/'.$key->id_master_surat) ?>"
+						<a href="<?= base_url('buat_surat/laporan_surat/'.$key->id_surat) ?>"
 							class="btn btn-success btn-sm">
 							<i class="fa fa-print"></i>
 						</a>
-						<a href="<?= base_url('buat_surat/edit_buat_surat/'.$key->id_master_surat) ?>"
+						<a href="<?= base_url('buat_surat/edit_buat_surat/'.$key->id_surat) ?>"
 							class="btn btn-warning btn-sm">
 							<i class="fa fa-edit"></i>
 						</a>
 						<button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-							data-target="#modal-delete<?= $key->id_master_surat ?>"><i class="fa fa-trash"></i>
+							data-target="#modal-delete<?= $key->id_surat ?>"><i class="fa fa-trash"></i>
 						</button>
 					</td>
 				</tr>
 				<!-- modal delete  -->
-				<div class="modal fade" id="modal-delete<?= $key->id_master_surat ?>">
+				<div class="modal fade" id="modal-delete<?= $key->id_surat ?>">
 					<div class="modal-dialog">
 						<div class="modal-content bg-danger">
 							<div class="modal-header">
@@ -54,7 +54,7 @@
 							</div>
 							<div class="modal-footer justify-content-between">
 								<button type="button" class="btn btn-outline-light" data-dismiss="modal">Tutup</button>
-								<a href="<?= base_url('buat_surat/delete_buat_surat/'.$key->id_master_surat) ?>">
+								<a href="<?= base_url('buat_surat/delete_buat_surat/'.$key->id_surat) ?>">
 									<div class="btn btn-outline-light toastrDefaultSuccess">Hapus</div>
 								</a>
 							</div>
