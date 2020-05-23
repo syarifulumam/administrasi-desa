@@ -105,8 +105,50 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<li class="nav-item">
 							<a href="<?=base_url('buat_surat')?>" class="nav-link">
 								<i class="nav-icon fas fa-file"></i>
-								<p>Buat Surat</p>
+								<p>Cetak Surat</p>
 							</a>
+						</li>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-folder-open"></i>
+								<p>
+									Buat Surat
+									<i class="right fas fa-angle-left"></i>
+									<span class="badge badge-info right">7</span>
+								</p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="<?=base_url('buat_surat/add_buat_surat_domisili')?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Domisili</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?=base_url('buat_surat/add_buat_surat_ktp')?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Keterangan Proses KTP</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?=base_url('buat_surat/add_buat_surat_kematian')?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Keterangan Kematian</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?=base_url('buat_surat/add_buat_surat_tidak_mampu')?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Keterangan Tidak Mampu</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?=base_url('buat_surat/add_buat_surat_baik')?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Keterangan Berkelakuan Baik</p>
+									</a>
+								</li>
+							</ul>
 						</li>
 						<li class="nav-item has-treeview">
 							<a href="#" class="nav-link">

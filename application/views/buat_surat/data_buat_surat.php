@@ -26,14 +26,14 @@
 					<td><?= $key->nama_surat_dinas ?></td>
 					<td><?= $key->tanggal_surat ?></td>
 					<td style="width:105px">
-						<a href="<?= base_url('buat_surat/laporan_surat/'.$key->id_surat) ?>"
+						<a href="<?= base_url('buat_surat/'.$key->url.'/'.$key->id_surat) ?>"
 							class="btn btn-success btn-sm">
 							<i class="fa fa-print"></i>
 						</a>
-						<a href="<?= base_url('buat_surat/edit_buat_surat/'.$key->id_surat) ?>"
+						<!-- <a href="<?= base_url('buat_surat/edit_buat_surat/'.$key->id_surat) ?>"
 							class="btn btn-warning btn-sm">
 							<i class="fa fa-edit"></i>
-						</a>
+						</a> -->
 						<button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
 							data-target="#modal-delete<?= $key->id_surat ?>"><i class="fa fa-trash"></i>
 						</button>
