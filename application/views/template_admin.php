@@ -103,6 +103,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</a>
 						</li>
 						<li class="nav-item">
+							<a href="<?=base_url('keuangan')?>" class="nav-link">
+								<i class="nav-icon fas fa-money-check-alt"></i>
+								<p>Keuangan</p>
+							</a>
+						</li>
+						<li class="nav-item">
 							<a href="<?=base_url('buat_surat')?>" class="nav-link">
 								<i class="nav-icon fas fa-file"></i>
 								<p>Cetak Surat</p>
