@@ -1,8 +1,8 @@
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('pesan') ?>"></div>
 <div class="card">
 	<div class="card-header">
-		<h3 class="card-title">Data Ekspedisi</h3>
-		<a href="<?= base_url('ekspedisi/add_ekspedisi') ?>" class="btn btn-primary float-right">Tambah</a>
+		<h3 class="card-title">Data Keuangan Pengeluaran</h3>
+		<a href="<?= base_url('keuangan/add_keuangan_pengeluaran') ?>" class="btn btn-primary float-right">Tambah</a>
 	</div>
 	<!-- /.card-header -->
 	<div class="card-body table-responsive">
@@ -10,33 +10,32 @@
 			<thead>
 				<tr>
 					<th>No</th>
-					<th>Tanggal Pengiriman</th>
-					<th>Tanggal Surat</th>
-					<th>Nomor Surat</th>
-					<th>Tujuan</th>
+					<th>Keterangan</th>
+					<th>Tanggal</th>
+					<th>Harga</th>
 					<th style="width:50px;">Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($ekspedisi as $key):?>
+				<?php $total_harga = 0; ?>
+				<?php foreach ($keuangan as $key):?>
 				<tr>
 					<td>1</td>
-					<td><?= $key->tanggal_pengiriman ?></td>
-					<td><?= $key->tanggal_surat ?></td>
-					<td><?= $key->nomor_surat ?></td>
-					<td><?= $key->tujuan ?></td>
+					<td><?= $key->keterangan ?></td>
+					<td><?= $key->tanggal ?></td>
+					<td>Rp.<?= number_format($key->harga,2,',','.'); ?></td>
 					<td style="width:105px">
-						<a href="<?= base_url('ekspedisi/edit_ekspedisi/'.$key->id_ekspedisi) ?>"
+						<a href="<?= base_url('keuangan/edit_keuangan_pengeluaran/'.$key->id_keuangan) ?>"
 							class="btn btn-warning btn-sm">
 							<i class="fa fa-edit"></i>
-						</a>
+						</a -->
 						<button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-							data-target="#modal-delete<?= $key->id_ekspedisi ?>"><i class="fa fa-trash"></i>
+							data-target="#modal-delete<?= $key->id_keuangan ?>"><i class="fa fa-trash"></i>
 						</button>
 					</td>
 				</tr>
 				<!-- modal delete  -->
-				<div class="modal fade" id="modal-delete<?= $key->id_ekspedisi ?>">
+				<div class="modal fade" id="modal-delete<?= $key->id_keuangan ?>">
 					<div class="modal-dialog">
 						<div class="modal-content bg-danger">
 							<div class="modal-header">
@@ -50,7 +49,7 @@
 							</div>
 							<div class="modal-footer justify-content-between">
 								<button type="button" class="btn btn-outline-light" data-dismiss="modal">Tutup</button>
-								<a href="<?= base_url('ekspedisi/delete_ekspedisi/'.$key->id_ekspedisi) ?>">
+								<a href="<?= base_url('keuangan/delete_keuangan/'.$key->id_keuangan) ?>">
 									<div class="btn btn-outline-light toastrDefaultSuccess">Hapus</div>
 								</a>
 							</div>
@@ -60,8 +59,15 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php
+					$total_harga+=$key->harga;
+					endforeach; 
+				?>
 			</tbody>
+			<tr>
+				<td colspan='3' class="text-center">Total</td>
+				<td colspan='2'>Rp.<?= number_format($total_harga,2,',','.'); ?></td>
+			</tr>
 		</table>
 	</div>
 	<!-- /.card-body -->

@@ -7,10 +7,12 @@ class Ekspedisi extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_ekspedisi');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['ekspedisi'] = $this->model_ekspedisi->get_data();
 		$this->template->load('template_admin','ekspedisi/data_ekspedisi',$data);
 		
@@ -27,7 +29,8 @@ class Ekspedisi extends CI_Controller {
 			if ($this->form_validation->run() == true) {
 			$this->model_ekspedisi->insert_data();
 		}
-        $this->template->load('template_admin','ekspedisi/add_ekspedisi');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','ekspedisi/add_ekspedisi',$data);
 	}
 	public function edit_ekspedisi($id)
 	{
@@ -42,6 +45,7 @@ class Ekspedisi extends CI_Controller {
 			$this->model_ekspedisi->edit_data();
 		}
 		$data['ekspedisi'] = $this->model_ekspedisi->get_data($id);
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','ekspedisi/edit_ekspedisi',$data);
 
 	}

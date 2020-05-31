@@ -7,11 +7,13 @@ class Rencana_pembangunan extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_rencana_pembangunan');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['rencana_pembangunan'] = $this->model_rencana_pembangunan->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','rencana_pembangunan/data_rencana_pembangunan',$data);
 		
 	}
@@ -30,7 +32,8 @@ class Rencana_pembangunan extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_rencana_pembangunan->insert_data();
 		}
-        $this->template->load('template_admin','rencana_pembangunan/add_rencana_pembangunan');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','rencana_pembangunan/add_rencana_pembangunan',$data);
 	}
 	public function edit_rencana_pembangunan($id)
 	{
@@ -48,6 +51,7 @@ class Rencana_pembangunan extends CI_Controller {
 			$this->model_rencana_pembangunan->edit_data();
 		}
 		$data['rencana_pembangunan'] = $this->model_rencana_pembangunan->get_data($id);
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','rencana_pembangunan/edit_rencana_pembangunan',$data);
 
 	}

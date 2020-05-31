@@ -7,10 +7,12 @@ class Kelahiran extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_kelahiran');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kelahiran'] = $this->model_kelahiran->get_data();
 		$this->template->load('template_admin','kelahiran/data_kelahiran',$data);
 		
@@ -30,6 +32,7 @@ class Kelahiran extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_kelahiran->insert_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['ayah'] = $this->model_kelahiran->get_data_ayah();
 		$data['ibu']  = $this->model_kelahiran->get_data_ibu();
         $this->template->load('template_admin','kelahiran/add_kelahiran',$data);
@@ -49,6 +52,7 @@ class Kelahiran extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_kelahiran->edit_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['ayah'] = $this->model_kelahiran->get_data_ayah();
 		$data['ibu']  = $this->model_kelahiran->get_data_ibu();
 		$data['kelahiran'] = $this->model_kelahiran->get_data($id);

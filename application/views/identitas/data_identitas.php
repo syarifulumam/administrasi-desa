@@ -3,7 +3,7 @@
 	<div class="card-header">
 		Add User
 	</div>
-	<div class="card-body">
+	<div class="card-body table-responsive">
 		<?= form_open_multipart(base_url('identitas/edit_identitas'),'',array('id'=>$identitas->id_identitas,'foto_db'=>$identitas->logo));?>
 		<div class="row">
 			<div class="col-sm-4">

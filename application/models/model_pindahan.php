@@ -39,6 +39,14 @@ class model_pindahan extends CI_Model {
         //update status penduduk jadi pindah
         $this->db->where('id_penduduk',$this->input->post('nama'));
         $this->db->update('penduduk',array('status_penduduk'=>'Pindah'));
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data pindahan',
+            'url'        => 'pindahan',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('pindahan');
     }
@@ -52,6 +60,14 @@ class model_pindahan extends CI_Model {
         ];
         $this->db->where('id_pindah_kependudukan',$this->input->post('id'));
 		$this->db->update('pindah_kependudukan',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data pindahan',
+            'url'        => 'pindahan',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('pindahan');
     }
@@ -59,6 +75,14 @@ class model_pindahan extends CI_Model {
     {
         $this->db->where('id_pindah_kependudukan',$id);
         $this->db->delete('pindah_kependudukan');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data pindahan',
+            'url'        => 'pindahan',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('pindahan');
     } 

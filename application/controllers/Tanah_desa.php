@@ -7,10 +7,12 @@ class Tanah_desa extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_tanah_desa');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['tanah_desa'] = $this->model_tanah_desa->get_data();
 		$this->template->load('template_admin','tanah_desa/data_tanah_desa',$data);
 		
@@ -46,7 +48,8 @@ class Tanah_desa extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_tanah_desa->insert_data();
 		}
-        $this->template->load('template_admin','tanah_desa/add_tanah_desa');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','tanah_desa/add_tanah_desa',$data);
 	}
 	public function edit_tanah_desa($id)
 	{
@@ -79,6 +82,7 @@ class Tanah_desa extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_tanah_desa->edit_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['tanah_desa'] = $this->model_tanah_desa->get_data($id);
 		$this->template->load('template_admin','tanah_desa/edit_tanah_desa',$data);
 

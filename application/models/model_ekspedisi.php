@@ -24,6 +24,14 @@ class model_ekspedisi extends CI_Model {
         ];
         //insert data pindahan
         $this->db->insert('ekspedisi',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data ekspedisi',
+            'url'        => 'ekspedisi',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('ekspedisi');
     }
@@ -49,6 +57,14 @@ class model_ekspedisi extends CI_Model {
         
         $this->db->where('id_ekspedisi',$this->input->post('id'));
 		$this->db->update('ekspedisi',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data ekspedisi',
+            'url'        => 'ekspedisi',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('ekspedisi');
     }
@@ -56,6 +72,14 @@ class model_ekspedisi extends CI_Model {
     {
         $this->db->where('id_ekspedisi',$id);
         $this->db->delete('ekspedisi');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data ekspedisi',
+            'url'        => 'ekspedisi',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('ekspedisi');
     }

@@ -7,11 +7,13 @@ class Kepdes extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_kepdes');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['kepdes'] = $this->model_kepdes->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','kepdes/data_kepdes',$data);
 		
 	}
@@ -27,7 +29,8 @@ class Kepdes extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_kepdes->insert_data();
 		}
-        $this->template->load('template_admin','kepdes/add_kepdes');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','kepdes/add_kepdes',$data);
 	}
 	public function edit_kepdes($id)
 	{
@@ -42,6 +45,7 @@ class Kepdes extends CI_Controller {
 			$this->model_kepdes->edit_data();
 		}
 		$data['kepdes'] = $this->model_kepdes->get_data($id);
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','kepdes/edit_kepdes',$data);
 
 	}

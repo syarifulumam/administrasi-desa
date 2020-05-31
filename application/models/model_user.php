@@ -13,13 +13,21 @@ class model_user extends CI_Model {
     public function insert_data()
     {
         $data = [
-			'nama' 		=> $this->input->post('nama',true),
+            'nama' 		=> $this->input->post('nama',true),
 			'username'	=> $this->input->post('username',true),
 			'level'	    => $this->input->post('level_user',true),
 			'password' 	=> password_hash($this->input->post('password',true),PASSWORD_DEFAULT),
 			'foto' 		=> $this->_upload()
         ];
-		$this->db->insert('users',$data);
+        $this->db->insert('users',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data user',
+            'url'        => 'users',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('users');
     }
@@ -41,7 +49,15 @@ class model_user extends CI_Model {
 			'foto' 		=> $data_foto
         ];
         $this->db->where('id_user',$this->input->post('id'));
-		$this->db->update('users',$data);
+        $this->db->update('users',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data user',
+            'url'        => 'users',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('users');
     }
@@ -49,6 +65,14 @@ class model_user extends CI_Model {
     {
         $this->db->where('id_user',$id);
         $this->db->delete('users');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data user',
+            'url'        => 'users',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('users');
     }

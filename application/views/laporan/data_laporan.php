@@ -19,6 +19,16 @@
 				<!-- /.input group -->
 			</div>
 			<!-- /.form group -->
+			<div class="form-group">
+			<label>Jenis Surat</label>
+			<select class="form-control select2" style="width: 100%;" name="jenis" id="nama">
+				<option value="">-- Pilih Surat --</option>
+				<?php foreach ($surat as $key):?>
+				<option value="<?= $key->id_master_surat ?>"><?= $key->nama_surat_dinas ?></option>
+				<?php endforeach; ?>
+			</select>
+			<?= form_error('nama','<small class="text-danger pl-1">','</small>') ?>
+		</div>
 		</div>
 		<!-- /.card-body -->
 		<div class="card-footer">

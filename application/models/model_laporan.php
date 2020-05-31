@@ -16,6 +16,9 @@ class model_laporan extends CI_Model {
         $this->db->from('surat');
         $this->db->join('master_surat','surat.id_master_surat=master_surat.id_master_surat');
         $this->db->join('penduduk','surat.id_penduduk=penduduk.id_penduduk');
+        if($this->input->post('jenis') != null){
+            $this->db->where('surat.id_master_surat',$this->input->post('jenis'));
+        }
         $this->db->where('tanggal_surat >=', $date_start);
         $this->db->where('tanggal_surat <=', $date_end);
         return $this->db->get()->result();
@@ -56,6 +59,9 @@ class model_laporan extends CI_Model {
             $query = "SELECT dusun.nama_dusun,COUNT(IF(penduduk.jenis_kelamin = 'Laki - Laki',1,null)) AS pria, COUNT(IF(penduduk.jenis_kelamin = 'Perempuan',1,null)) AS wanita FROM `penduduk` JOIN dusun ON dusun.id_dusun=penduduk.dusun WHERE penduduk.tanggal_input >='". $tanggal['0'] ."' AND penduduk.tanggal_input <='" . $tanggal['1'] . "'AND dusun.nama_dusun='" . $dusun . "'GROUP BY dusun.nama_dusun";
             return $this->db->query($query)->result();
         }
-        
+    }
+    public function get_master_surat()
+    {
+        return $this->db->get('master_surat')->result();
     }
 }

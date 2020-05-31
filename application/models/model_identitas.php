@@ -40,6 +40,14 @@ class model_identitas extends CI_Model {
         ];
         $this->db->where('id_identitas',$this->input->post('id'));
 		$this->db->update('identitas',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data identitas',
+            'url'        => 'identitas',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('identitas');
     }

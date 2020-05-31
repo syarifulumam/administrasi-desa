@@ -23,6 +23,14 @@ class model_master_surat extends CI_Model {
             'nama_surat_dinas' => $this->input->post('nama_surat')
         ];
         $this->db->insert('master_surat',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data master surat',
+            'url'        => 'master_surat',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('master_surat');
     }
@@ -30,6 +38,14 @@ class model_master_surat extends CI_Model {
     {
         $this->db->where('id_master_surat',$this->input->post('id',true));
         $this->db->update('master_surat',array('nama_surat_dinas'=>$this->input->post('nama_surat',true)));
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data master surat',
+            'url'        => 'master_surat',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('master_surat');
     }
@@ -37,6 +53,14 @@ class model_master_surat extends CI_Model {
     {
         $this->db->where('id_master_surat',$id);
         $this->db->delete('master_surat');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data master surat',
+            'url'        => 'master_surat',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('master_surat');
     }

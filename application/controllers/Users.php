@@ -7,10 +7,12 @@ class Users extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_user');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['user'] = $this->model_user->get_data();
 		$this->template->load('template_admin','users/data_user',$data);
 		
@@ -25,7 +27,8 @@ class Users extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_user->insert_data();
 		}
-        $this->template->load('template_admin','users/add_user');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','users/add_user',$data);
 	}
 	public function edit_user($id)
 	{
@@ -36,6 +39,7 @@ class Users extends CI_Controller {
 			$this->model_user->edit_data();
 		}
 		$data['user'] = $this->model_user->get_data($id);
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','users/edit_user',$data);
 
 	}

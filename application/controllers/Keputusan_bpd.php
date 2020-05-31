@@ -7,11 +7,13 @@ class Keputusan_bpd extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_keputusan_bpd');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['keputusan_bpd'] = $this->model_keputusan_bpd->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','keputusan_bpd/data_keputusan_bpd',$data);
 		
 	}
@@ -26,7 +28,8 @@ class Keputusan_bpd extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_keputusan_bpd->insert_data();
 		}
-        $this->template->load('template_admin','keputusan_bpd/add_keputusan_bpd');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','keputusan_bpd/add_keputusan_bpd',$data);
 	}
 	public function edit_keputusan_bpd($id)
 	{
@@ -40,6 +43,7 @@ class Keputusan_bpd extends CI_Controller {
 			$this->model_keputusan_bpd->edit_data();
 		}
 		$data['keputusan_bpd'] = $this->model_keputusan_bpd->get_data($id);
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','keputusan_bpd/edit_keputusan_bpd',$data);
 
 	}

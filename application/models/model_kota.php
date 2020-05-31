@@ -25,6 +25,14 @@ class model_kota extends CI_Model {
             'id_provinsi' => $this->input->post('provinsi',true)
         ];
         $this->db->insert('kota',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data kota',
+            'url'        => 'kota',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('kota');
     }
@@ -36,6 +44,14 @@ class model_kota extends CI_Model {
         ];
         $this->db->where('id_kota',$this->input->post('id',true));
         $this->db->update('kota',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data kota',
+            'url'        => 'kota',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('kota');
     }
@@ -43,6 +59,14 @@ class model_kota extends CI_Model {
     {
         $this->db->where('id_kota',$id);
         $this->db->delete('kota');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data kota',
+            'url'        => 'kota',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('kota');
     }

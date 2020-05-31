@@ -7,10 +7,12 @@ class Kader_pembangunan extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_kader_pembangunan');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kader_pembangunan'] = $this->model_kader_pembangunan->get_data();
 		$this->template->load('template_admin','kader_pembangunan/data_kader_pembangunan',$data);
 		
@@ -30,7 +32,8 @@ class Kader_pembangunan extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_kader_pembangunan->insert_data();
 		}
-        $this->template->load('template_admin','kader_pembangunan/add_kader_pembangunan');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','kader_pembangunan/add_kader_pembangunan',$data);
 	}
 	public function edit_kader_pembangunan($id)
 	{
@@ -47,6 +50,7 @@ class Kader_pembangunan extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_kader_pembangunan->edit_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kader_pembangunan'] = $this->model_kader_pembangunan->get_data($id);
 		$this->template->load('template_admin','kader_pembangunan/edit_kader_pembangunan',$data);
 

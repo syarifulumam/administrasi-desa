@@ -27,6 +27,14 @@ class model_kegiatan_pembangunan extends CI_Model {
 			'sumber_dana_pemerintah'  => $this->input->post('dana_pemerintah',true),
         ];
 		$this->db->insert('kegiatan_pembangunan',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data kegiatan pembangunan',
+            'url'        => 'kegiatan_pembangunan',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('kegiatan_pembangunan');
     }
@@ -47,6 +55,14 @@ class model_kegiatan_pembangunan extends CI_Model {
         ];
         $this->db->where('id_kegiatan_pembangunan',$this->input->post('id'));
 		$this->db->update('kegiatan_pembangunan',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data kegiatan pembangunan',
+            'url'        => 'kegiatan_pembangunan',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('kegiatan_pembangunan');
     }
@@ -54,6 +70,14 @@ class model_kegiatan_pembangunan extends CI_Model {
     {
         $this->db->where('id_kegiatan_pembangunan',$id);
         $this->db->delete('kegiatan_pembangunan');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data kegiatan pembangunan',
+            'url'        => 'kegiatan_pembangunan',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('kegiatan_pembangunan');
     } 

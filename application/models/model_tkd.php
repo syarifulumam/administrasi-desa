@@ -41,6 +41,14 @@ class model_tkd extends CI_Model {
         ];
         //insert data pindahan
         $this->db->insert('tkd',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data tkd',
+            'url'        => 'tkd',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('tkd');
     }
@@ -83,6 +91,14 @@ class model_tkd extends CI_Model {
         
         $this->db->where('id_tkd',$this->input->post('id'));
 		$this->db->update('tkd',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data tkd',
+            'url'        => 'tkd',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('tkd');
     }
@@ -90,6 +106,14 @@ class model_tkd extends CI_Model {
     {
         $this->db->where('id_tkd',$id);
         $this->db->delete('tkd');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data tkd',
+            'url'        => 'tkd',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('tkd');
     }

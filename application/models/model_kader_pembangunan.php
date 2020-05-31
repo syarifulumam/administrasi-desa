@@ -27,6 +27,14 @@ class model_kader_pembangunan extends CI_Model {
         ];
         //insert data pindahan
         $this->db->insert('kader_pembangunan',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data kader pembangunan',
+            'url'        => 'kader_pembangunan',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('kader_pembangunan');
     }
@@ -55,6 +63,14 @@ class model_kader_pembangunan extends CI_Model {
         
         $this->db->where('id_kader_pembangunan',$this->input->post('id'));
 		$this->db->update('kader_pembangunan',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data kader pembangunan',
+            'url'        => 'kader_pembangunan',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('kader_pembangunan');
     }
@@ -62,6 +78,14 @@ class model_kader_pembangunan extends CI_Model {
     {
         $this->db->where('id_kader_pembangunan',$id);
         $this->db->delete('kader_pembangunan');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data kader pembangunan',
+            'url'        => 'kader_pembangunan',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('kader_pembangunan');
     }

@@ -7,11 +7,13 @@ class Pindahan extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_pindahan');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['pindahan'] = $this->model_pindahan->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','pindahan/data_pindahan',$data);
 		
 	}
@@ -25,6 +27,7 @@ class Pindahan extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_pindahan->insert_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['penduduk'] = $this->model_pindahan->get_data_penduduk();
         $this->template->load('template_admin','pindahan/add_pindahan',$data);
 	}
@@ -38,6 +41,7 @@ class Pindahan extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_pindahan->edit_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['penduduk'] = $this->model_pindahan->get_data_penduduk();
 		$data['pindahan'] = $this->model_pindahan->get_data($id);
 		$this->template->load('template_admin','pindahan/edit_pindahan',$data);

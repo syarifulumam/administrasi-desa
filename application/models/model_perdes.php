@@ -27,6 +27,14 @@ class model_perdes extends CI_Model {
         ];
         //insert data pindahan
         $this->db->insert('peraturan_desa',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data perdes',
+            'url'        => 'perdes',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('perdes');
     }
@@ -55,6 +63,14 @@ class model_perdes extends CI_Model {
         
         $this->db->where('id_peraturan_desa',$this->input->post('id'));
 		$this->db->update('peraturan_desa',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data perdes',
+            'url'        => 'perdes',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('perdes');
     }
@@ -62,6 +78,14 @@ class model_perdes extends CI_Model {
     {
         $this->db->where('id_peraturan_desa',$id);
         $this->db->delete('peraturan_desa');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data perdes',
+            'url'        => 'perdes',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('perdes');
     }

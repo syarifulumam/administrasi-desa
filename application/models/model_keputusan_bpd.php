@@ -23,6 +23,14 @@ class model_keputusan_bpd extends CI_Model {
         ];
         //insert data pindahan
         $this->db->insert('keputusan_bpd',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data keputusan bpd',
+            'url'        => 'keputusan_bpd',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('keputusan_bpd');
     }
@@ -47,6 +55,14 @@ class model_keputusan_bpd extends CI_Model {
         
         $this->db->where('id_keputusan_bpd',$this->input->post('id'));
 		$this->db->update('keputusan_bpd',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data keputusan bpd',
+            'url'        => 'keputusan_bpd',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('keputusan_bpd');
     }
@@ -54,6 +70,14 @@ class model_keputusan_bpd extends CI_Model {
     {
         $this->db->where('id_keputusan_bpd',$id);
         $this->db->delete('keputusan_bpd');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data keputusan bpd',
+            'url'        => 'keputusan_bpd',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('keputusan_bpd');
     }

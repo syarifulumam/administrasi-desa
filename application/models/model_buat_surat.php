@@ -60,6 +60,14 @@ class model_buat_surat extends CI_Model {
 			'url'       	    => $this->input->post('url',true)
         ];
 		$this->db->insert('surat',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data buat surat',
+            'url'        => 'buat_surat',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('buat_surat');
     }
@@ -75,6 +83,14 @@ class model_buat_surat extends CI_Model {
 			'url'       	    => $this->input->post('url',true)
         ];
 		$this->db->insert('surat',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data buat surat',
+            'url'        => 'buat_surat',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('buat_surat');
     }
@@ -88,6 +104,14 @@ class model_buat_surat extends CI_Model {
         ];
         $this->db->where('id_surat',$this->input->post('id'));
 		$this->db->update('surat',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data buat surat',
+            'url'        => 'buat_surat',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('buat_surat');
     }
@@ -95,6 +119,14 @@ class model_buat_surat extends CI_Model {
     {
         $this->db->where('id_surat',$id);
         $this->db->delete('surat');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data buat surat',
+            'url'        => 'buat_surat',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Surat berhasil hapus');
         redirect('buat_surat');
     }

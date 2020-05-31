@@ -7,11 +7,13 @@ class aparat extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_aparat');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['aparat'] = $this->model_aparat->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','aparat/data_aparat',$data);
 		
 	}
@@ -36,7 +38,8 @@ class aparat extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_aparat->insert_data();
 		}
-        $this->template->load('template_admin','aparat/add_aparat');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','aparat/add_aparat',$data);
 	}
 	public function edit_aparat($id)
 	{
@@ -60,6 +63,7 @@ class aparat extends CI_Controller {
 			$this->model_aparat->edit_data();
 		}
 		$data['aparat'] = $this->model_aparat->get_data($id);
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','aparat/edit_aparat',$data);
 
 	}

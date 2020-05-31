@@ -7,11 +7,13 @@ class Identitas extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_identitas');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['identitas'] = $this->model_identitas->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','identitas/data_identitas',$data);
 		
 	}
@@ -37,6 +39,7 @@ class Identitas extends CI_Controller {
 			$this->model_identitas->edit_data();
 		}
 		$data['identitas'] = $this->model_identitas->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','identitas/edit_identitas',$data);
 
 	}

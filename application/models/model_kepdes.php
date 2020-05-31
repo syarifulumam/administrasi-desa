@@ -24,6 +24,14 @@ class model_kepdes extends CI_Model {
         ];
         //insert data pindahan
         $this->db->insert('kepala_desa',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data kepdes',
+            'url'        => 'kepdes',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('kepdes');
     }
@@ -49,6 +57,14 @@ class model_kepdes extends CI_Model {
         
         $this->db->where('id_kepala_desa',$this->input->post('id'));
 		$this->db->update('kepala_desa',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data kepdes',
+            'url'        => 'kepdes',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('kepdes');
     }
@@ -56,6 +72,14 @@ class model_kepdes extends CI_Model {
     {
         $this->db->where('id_kepala_desa',$id);
         $this->db->delete('kepala_desa');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data kepdes',
+            'url'        => 'kepdes',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('kepdes');
     }

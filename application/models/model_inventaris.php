@@ -27,6 +27,14 @@ class model_inventaris extends CI_Model {
             'keadaan_barang_akhir_tahun' 		=> $this->input->post('keadaan_barang_akhir_tahun',true),
         ];
 		$this->db->insert('inventaris',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data inventaris',
+            'url'        => 'inventaris',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('inventaris');
     }
@@ -47,6 +55,14 @@ class model_inventaris extends CI_Model {
         ];
         $this->db->where('id_inventaris',$this->input->post('id'));
 		$this->db->update('inventaris',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data inventaris',
+            'url'        => 'inventaris',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('inventaris');
     }
@@ -54,6 +70,14 @@ class model_inventaris extends CI_Model {
     {
         $this->db->where('id_inventaris',$id);
         $this->db->delete('inventaris');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data inventaris',
+            'url'        => 'inventaris',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('inventaris');
     }

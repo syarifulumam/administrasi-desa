@@ -21,6 +21,14 @@ class model_inventaris_proyek extends CI_Model {
 			'nama_proyek' 	  => $this->input->post('nama_proyek',true),
         ];
 		$this->db->insert('inventaris_proyek',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data inventaris proyek',
+            'url'        => 'inventaris_proyek',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('inventaris_proyek');
     }
@@ -35,6 +43,14 @@ class model_inventaris_proyek extends CI_Model {
         ];
         $this->db->where('id_inventaris_proyek',$this->input->post('id'));
 		$this->db->update('inventaris_proyek',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data inventaris proyek',
+            'url'        => 'inventaris_proyek',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('inventaris_proyek');
     }
@@ -42,6 +58,14 @@ class model_inventaris_proyek extends CI_Model {
     {
         $this->db->where('id_inventaris_proyek',$id);
         $this->db->delete('inventaris_proyek');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data inventaris proyek',
+            'url'        => 'inventaris_proyek',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('inventaris_proyek');
     } 

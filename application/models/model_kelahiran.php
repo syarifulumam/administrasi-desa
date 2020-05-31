@@ -62,7 +62,15 @@ class model_kelahiran extends CI_Model {
 			'no_akte' 		=> $this->input->post('nomor_akte',true),
         ];
 
-		$this->db->insert('kelahiran',$data_kelahiran);
+        $this->db->insert('kelahiran',$data_kelahiran);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data kelahiran',
+            'url'        => 'kelahiran',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('kelahiran');
     }
@@ -97,6 +105,14 @@ class model_kelahiran extends CI_Model {
         ];
         $this->db->where('id_kelahiran',$this->input->post('id_kelahiran'));
 		$this->db->update('kelahiran',$data_kelahiran);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data kelahiran',
+            'url'        => 'kelahiran',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('kelahiran');
     }
@@ -104,6 +120,14 @@ class model_kelahiran extends CI_Model {
     {
         $this->db->where('id_kelahiran',$id);
         $this->db->delete('kelahiran');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data kelahiran',
+            'url'        => 'kelahiran',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('kelahiran');
     }

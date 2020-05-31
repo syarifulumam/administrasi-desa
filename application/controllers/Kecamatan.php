@@ -7,6 +7,7 @@ class kecamatan extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_kecamatan');
+		$this->load->model('model_notifikasi');
     }
     public function index()
     {
@@ -20,6 +21,7 @@ class kecamatan extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_kecamatan->insert_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kota'] = $this->model_kecamatan->get_kota();
         $this->template->load('template_admin','kecamatan/add_kecamatan',$data);
     }
@@ -30,6 +32,7 @@ class kecamatan extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_kecamatan->edit_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kecamatan'] = $this->model_kecamatan->get_data($id);
 		$data['kota'] = $this->model_kecamatan->get_kota();
         $this->template->load('template_admin','kecamatan/edit_kecamatan',$data);

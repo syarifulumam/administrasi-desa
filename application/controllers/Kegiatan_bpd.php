@@ -7,11 +7,13 @@ class Kegiatan_bpd extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_kegiatan_bpd');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['kegiatan_bpd'] = $this->model_kegiatan_bpd->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','kegiatan_bpd/data_kegiatan_bpd',$data);
 		
 	}
@@ -27,7 +29,8 @@ class Kegiatan_bpd extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_kegiatan_bpd->insert_data();
 		}
-        $this->template->load('template_admin','kegiatan_bpd/add_kegiatan_bpd');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','kegiatan_bpd/add_kegiatan_bpd',$data);
 	}
 	public function edit_kegiatan_bpd($id)
 	{
@@ -42,6 +45,7 @@ class Kegiatan_bpd extends CI_Controller {
 			$this->model_kegiatan_bpd->edit_data();
 		}
 		$data['kegiatan_bpd'] = $this->model_kegiatan_bpd->get_data($id);
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','kegiatan_bpd/edit_kegiatan_bpd',$data);
 
 	}

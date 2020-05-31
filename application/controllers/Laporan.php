@@ -8,6 +8,7 @@ class Laporan extends CI_Controller {
 		parent::__construct();
         $this->load->library('pdf');
 		$this->load->model('model_laporan');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
@@ -16,7 +17,9 @@ class Laporan extends CI_Controller {
 			$this->laporan_surat($data);
 		}
 		//load view pake library template
-		$this->template->load('template_admin','laporan/data_laporan');
+		$data['surat'] = $this->model_laporan->get_master_surat();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+		$this->template->load('template_admin','laporan/data_laporan',$data);
 	}
 	public function ekspedisi_kearsipan_bpd()
 	{
@@ -25,7 +28,8 @@ class Laporan extends CI_Controller {
 			$data = $this->model_laporan->get_data_ekspedisi_bpd($tanggal);
 			$this->laporan_ekspedisi_bpd($data,$tanggal);
 		}
-		$this->template->load('template_admin','laporan/data_laporan_ekspedisi_bpd');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+		$this->template->load('template_admin','laporan/data_laporan_ekspedisi_bpd',$data);
 	}
 	public function ekspedisi_kearsipan()
 	{
@@ -34,7 +38,8 @@ class Laporan extends CI_Controller {
 			$data = $this->model_laporan->get_data_ekspedisi($tanggal);
 			$this->laporan_ekspedisi_bpd($data,$tanggal);
 		}
-		$this->template->load('template_admin','laporan/data_laporan_ekspedisi');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+		$this->template->load('template_admin','laporan/data_laporan_ekspedisi',$data);
 	}
 	public function kependudukan()
 	{
@@ -44,7 +49,8 @@ class Laporan extends CI_Controller {
 			$data = $this->model_laporan->get_data_penduduk($tanggal);
 			$this->laporan_penduduk($data,$tanggal);
 		}
-		$this->template->load('template_admin','laporan/data_laporan_penduduk');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+		$this->template->load('template_admin','laporan/data_laporan_penduduk',$data);
 	}
 	public function perdusun()
 	{
@@ -55,6 +61,7 @@ class Laporan extends CI_Controller {
 			$penduduk = $this->model_laporan->coba($tanggal);
 			$this->laporan_dusun($penduduk,$tanggal,$dusun);
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['dusun'] = $this->model_laporan->get_data_dusun();
 		$this->template->load('template_admin','laporan/data_laporan_dusun',$data);
 	}
@@ -94,17 +101,17 @@ class Laporan extends CI_Controller {
 		$pdf->Cell(190,7,'','B',1);
 		//buat line baru
 		$pdf->Cell(10,10,'LAPORAN PEMBUATAN SURAT',0,1);
-		$pdf->Cell(10,6,'No',1,0);
-		$pdf->Cell(30,6,'Tanggal',1,0);
-		$pdf->Cell(30,6,'Nomor Surat',1,0);
-		$pdf->Cell(30,6,'Jenis Surat',1,0);
+		$pdf->Cell(8,6,'No',1,0);
+		$pdf->Cell(23,6,'Tanggal',1,0);
+		$pdf->Cell(23,6,'Nomor Surat',1,0);
+		$pdf->Cell(45,6,'Jenis Surat',1,0);
 		$pdf->Cell(90,6,'Nama Pemohon',1,1);
 		$no = 1;
 		foreach ($data as $key) {
-			$pdf->Cell(10,6,$no,1,0,);
-			$pdf->Cell(30,6,$key->tanggal_surat,1,0,);
-			$pdf->Cell(30,6,$key->no_surat,1,0);
-			$pdf->Cell(30,6,$key->nama_surat_dinas,1,0);
+			$pdf->Cell(8,6,$no,1,0,);
+			$pdf->Cell(23,6,$key->tanggal_surat,1,0,);
+			$pdf->Cell(23,6,$key->no_surat,1,0);
+			$pdf->Cell(45,6,$key->nama_surat_dinas,1,0);
 			$pdf->Cell(90,6,$key->nama_lengkap,1,1 );
 			$no++;
 		}

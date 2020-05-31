@@ -7,11 +7,13 @@ class Inventaris extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_inventaris');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['inventaris'] = $this->model_inventaris->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','inventaris/data_inventaris',$data);
 		
 	}
@@ -32,7 +34,8 @@ class Inventaris extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_inventaris->insert_data();
 		}
-        $this->template->load('template_admin','inventaris/add_inventaris');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','inventaris/add_inventaris',$data);
 	}
 	public function edit_inventaris($id)
 	{
@@ -52,6 +55,7 @@ class Inventaris extends CI_Controller {
 			$this->model_inventaris->edit_data();
 		}
 		$data['inventaris'] = $this->model_inventaris->get_data($id);
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','inventaris/edit_inventaris',$data);
 
 	}

@@ -19,6 +19,14 @@ class model_struktur_organisasi extends CI_Model {
             'nip'          => $this->input->post('nip')
         ];
         $this->db->insert('struktur_organisasi',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data struktur organisasi',
+            'url'        => 'struktur_organisasi',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('struktur_organisasi');
     }
@@ -31,6 +39,14 @@ class model_struktur_organisasi extends CI_Model {
         ];
         $this->db->where('id_struktur_organisasi',$this->input->post('id',true));
         $this->db->update('struktur_organisasi',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data struktur organisasi',
+            'url'        => 'struktur_organisasi',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('struktur_organisasi');
     }
@@ -38,6 +54,14 @@ class model_struktur_organisasi extends CI_Model {
     {
         $this->db->where('id_struktur_organisasi',$id);
         $this->db->delete('struktur_organisasi');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data struktur organisasi',
+            'url'        => 'struktur_organisasi',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('struktur_organisasi');
     }

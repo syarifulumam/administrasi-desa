@@ -18,9 +18,9 @@ class model_login extends CI_Model {
                     $this->session->set_userdata('nama',$cek_akun->row()->nama);
                     //validasi level akun
                     if ($cek_akun->row()->level == "Admin") {
-                        redirect('users');
+                        redirect('dashboard');
                     } else {
-                        redirect('users');
+                        redirect('dashboard');
                     }
                     
                 } else {

@@ -7,11 +7,13 @@ class Kematian extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_kematian');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['kematian'] = $this->model_kematian->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','kematian/data_kematian',$data);
 		
 	}
@@ -29,6 +31,7 @@ class Kematian extends CI_Controller {
 			$this->model_kematian->insert_data();
 		}
 		$data['penduduk'] = $this->model_kematian->get_data_penduduk();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
         $this->template->load('template_admin','kematian/add_kematian',$data);
 	}
 	public function edit_kematian($id)
@@ -44,6 +47,7 @@ class Kematian extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_kematian->edit_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kematian'] = $this->model_kematian->get_data($id);
 		$data['penduduk'] = $this->model_kematian->get_data_penduduk();
 		$this->template->load('template_admin','kematian/edit_kematian',$data);

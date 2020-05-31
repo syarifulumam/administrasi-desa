@@ -23,42 +23,58 @@ class model_dashboard extends CI_Model {
         return $this->db->get('penduduk')->num_rows();
     }
     // data perbulan
-    public function get_penduduk_perbulan()
+    public function get_penduduk_perbulan($tahun = null)
     {
         for ($bulan=1; $bulan < 13; $bulan++) {
             $this->db->not_like('status_hidup',1);
             $this->db->not_like('status_penduduk','Pindah');
             $this->db->where('MONTH(tanggal_input)',$bulan);
-            $this->db->where('YEAR(tanggal_input)',date('Y'));
+            if ($tahun == null) {
+                $this->db->where('YEAR(tanggal_input)',date('Y'));
+            } else {
+                $this->db->where('YEAR(tanggal_input)',$tahun);
+            }
             $result[] = $this->db->get('penduduk')->num_rows();
         }
         return $result;
     }
-    public function get_kelahiran_perbulan()
+    public function get_kelahiran_perbulan($tahun = null)
     {
         for ($bulan=1; $bulan < 13; $bulan++) {
             $this->db->join('penduduk','kelahiran.id_penduduk=penduduk.id_penduduk');
             $this->db->where('MONTH(tanggal_input)',$bulan);
-            $this->db->where('YEAR(tanggal_input)',date('Y'));
+            if ($tahun == null) {
+                $this->db->where('YEAR(tanggal_input)',date('Y'));
+            } else {
+                $this->db->where('YEAR(tanggal_input)',$tahun);
+            }
             $result[] = $this->db->get('kelahiran')->num_rows();
         }
         return $result;
     }
-    public function get_kematian_perbulan()
+    public function get_kematian_perbulan($tahun = null)
     {
         for ($bulan=1; $bulan < 13; $bulan++) {
             $this->db->join('penduduk','kematian.id_penduduk=penduduk.id_penduduk');
             $this->db->where('MONTH(tanggal_input)',$bulan);
-            $this->db->where('YEAR(tanggal_input)',date('Y'));
+            if ($tahun == null) {
+                $this->db->where('YEAR(tanggal_input)',date('Y'));
+            } else {
+                $this->db->where('YEAR(tanggal_input)',$tahun);
+            }
             $result[] = $this->db->get('kematian')->num_rows();
         }
         return $result;
     }
-    public function get_pindah_kependudukan_perbulan()
+    public function get_pindah_kependudukan_perbulan($tahun = null)
     {
         for ($bulan=1; $bulan < 13; $bulan++) {
             $this->db->where('MONTH(tanggal_input)',$bulan);
-            $this->db->where('YEAR(tanggal_input)',date('Y'));
+            if ($tahun == null) {
+                $this->db->where('YEAR(tanggal_input)',date('Y'));
+            } else {
+                $this->db->where('YEAR(tanggal_input)',$tahun);
+            }
             $this->db->where('status_penduduk','Pindah');
             $result[] = $this->db->get('penduduk')->num_rows();
         }
@@ -123,5 +139,42 @@ class model_dashboard extends CI_Model {
         $wanita = $this->db->get('penduduk')->num_rows();
 
         return $result = array($pria,$wanita);
+    }
+    public function get_surat()
+    {
+        return $this->db->get('surat')->num_rows();
+    }
+    public function get_ekspedisi_bpd()
+    {
+        return $this->db->get('ekspedisi_bpd')->num_rows();
+    }
+    public function get_ekspedisi_kearsipan()
+    {
+        return $this->db->get('ekspedisi')->num_rows();
+    }
+    public function get_dusun()
+    {
+        return $this->db->get('dusun')->num_rows();
+    }
+    public function get_provinsi()
+    {
+        return $this->db->get('provinsi')->num_rows();
+    }
+    public function get_kota()
+    {
+        return $this->db->get('kota')->num_rows();
+    }
+    public function get_kecamatan()
+    {
+        return $this->db->get('kecamatan')->num_rows();
+    }
+    public function get_kelurahan()
+    {
+        return $this->db->get('kelurahan')->num_rows();
+    }
+    public function coba()
+    {
+        echo "e";
+        die();
     }
 }

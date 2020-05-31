@@ -41,6 +41,14 @@ class model_tanah_desa extends CI_Model {
 			'keterangan' 		           => $this->input->post('keterangan',true),
         ];
 		$this->db->insert('tanah_desa',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data tanah desa',
+            'url'        => 'tanah_desa',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('tanah_desa');
     }
@@ -75,6 +83,14 @@ class model_tanah_desa extends CI_Model {
         ];
         $this->db->where('id_tanah_desa',$this->input->post('id'));
 		$this->db->update('tanah_desa',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data tanah desa',
+            'url'        => 'tanah_desa',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('tanah_desa');
     }
@@ -82,6 +98,14 @@ class model_tanah_desa extends CI_Model {
     {
         $this->db->where('id_tanah_desa',$id);
         $this->db->delete('tanah_desa');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data tanah desa',
+            'url'        => 'tanah_desa',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('tanah_desa');
     }

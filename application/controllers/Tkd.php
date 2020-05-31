@@ -7,11 +7,13 @@ class Tkd extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_tkd');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['tkd'] = $this->model_tkd->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','tkd/data_tkd',$data);
 		
 	}
@@ -42,6 +44,7 @@ class Tkd extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_tkd->insert_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
         $this->template->load('template_admin','tkd/add_tkd');
 	}
 	public function edit_tkd($id)
@@ -72,6 +75,7 @@ class Tkd extends CI_Controller {
 			$this->model_tkd->edit_data();
 		}
 		$data['tkd'] = $this->model_tkd->get_data($id);
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','tkd/edit_tkd',$data);
 
 	}

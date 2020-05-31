@@ -8,11 +8,13 @@ class Buat_surat extends CI_Controller {
 		parent::__construct();
         $this->load->library('pdf');
 		$this->load->model('model_buat_surat');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['surat'] = $this->model_buat_surat->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','buat_surat/data_buat_surat',$data);
 		
 	}
@@ -23,6 +25,7 @@ class Buat_surat extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_buat_surat->insert_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['penduduk'] = $this->model_buat_surat->get_data_penduduk();
 		$data['master_surat'] = $this->model_buat_surat->get_master_surat();
 		$this->template->load('template_admin','buat_surat/add_buat_surat_domisili',$data);
@@ -34,6 +37,7 @@ class Buat_surat extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_buat_surat->insert_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['penduduk'] = $this->model_buat_surat->get_data_penduduk();
 		$this->template->load('template_admin','buat_surat/add_buat_surat_ktp',$data);
 	}
@@ -44,6 +48,7 @@ class Buat_surat extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_buat_surat->insert_data_kematian();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['penduduk'] = $this->model_buat_surat->get_data_penduduk_kematian();
 		$this->template->load('template_admin','buat_surat/add_buat_surat_kematian',$data);
 	}
@@ -54,6 +59,7 @@ class Buat_surat extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_buat_surat->insert_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['penduduk'] = $this->model_buat_surat->get_data_penduduk();
 		$data['master_surat'] = $this->model_buat_surat->get_master_surat();
 		$this->template->load('template_admin','buat_surat/add_buat_surat_tidak_mampu',$data);
@@ -65,6 +71,7 @@ class Buat_surat extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_buat_surat->insert_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['penduduk'] = $this->model_buat_surat->get_data_penduduk();
 		$data['master_surat'] = $this->model_buat_surat->get_master_surat();
 		$this->template->load('template_admin','buat_surat/add_buat_surat_baik',$data);
@@ -85,8 +92,8 @@ class Buat_surat extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_buat_surat->edit_data();
 		}
-		$data['buat_surat
-		'] = $this->model_buat_surat->get_data($id);
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+		$data['buat_surat'] = $this->model_buat_surat->get_data($id);
 		$data['penduduk'] = $this->model_buat_surat->get_data_penduduk();
 		$this->template->load('template_admin','buat_surat/edit_buat_surat',$data);
 

@@ -7,10 +7,12 @@ class kota extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_kota');
+		$this->load->model('model_notifikasi');
     }
     public function index()
     {
 		$data['kota'] = $this->model_kota->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
         $this->template->load('template_admin','kota/data_kota',$data);
     }
     public function add_kota()
@@ -20,6 +22,7 @@ class kota extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_kota->insert_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['provinsi'] = $this->model_kota->get_provinsi();
         $this->template->load('template_admin','kota/add_kota',$data);
     }
@@ -30,6 +33,7 @@ class kota extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_kota->edit_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kota'] = $this->model_kota->get_data($id);
 		$data['provinsi'] = $this->model_kota->get_provinsi();
         $this->template->load('template_admin','kota/edit_kota',$data);

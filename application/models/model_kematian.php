@@ -30,6 +30,14 @@ class model_kematian extends CI_Model {
 			'tempat_pemakaman'	    => $this->input->post('tempat_pemakaman',true),
         ];
         $this->db->insert('kematian',$data_kematian);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data kematian',
+            'url'        => 'kematian',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('kematian');
     }
@@ -46,6 +54,14 @@ class model_kematian extends CI_Model {
         ];
         $this->db->where('id_kematian',$this->input->post('id'));
 		$this->db->update('kematian',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data kematian',
+            'url'        => 'kematian',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil diubah');
         redirect('kematian');
     }
@@ -53,6 +69,14 @@ class model_kematian extends CI_Model {
     {
         $this->db->where('id_kematian',$id);
         $this->db->delete('kematian');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data kematian',
+            'url'        => 'kematian',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('kematian');
     }

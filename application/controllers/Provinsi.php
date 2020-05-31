@@ -7,10 +7,12 @@ class Provinsi extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_provinsi');
+		$this->load->model('model_notifikasi');
     }
     public function index()
     {
 		$data['provinsi'] = $this->model_provinsi->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
         $this->template->load('template_admin','provinsi/data_provinsi',$data);
     }
     public function add_provinsi()

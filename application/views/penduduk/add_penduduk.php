@@ -19,7 +19,7 @@
 		</div>
 		<div class="form-group">
 			<label>Nomor KK</label>
-			<input type="text" class="form-control " name="nomor_kk" value="<?= set_value('nomor_kk') ?>"
+			<input type="number" min="0" class="form-control " name="nomor_kk" value="<?= set_value('nomor_kk') ?>"
 				autocomplete="off">
 			<?= form_error('nomor_kk','<small class="text-danger pl-1">','</small>') ?>
 		</div>
@@ -43,7 +43,7 @@
 		</div>
 		<div class="form-group">
 			<label>Nomor KTP / NIK</label>
-			<input type="text" class="form-control " name="nomor_ktp" value="<?= set_value('nomor_ktp') ?>"
+			<input type="number" min="0" class="form-control " name="nomor_ktp" value="<?= set_value('nomor_ktp') ?>"
 				autocomplete="off">
 			<?= form_error('nomor_ktp','<small class="text-danger pl-1">','</small>') ?>
 		</div>
@@ -164,12 +164,12 @@
 		<div class="row pb-2">
 			<div class="col">
 				<label>RT</label>
-				<input type="text" class="form-control " name="rt" value="<?=set_value('rt')?>" autocomplete="off">
+				<input type="number" min="0" class="form-control " name="rt" value="<?=set_value('rt')?>" autocomplete="off">
 				<?= form_error('rt','<small class="text-danger pl-1">','</small>') ?>
 			</div>
 			<div class="col">
 				<label>RW</label>
-				<input type="text" class="form-control " name="rw" value="<?=set_value('rw')?>" autocomplete="off">
+				<input type="number" min="0"  class="form-control " name="rw" value="<?=set_value('rw')?>" autocomplete="off">
 				<?= form_error('rw','<small class="text-danger pl-1">','</small>') ?>
 			</div>
 		</div>
@@ -180,13 +180,13 @@
 		</div>
 		<div class="form-group">
 			<label for="judul">Kode Pos</label>
-			<input type="text" class="form-control " name="kode_pos" value="<?=set_value('kode_pos')?>"
+			<input type="number" min="0" class="form-control " name="kode_pos" value="<?=set_value('kode_pos')?>"
 				autocomplete="off">
 			<?= form_error('kode_pos','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label for="judul">Nomor Telepon</label>
-			<input type="text" class="form-control " name="nomor_telepon" value="<?=set_value('nomor_telepon')?>"
+			<input type="number" min="0" class="form-control " name="nomor_telepon" value="<?=set_value('nomor_telepon')?>"
 				autocomplete="off">
 			<?= form_error('nomor_telepon','<small class="text-danger pl-1">','</small>') ?>
 		</div>
@@ -246,7 +246,7 @@
 		</div>
 		<div class="form-group">
 			<label for="judul">Kode Pos</label>
-			<input type="text" class="form-control " name="kode_pos_sebelumnya"
+			<input type="number" min="0" class="form-control " name="kode_pos_sebelumnya"
 				value="<?= set_value('kode_pos_sebelumnya') ?>" autocomplete="off">
 		</div>
 	</div>

@@ -7,11 +7,13 @@ class Kegiatan_pembangunan extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_kegiatan_pembangunan');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['kegiatan_pembangunan'] = $this->model_kegiatan_pembangunan->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','kegiatan_pembangunan/data_kegiatan_pembangunan',$data);
 		
 	}
@@ -32,7 +34,8 @@ class Kegiatan_pembangunan extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_kegiatan_pembangunan->insert_data();
 		}
-        $this->template->load('template_admin','kegiatan_pembangunan/add_kegiatan_pembangunan');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','kegiatan_pembangunan/add_kegiatan_pembangunan',$data);
 	}
 	public function edit_kegiatan_pembangunan($id)
 	{
@@ -51,6 +54,7 @@ class Kegiatan_pembangunan extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_kegiatan_pembangunan->edit_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kegiatan_pembangunan'] = $this->model_kegiatan_pembangunan->get_data($id);
 		$this->template->load('template_admin','kegiatan_pembangunan/edit_kegiatan_pembangunan',$data);
 

@@ -1,3 +1,8 @@
+<?php
+	if (empty($this->session->id)) {
+		redirect('login');
+	}
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -41,16 +46,58 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<div class="wrapper">
 
 		<!-- Navbar -->
-		<nav class="main-header navbar navbar-expand navbar-green navbar-light">
+		<!-- <nav class="main-header navbar navbar-expand navbar-green navbar-light"> -->
 			<!-- Left navbar links -->
-			<ul class="navbar-nav">
+			<!-- <ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
 				</li>
 			</ul>
-		</nav>
+		</nav> -->
 		<!-- /.navbar -->
 
+		<!-- Navbar -->
+		<nav class="main-header navbar navbar-expand navbar-green navbar-light">
+			<!-- Right navbar links -->
+			<ul class="navbar-nav ml-auto">
+			<!-- Notifications Dropdown Menu -->
+			<li class="nav-item dropdown">
+				<a class="nav-link" data-toggle="dropdown" href="#">
+					<i class="fas fa-bell" style="color:white"></i>
+					<span class="badge badge-warning navbar-badge"><?= $notifikasi->num_rows() ?></span>
+				</a>
+				<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+				<span class="dropdown-header"><?= $notifikasi->num_rows() ?> Notifications</span>
+				<?php foreach ($notifikasi->result() as $key):?>
+				<div class="dropdown-divider"></div>
+				<a href="<?= base_url('notifikasi/nonaktif/'.$key->url.'/'.$key->id_nontifikasi) ?>" class="dropdown-item">
+					<?= $key->keterangan ?>
+					<span class="float-right text-muted text-sm">
+						<?php 					
+  							date_default_timezone_set("Asia/Jakarta");
+							$start = new DateTime($key->waktu); 
+							$end = new DateTime(date("Y-m-d H:i:s"));
+							$interval = $start->diff($end);
+							if ($interval->format('%d') != 0) {
+								echo $interval->format('%d hari %h jam'); 
+							}elseif($interval->format('%h') != 0){
+								echo $interval->format('%h jam %i menit');
+							}elseif($interval->format('%i') == 0){
+								echo 'baru';
+							}else{
+								echo $interval->format('%i menit');
+							}
+						?>
+					</span>
+				</a>
+				<?php endforeach; ?>
+				<div class="dropdown-divider"></div>
+				<a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+				</div>
+			</li>
+			</ul>
+		</nav>
+		<!-- /.navbar -->
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1511da !important">
 			<!-- Brand Logo -->
@@ -102,11 +149,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<p>Data Kematian</p>
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="<?=base_url('keuangan')?>" class="nav-link">
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
 								<i class="nav-icon fas fa-money-check-alt"></i>
-								<p>Keuangan</p>
+								<p>
+									Keuangan
+									<i class="right fas fa-angle-left"></i>
+									<span class="badge badge-info right">2</span>
+								</p>
 							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="<?=base_url('keuangan/pengeluaran')?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Pengeluaran</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?=base_url('keuangan')?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Pemasukan</p>
+									</a>
+								</li>
+							</ul>
 						</li>
 						<li class="nav-item">
 							<a href="<?=base_url('buat_surat')?>" class="nav-link">
@@ -402,7 +467,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</ul>
 						</li>
 						<li class="nav-item">
-							<a href="<?=base_url('home/logout')?>" class="nav-link">
+							<a href="<?=base_url('login/logout')?>" class="nav-link">
 								<i class="nav-icon fas fa-sign-out-alt"></i>
 								<p>Logout</p>
 							</a>

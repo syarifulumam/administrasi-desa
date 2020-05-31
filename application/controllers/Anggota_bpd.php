@@ -7,11 +7,13 @@ class anggota_bpd extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_anggota_bpd');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['anggota_bpd'] = $this->model_anggota_bpd->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','anggota_bpd/data_anggota_bpd',$data);
 		
 	}
@@ -35,7 +37,8 @@ class anggota_bpd extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_anggota_bpd->insert_data();
 		}
-        $this->template->load('template_admin','anggota_bpd/add_anggota_bpd');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','anggota_bpd/add_anggota_bpd',$data);
 	}
 	public function edit_anggota_bpd($id)
 	{
@@ -58,6 +61,7 @@ class anggota_bpd extends CI_Controller {
 			$this->model_anggota_bpd->edit_data();
 		}
 		$data['anggota_bpd'] = $this->model_anggota_bpd->get_data($id);
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','anggota_bpd/edit_anggota_bpd',$data);
 
 	}

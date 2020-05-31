@@ -6,12 +6,14 @@ class Perdes extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('model_notifikasi');
 		$this->load->model('model_perdes');
 	}
 	public function index()
 	{
 		//load view pake library template
 		$data['perdes'] = $this->model_perdes->get_data();
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','perdes/data_perdes',$data);
 		
 	}
@@ -30,7 +32,8 @@ class Perdes extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_perdes->insert_data();
 		}
-        $this->template->load('template_admin','perdes/add_perdes');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','perdes/add_perdes',$data);
 	}
 	public function edit_perdes($id)
 	{
@@ -48,6 +51,7 @@ class Perdes extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_perdes->edit_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['perdes'] = $this->model_perdes->get_data($id);
 		$this->template->load('template_admin','perdes/edit_perdes',$data);
 

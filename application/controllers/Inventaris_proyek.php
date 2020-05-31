@@ -7,10 +7,12 @@ class Inventaris_proyek extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_inventaris_proyek');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['inventaris_proyek'] = $this->model_inventaris_proyek->get_data();
 		$this->template->load('template_admin','inventaris_proyek/data_inventaris_proyek',$data);
 		
@@ -26,7 +28,8 @@ class Inventaris_proyek extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_inventaris_proyek->insert_data();
 		}
-        $this->template->load('template_admin','inventaris_proyek/add_inventaris_proyek');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','inventaris_proyek/add_inventaris_proyek',$data);
 	}
 	public function edit_inventaris_proyek($id)
 	{
@@ -39,6 +42,7 @@ class Inventaris_proyek extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_inventaris_proyek->edit_data();
 		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['inventaris_proyek'] = $this->model_inventaris_proyek->get_data($id);
 		$this->template->load('template_admin','inventaris_proyek/edit_inventaris_proyek',$data);
 

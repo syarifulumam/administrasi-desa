@@ -7,10 +7,12 @@ class Ekspedisi_bpd extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('model_ekspedisi_bpd');
+		$this->load->model('model_notifikasi');
 	}
 	public function index()
 	{
 		//load view pake library template
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['ekspedisi_bpd'] = $this->model_ekspedisi_bpd->get_data();
 		$this->template->load('template_admin','ekspedisi_bpd/data_ekspedisi_bpd',$data);
 		
@@ -27,7 +29,8 @@ class Ekspedisi_bpd extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_ekspedisi_bpd->insert_data();
 		}
-        $this->template->load('template_admin','ekspedisi_bpd/add_ekspedisi_bpd');
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $this->template->load('template_admin','ekspedisi_bpd/add_ekspedisi_bpd',$data);
 	}
 	public function edit_ekspedisi_bpd($id)
 	{
@@ -42,6 +45,7 @@ class Ekspedisi_bpd extends CI_Controller {
 			$this->model_ekspedisi_bpd->edit_data();
 		}
 		$data['ekspedisi_bpd'] = $this->model_ekspedisi_bpd->get_data($id);
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','ekspedisi_bpd/edit_ekspedisi_bpd',$data);
 
 	}

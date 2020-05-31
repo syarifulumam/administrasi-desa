@@ -2,10 +2,10 @@
 <div class="card">
 	<div class="card-header">
 		<h3 class="card-title">Data Surat</h3>
-		<a href="<?= base_url('buat_surat/add_buat_surat') ?>" class="btn btn-primary float-right">Tambah</a>
+		<!-- <a href="<?= base_url('buat_surat/add_buat_surat') ?>" class="btn btn-primary float-right">Tambah</a> -->
 	</div>
 	<!-- /.card-header -->
-	<div class="card-body">
+	<div class="card-body table-responsive">
 		<table id="example1" class="table table-bordered table-striped">
 			<thead>
 				<tr>

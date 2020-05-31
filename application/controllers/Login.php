@@ -17,4 +17,10 @@ class Login extends CI_Controller {
         }
         $this->load->view('login');
     }
+    public function logout()
+    {
+        $this->session->unset_userdata('id');
+        $this->session->unset_userdata('nama');
+        redirect('login');
+    }
 }

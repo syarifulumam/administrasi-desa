@@ -5,7 +5,7 @@
 		<a href="<?= base_url('master_surat/add_master_surat') ?>" class="btn btn-primary float-right">Tambah</a>
 	</div>
 	<!-- /.card-header -->
-	<div class="card-body">
+	<div class="card-body table-responsive">
 		<table id="example1" class="table table-bordered table-striped">
 			<thead>
 				<tr>

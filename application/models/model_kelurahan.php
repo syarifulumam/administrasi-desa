@@ -27,6 +27,14 @@ class model_kelurahan extends CI_Model {
             'id_kecamatan' => $this->input->post('kecamatan',true)
         ];
         $this->db->insert('kelurahan',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'menambah data kelurahan',
+            'url'        => 'kelurahan',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('kelurahan');
     }
@@ -38,6 +46,14 @@ class model_kelurahan extends CI_Model {
         ];
         $this->db->where('id_kelurahan',$this->input->post('id',true));
         $this->db->update('kelurahan',$data);
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'edit data kelurahan',
+            'url'        => 'kelurahan',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
 		$this->session->set_flashdata('pesan','Akun berhasil dibuat');
         redirect('kelurahan');
     }
@@ -45,6 +61,14 @@ class model_kelurahan extends CI_Model {
     {
         $this->db->where('id_kelurahan',$id);
         $this->db->delete('kelurahan');
+        //nontifikasi
+        date_default_timezone_set("Asia/Jakarta");
+        $data_notifikasi = [
+            'keterangan' => 'hapus data kelurahan',
+            'url'        => 'kelurahan',
+            'waktu'        => date("Y-m-d H:i:s"),
+        ];
+        $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Akun berhasil hapus');
         redirect('kelurahan');
     }
