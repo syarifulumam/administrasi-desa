@@ -233,7 +233,7 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" class="form-control" data-inputmask-alias="datetime"
-					data-inputmask-inputformat="yyyy/mm/dd" data-mask name="tanggal_pindahan">
+					data-inputmask-inputformat="dd/mm/yyyy" data-mask name="tanggal_pindahan">
 			</div>
 		</div>
 		<div class="form-group">

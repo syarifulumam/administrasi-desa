@@ -12,20 +12,17 @@
 		</div>
 		<div class="form-group">
 			<label>Nomor Akte Kelahiran</label>
-			<input type="text" class="form-control " name="nomor_akte" value="<?= set_value('nomor_akte') ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_akte" value="<?= set_value('nomor_akte') ?>">
 			<?= form_error('nomor_akte','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Nomor Kartu Keluarga</label>
-			<input type="text" class="form-control " name="nomor_kk" value="<?= set_value('nomor_kk') ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_kk" value="<?= set_value('nomor_kk') ?>">
 			<?= form_error('nomor_kk','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Anak Ke</label>
-			<input type="text" class="form-control " name="anak_ke" value="<?= set_value('anak_ke') ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="anak_ke" value="<?= set_value('anak_ke') ?>">
 			<?= form_error('anak_ke','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -41,7 +38,7 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" name="tanggal_lahir" class="form-control" data-inputmask-alias="datetime"
-					data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+					data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_lahir','<small class="text-danger pl-1">','</small>') ?>
 		</div>

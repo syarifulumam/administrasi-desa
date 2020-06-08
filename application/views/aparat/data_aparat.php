@@ -23,7 +23,7 @@
 					<td>1</td>
 					<td><?= $key->nama_lengkap ?></td>
 					<td><?= $key->niap ?></td>
-					<td><?= $key->tempat_lahir .", ".$key->tanggal_lahir ?></td>
+					<td><?= $key->tempat_lahir .", ".date('d-m-Y', strtotime($key->tanggal_lahir)) ?></td>
 					<td><?= $key->nomor_pengangkatan ?></td>
 					<td style="width:105px">
 						<a href="<?= base_url('aparat/edit_aparat/'.$key->id_aparat) ?>" class="btn btn-warning btn-sm">

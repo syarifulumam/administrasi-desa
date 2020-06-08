@@ -12,8 +12,7 @@
 		</div>
 		<div class="form-group">
 			<label>Jumlah</label>
-			<input type="text" class="form-control" name="harga"  value="<?= set_value('harga') ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="harga" value="<?= set_value('harga') ?>">
 			<?= form_error('harga','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -23,7 +22,7 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" name="tanggal" class="form-control" data-inputmask-alias="datetime"
-					data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+					data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal','<small class="text-danger pl-1">','</small>') ?>
 		</div>

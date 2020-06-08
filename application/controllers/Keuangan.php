@@ -23,7 +23,7 @@ class Keuangan extends CI_Controller {
     }
     public function edit_keuangan_pemasukan($id)
     {
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('harga', 'Harga', 'trim|required');
         if ($this->form_validation->run() == true) {
            $this->model_keuangan->edit_data();
@@ -34,7 +34,7 @@ class Keuangan extends CI_Controller {
     }
     public function edit_keuangan_pengeluaran($id)
     {
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('harga', 'Harga', 'trim|required');
         if ($this->form_validation->run() == true) {
            $this->model_keuangan->edit_data();
@@ -46,7 +46,7 @@ class Keuangan extends CI_Controller {
     public function add_keuangan_pemasukan()
     {
         
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('harga', 'Harga', 'trim|required');
         $this->form_validation->set_rules('tanggal', 'Tanggal', 'trim|required');
         if ($this->form_validation->run() == true) {
@@ -58,7 +58,7 @@ class Keuangan extends CI_Controller {
     public function add_keuangan_pengeluaran()
     {
         
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('harga', 'Harga', 'trim|required');
         $this->form_validation->set_rules('tanggal', 'Tanggal', 'trim|required');
         if ($this->form_validation->run() == true) {
@@ -70,5 +70,14 @@ class Keuangan extends CI_Controller {
     public function delete_keuangan($id)
 	{
 		$this->model_keuangan->delete_keuangan($id);
+    }
+    //function validation alpha & space
+	function alpha_dash_space($str_in){
+		if (! preg_match("/^([-a-z_ ])+$/i", $str_in)) {
+			$this->form_validation->set_message('alpha_dash_space', '%s harap masukan huruf');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
 	}
 }

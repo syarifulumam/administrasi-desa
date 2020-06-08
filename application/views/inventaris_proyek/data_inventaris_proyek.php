@@ -26,7 +26,7 @@
 					<td><?= $key->nama_proyek ?></td>
 					<td><?= $key->volume ?></td>
 					<td><?= $key->lokasi ?></td>
-					<td><?= $key->biaya ?></td>
+					<td><?= number_format($key->biaya,2,',','.'); ?></td>
 					<td><?= $key->keterangan ?></td>
 					<td style="width:105px">
 						<a href="<?= base_url('inventaris_proyek/edit_inventaris_proyek/'.$key->id_inventaris_proyek) ?>"

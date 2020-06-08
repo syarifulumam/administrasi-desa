@@ -13,13 +13,15 @@ class model_ekspedisi extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal_surat =  str_replace('/', '-',$this->input->post('tanggal_surat',true));
+        $tanggal_pengiriman =  str_replace('/', '-',$this->input->post('tanggal_pengiriman',true));
         $data = [
             'tujuan'	             => $this->input->post('tujuan',true),
             'keterangan'	         => $this->input->post('keterangan',true),
             'nomor_surat'	         => $this->input->post('nomor_surat',true),
             'isi_singkat'	         => $this->input->post('isi_singkat',true),
-            'tanggal_surat'	         => $this->input->post('tanggal_surat',true),
-            'tanggal_pengiriman'	 => $this->input->post('tanggal_pengiriman',true),
+            'tanggal_surat'	         => date('Y-m-d', strtotime($tanggal_surat)),
+            'tanggal_pengiriman'	 => date('Y-m-d', strtotime($tanggal_pengiriman)),
 			'file_dokumen' 		     => $this->_upload()
         ];
         //insert data pindahan
@@ -45,13 +47,15 @@ class model_ekspedisi extends CI_Model {
         } else {
             $data_file = $this->input->post('file');
         }
+        $tanggal_surat =  str_replace('/', '-',$this->input->post('tanggal_surat',true));
+        $tanggal_pengiriman =  str_replace('/', '-',$this->input->post('tanggal_pengiriman',true));
         $data = [
             'tujuan'	             => $this->input->post('tujuan',true),
             'keterangan'	         => $this->input->post('keterangan',true),
             'nomor_surat'	         => $this->input->post('nomor_surat',true),
             'isi_singkat'	         => $this->input->post('isi_singkat',true),
-            'tanggal_surat'	         => $this->input->post('tanggal_surat',true),
-            'tanggal_pengiriman'	 => $this->input->post('tanggal_pengiriman',true),
+            'tanggal_surat'	         => date('Y-m-d', strtotime($tanggal_surat)),
+            'tanggal_pengiriman'	 => date('Y-m-d', strtotime($tanggal_pengiriman)),
 			'file_dokumen' 		     => $data_file
         ];
         

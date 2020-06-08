@@ -26,8 +26,8 @@
 					<td>1</td>
 					<td><?= $key->foto ?></td>
 					<td><?= $key->nama_lengkap ?></td>
-					<td><?= $key->tempat_lahir . ", " . $key->tanggal_lahir ?></td>
-					<td><?= $key->tanggal_meninggal ?></td>
+					<td><?= $key->tempat_lahir . ", " . date('d-m-Y', strtotime($key->tanggal_lahir)) ?></td>
+					<td><?= date('d-m-Y', strtotime($key->tanggal_meninggal)) ?></td>
 					<td>
 						<?php
 						$tanggal_lahir = explode("-",$key->tanggal_lahir);

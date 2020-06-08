@@ -13,6 +13,7 @@ class model_kegiatan_pembangunan extends CI_Model {
     }
     public function insert_data()
     {
+        $waktu_pelaksanaan =  str_replace('/', '-',$this->input->post('waktu_pelaksanaan',true));
         $data = [
 			'lokasi' 	              => $this->input->post('lokasi',true),
 			'volume' 	              => $this->input->post('volume',true),
@@ -23,7 +24,7 @@ class model_kegiatan_pembangunan extends CI_Model {
 			'sumber_dana_kota' 	      => $this->input->post('dana_kota',true),
 			'sumber_dana_swadaya' 	  => $this->input->post('dana_swadaya',true),
 			'sumber_dana_provinsi' 	  => $this->input->post('dana_provinsi',true),
-			'waktu_pelaksanaan' 	  => $this->input->post('waktu_pelaksanaan',true),
+			'waktu_pelaksanaan' 	  => date('Y-m-d', strtotime($waktu_pelaksanaan)),
 			'sumber_dana_pemerintah'  => $this->input->post('dana_pemerintah',true),
         ];
 		$this->db->insert('kegiatan_pembangunan',$data);
@@ -40,6 +41,7 @@ class model_kegiatan_pembangunan extends CI_Model {
     }
     public function edit_data()
     {
+        $waktu_pelaksanaan =  str_replace('/', '-',$this->input->post('waktu_pelaksanaan',true));
         $data = [
 			'lokasi' 	              => $this->input->post('lokasi',true),
 			'volume' 	              => $this->input->post('volume',true),
@@ -50,7 +52,7 @@ class model_kegiatan_pembangunan extends CI_Model {
 			'sumber_dana_kota' 	      => $this->input->post('dana_kota',true),
 			'sumber_dana_swadaya' 	  => $this->input->post('dana_swadaya',true),
 			'sumber_dana_provinsi' 	  => $this->input->post('dana_provinsi',true),
-			'waktu_pelaksanaan' 	  => $this->input->post('waktu_pelaksanaan',true),
+			'waktu_pelaksanaan' 	  => date('Y-m-d', strtotime($waktu_pelaksanaan)),
 			'sumber_dana_pemerintah'  => $this->input->post('dana_pemerintah',true),
         ];
         $this->db->where('id_kegiatan_pembangunan',$this->input->post('id'));

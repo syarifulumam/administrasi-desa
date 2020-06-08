@@ -12,12 +12,12 @@
 		</div>
 		<div class="form-group">
 			<label>NIAP</label>
-			<input type="text" class="form-control " name="niap" value="<?= $aparat->niap ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="niap" value="<?= $aparat->niap ?>" autocomplete="off">
 			<?= form_error('niap','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>NIP</label>
-			<input type="text" class="form-control " name="nip" value="<?= $aparat->nip ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nip" value="<?= $aparat->nip ?>" autocomplete="off">
 			<?= form_error('nip','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group clearfix">
@@ -47,8 +47,8 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
-				<input type="text" name="tanggal_lahir" value="<?= $aparat->tanggal_lahir ?>" class="form-control"
-					data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+				<input type="text" name="tanggal_lahir" value="<?= date('d-m-Y', strtotime($aparat->tanggal_lahir)) ?>" class="form-control"
+					data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_lahir','<small class="text-danger pl-1">','</small>') ?>
 		</div>
@@ -87,8 +87,7 @@
 		</div>
 		<div class="form-group">
 			<label>Nomor Pengangkatan</label>
-			<input type="text" class="form-control " name="nomor_pengangkatan"
-				value="<?= $aparat->nomor_pengangkatan ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_pengangkatan" value="<?= $aparat->nomor_pengangkatan ?>" autocomplete="off">
 			<?= form_error('nomor_pengangkatan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -97,16 +96,15 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
-				<input type="text" name="tanggal_pengangkatan" value="<?= $aparat->tanggal_pengangkatan ?>"
-					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd"
+				<input type="text" name="tanggal_pengangkatan" value="<?= date('d-m-Y', strtotime($aparat->tanggal_pengangkatan)) ?>"
+					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
 					data-mask>
 			</div>
 			<?= form_error('tanggal_pengangkatan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Nomor Pemberhentian</label>
-			<input type="text" class="form-control " name="nomor_pemberhentian"
-				value="<?= $aparat->nomor_pemberhentian ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_pemberhentian" value="<?= $aparat->nomor_pemberhentian ?>" autocomplete="off">
 			<?= form_error('nomor_pemberhentian','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -115,8 +113,8 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
-				<input type="text" name="tanggal_pemberhentian" value="<?= $aparat->tanggal_pemberhentian ?>"
-					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd"
+				<input type="text" name="tanggal_pemberhentian" value="<?= date('d-m-Y', strtotime($aparat->tanggal_pemberhentian)) ?>"
+					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
 					data-mask>
 			</div>
 			<?= form_error('tanggal_pemberhentian','<small class="text-danger pl-1">','</small>') ?>

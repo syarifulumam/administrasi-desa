@@ -24,7 +24,7 @@
 					<td>1</td>
 					<td><?= $key->foto ?></td>
 					<td><?= $key->nama_lengkap ?></td>
-					<td><?= $key->tanggal_pindah ?></td>
+					<td><?= date('d-m-Y', strtotime($key->tanggal_pindah)) ?></td>
 					<td><?= $key->alamat_pindahan ?></td>
 					<td><?= $key->keterangan ?></td>
 					<td style="width:105px">

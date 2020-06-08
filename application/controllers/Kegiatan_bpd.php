@@ -20,11 +20,11 @@ class Kegiatan_bpd extends CI_Controller {
 	public function add_kegiatan_bpd()
 	{
 		//form validation
-        $this->form_validation->set_rules('pelaksana', 'Pelaksana', 'trim|required');
-        $this->form_validation->set_rules('tentang', 'Tentang', 'trim|required');
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
-        $this->form_validation->set_rules('pokok', 'Pokok', 'trim|required');
-        $this->form_validation->set_rules('hasil_kegiatan', 'hasil_kegiatan', 'trim|required');
+        $this->form_validation->set_rules('pelaksana', 'Pelaksana', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('tentang', 'Tentang', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('pokok', 'Pokok', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('hasil_kegiatan', 'hasil_kegiatan', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('tanggal', 'Tanggal', 'trim|required');
 		if ($this->form_validation->run() == true) {
 			$this->model_kegiatan_bpd->insert_data();
@@ -35,11 +35,11 @@ class Kegiatan_bpd extends CI_Controller {
 	public function edit_kegiatan_bpd($id)
 	{
 		//form validation
-        $this->form_validation->set_rules('pelaksana', 'Pelaksana', 'trim|required');
-        $this->form_validation->set_rules('tentang', 'Tentang', 'trim|required');
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
-        $this->form_validation->set_rules('pokok', 'Pokok', 'trim|required');
-        $this->form_validation->set_rules('hasil_kegiatan', 'hasil_kegiatan', 'trim|required');
+        $this->form_validation->set_rules('pelaksana', 'Pelaksana', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('tentang', 'Tentang', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('pokok', 'Pokok', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('hasil_kegiatan', 'hasil_kegiatan', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('tanggal', 'Tanggal', 'trim|required');
 		if ($this->form_validation->run() == true) {
 			$this->model_kegiatan_bpd->edit_data();
@@ -52,5 +52,14 @@ class Kegiatan_bpd extends CI_Controller {
 	public function delete_kegiatan_bpd($id)
 	{
 		$this->model_kegiatan_bpd->delete_data($id);
+	}
+	//function validation alpha & space
+	function alpha_dash_space($str_in){
+		if (! preg_match("/^([-a-z_ ])+$/i", $str_in)) {
+			$this->form_validation->set_message('alpha_dash_space', '%s harap masukan huruf');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
 	}
 }

@@ -13,13 +13,14 @@ class model_inventaris extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal_penghapusan =  str_replace('/', '-',$this->input->post('tanggal_penghapusan',true));
         $data = [
 			'keterangan' 		                => $this->input->post('keterangan',true),
 			'nama_barang' 		                => $this->input->post('nama_barang',true),
 			'asal_barang'                		=> $this->input->post('asal_barang',true),
 			'keadaan_awal_tahun' 		        => $this->input->post('keadaan_awal_tahun',true),
 			'jumlah_kondisi_baik' 		        => $this->input->post('jumlah_kondisi_baik',true),
-			'tanggal_penghapusan' 		        => $this->input->post('tanggal_penghapusan',true),
+			'tanggal_penghapusan' 		        => date('Y-m-d', strtotime($tanggal_penghapusan)),
 			'jumlah_kondisi_rusak' 		        => $this->input->post('jumlah_kondisi_rusak',true),
 			'jumlah_penghapusan_rusak' 		    => $this->input->post('jumlah_penghapusan_rusak',true),
 			'jumlah_penghapusan_dijual' 		=> $this->input->post('jumlah_penghapusan_dijual',true),
@@ -40,13 +41,14 @@ class model_inventaris extends CI_Model {
     }
     public function edit_data()
     {
+        $tanggal_penghapusan =  str_replace('/', '-',$this->input->post('tanggal_penghapusan',true));
         $data = [
 			'keterangan' 		                => $this->input->post('keterangan',true),
 			'nama_barang' 		                => $this->input->post('nama_barang',true),
 			'asal_barang'                		=> $this->input->post('asal_barang',true),
 			'keadaan_awal_tahun' 		        => $this->input->post('keadaan_awal_tahun',true),
 			'jumlah_kondisi_baik' 		        => $this->input->post('jumlah_kondisi_baik',true),
-			'tanggal_penghapusan' 		        => $this->input->post('tanggal_penghapusan',true),
+			'tanggal_penghapusan' 		        => date('Y-m-d', strtotime($tanggal_penghapusan)),
 			'jumlah_kondisi_rusak' 		        => $this->input->post('jumlah_kondisi_rusak',true),
 			'jumlah_penghapusan_rusak' 		    => $this->input->post('jumlah_penghapusan_rusak',true),
 			'jumlah_penghapusan_dijual' 		=> $this->input->post('jumlah_penghapusan_dijual',true),

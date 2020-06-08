@@ -24,7 +24,7 @@
 					<td><?= $key->nama_lengkap ?></td>
 					<td><?= $key->no_surat ?></td>
 					<td><?= $key->nama_surat_dinas ?></td>
-					<td><?= $key->tanggal_surat ?></td>
+					<td><?= date('d-m-Y', strtotime($key->tanggal_surat)) ?></td>
 					<td style="width:105px">
 						<a href="<?= base_url('buat_surat/'.$key->url.'/'.$key->id_surat) ?>"
 							class="btn btn-success btn-sm">

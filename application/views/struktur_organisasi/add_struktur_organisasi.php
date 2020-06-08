@@ -17,7 +17,7 @@
 		</div>
 		<div class="form-group">
 			<label>NIP</label>
-			<input type="text" class="form-control " name="nip" value="<?= set_value('nip') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nip" value="<?= set_value('nip') ?>" autocomplete="off">
 			<?= form_error('nip','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 	</div>

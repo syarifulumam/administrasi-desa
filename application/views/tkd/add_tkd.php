@@ -40,7 +40,7 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" name="tanggal_perolehan_amd" class="form-control" data-inputmask-alias="datetime"
-					data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+					data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_perolehan_amd','<small class="text-danger pl-1">','</small>') ?>
 		</div>
@@ -57,7 +57,7 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" name="tanggal_perolehan_bantuan_pemerintah" class="form-control"
-					data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+					data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_perolehan_bantuan_pemerintah','<small class="text-danger pl-1">','</small>') ?>
 		</div>
@@ -74,7 +74,7 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" name="tanggal_perolehan_bantuan_provinsi" class="form-control"
-					data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+					data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_perolehan_bantuan_provinsi','<small class="text-danger pl-1">','</small>') ?>
 		</div>
@@ -91,7 +91,7 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" name="tanggal_perolehan_bantuan_kabupaten" class="form-control"
-					data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+					data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_perolehan_bantuan_kabupaten','<small class="text-danger pl-1">','</small>') ?>
 		</div>
@@ -108,38 +108,33 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" name="tanggal_perolehan_bantuan_lain" class="form-control"
-					data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+					data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_perolehan_bantuan_lain','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Jumlah TKD Sawah</label>
-			<input type="text" class="form-control " name="jumlah_tkd_sawah"
-				value="<?= set_value('jumlah_tkd_sawah') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="jumlah_tkd_sawah" value="<?= set_value('jumlah_tkd_sawah') ?>" autocomplete="off">
 			<?= form_error('jumlah_tkd_sawah','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Jumlah TKD Tegalan</label>
-			<input type="text" class="form-control " name="jumlah_tkd_tegalan"
-				value="<?= set_value('jumlah_tkd_tegalan') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="jumlah_tkd_tegalan" value="<?= set_value('jumlah_tkd_tegalan') ?>" autocomplete="off">
 			<?= form_error('jumlah_tkd_tegalan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Jumlah TKD Kebun</label>
-			<input type="text" class="form-control " name="jumlah_tkd_kebun"
-				value="<?= set_value('jumlah_tkd_kebun') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="jumlah_tkd_kebun" value="<?= set_value('jumlah_tkd_kebun') ?>" autocomplete="off">
 			<?= form_error('jumlah_tkd_kebun','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Jumlah TKD Tambak Kolam</label>
-			<input type="text" class="form-control " name="jumlah_tkd_tambak_kolam"
-				value="<?= set_value('jumlah_tkd_tambak_kolam') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="jumlah_tkd_tambak_kolam" value="<?= set_value('jumlah_tkd_tambak_kolam') ?>" autocomplete="off">
 			<?= form_error('jumlah_tkd_tambak_kolam','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Jumlah TKD Tanah Kering Darat</label>
-			<input type="text" class="form-control " name="jumlah_tkd_darat"
-				value="<?= set_value('jumlah_tkd_darat') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="jumlah_tkd_darat" value="<?= set_value('jumlah_tkd_darat') ?>" autocomplete="off">
 			<?= form_error('jumlah_tkd_darat','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group clearfix">

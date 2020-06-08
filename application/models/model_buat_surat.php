@@ -51,8 +51,9 @@ class model_buat_surat extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal =  str_replace('/', '-',$this->input->post('tanggal_surat',true));
         $data = [
-			'tanggal_surat' 	=> $this->input->post('tanggal_surat',true),
+			'tanggal_surat' 	=> date('Y-m-d', strtotime($tanggal)),
 			'id_master_surat' 	=> $this->input->post('id_master_surat',true),
 			'id_penduduk'    	=> $this->input->post('nama',true),
 			'keterangan'    	=> $this->input->post('keterangan',true),
@@ -74,8 +75,9 @@ class model_buat_surat extends CI_Model {
     public function insert_data_kematian()
     {
         $id = explode(',',$this->input->post('nama',true));
+        $tanggal =  str_replace('/', '-',$this->input->post('tanggal_surat',true));
         $data = [
-			'tanggal_surat' 	=> $this->input->post('tanggal_surat',true),
+			'tanggal_surat' 	=> date('Y-m-d', strtotime($tanggal)),
 			'id_penduduk' 		=> $id[0],
 			'id_kematian' 		=> $id[1],
 			'id_master_surat' 	=> $this->input->post('id_master_surat',true),

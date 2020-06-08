@@ -44,7 +44,10 @@ class Dashboard extends CI_Controller {
         $data['kecamatan'] = $this->model_dashboard->get_kecamatan();
         $data['kelurahan'] = $this->model_dashboard->get_kelurahan();
         //nontifikasi
-		$data['notifikasi'] = $this->model_notifikasi->get_data();
+        $data['notifikasi'] = $this->model_notifikasi->get_data();
+        //data total keuangan
+        $data['pengeluaran'] = $this->model_dashboard->get_pengeluaran();
+        $data['pemasukan']   = $this->model_dashboard->get_pemasukan();
         $this->template->load('template_admin','dashboard',$data);
     }
 }

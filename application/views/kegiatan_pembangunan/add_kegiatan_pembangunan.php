@@ -33,26 +33,22 @@
 		</div>
 		<div class="form-group">
 			<label>Sumber Dana Pemerintah</label>
-			<input type="text" class="form-control " name="dana_pemerintah" value="<?= set_value('dana_pemerintah') ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="dana_pemerintah" value="<?= set_value('dana_pemerintah') ?>" autocomplete="off">
 			<?= form_error('dana_pemerintah','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Sumber Dana Provinsi</label>
-			<input type="text" class="form-control " name="dana_provinsi" value="<?= set_value('dana_provinsi') ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="dana_provinsi" value="<?= set_value('dana_provinsi') ?>" autocomplete="off">
 			<?= form_error('dana_provinsi','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Sumber Dana Kota</label>
-			<input type="text" class="form-control " name="dana_kota" value="<?= set_value('dana_kota') ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="dana_kota" value="<?= set_value('dana_kota') ?>" autocomplete="off">
 			<?= form_error('dana_kota','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Sumber Dana Swadaya</label>
-			<input type="text" class="form-control " name="dana_swadaya" value="<?= set_value('dana_swadaya') ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="dana_swadaya" value="<?= set_value('dana_swadaya') ?>" autocomplete="off">
 			<?= form_error('dana_swadaya','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -68,7 +64,7 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" name="waktu_pelaksanaan" class="form-control" data-inputmask-alias="datetime"
-					data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+					data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('waktu_pelaksanaan','<small class="text-danger pl-1">','</small>') ?>
 		</div>

@@ -26,10 +26,11 @@ class model_keuangan extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal =  str_replace('/', '-',$this->input->post('tanggal',true));
         $data = [
 			'keterangan' 	=> $this->input->post('keterangan',true),
 			'harga'     	=> $this->input->post('harga',true),
-			'tanggal' 	    => $this->input->post('tanggal',true),
+			'tanggal' 	    => date('Y-m-d', strtotime($tanggal)),
 			'status' 	    => $this->input->post('status',true)
         ];
         $this->db->insert('keuangan',$data);
@@ -50,10 +51,11 @@ class model_keuangan extends CI_Model {
     }
     public function edit_data()
     {
+        $tanggal =  str_replace('/', '-',$this->input->post('tanggal',true));
         $data = [
 			'keterangan' 	=> $this->input->post('keterangan',true),
 			'harga'     	=> $this->input->post('harga',true),
-			'tanggal' 	    => $this->input->post('tanggal',true)
+			'tanggal' 	    => date('Y-m-d', strtotime($tanggal))
         ];
         $this->db->where('id_keuangan',$this->input->post('id'));
 		$this->db->update('keuangan',$data);
@@ -85,6 +87,10 @@ class model_keuangan extends CI_Model {
         ];
         $this->db->insert('notifikasi',$data_notifikasi);
         $this->session->set_flashdata('pesan','Surat berhasil hapus');
-        redirect('keuangan');
+        if ($this->db->get_where('keuangan',array('id_keuangan'=>$id))->row()->status == 'pemasukan') {
+            redirect('keuangan');
+        } else {
+            redirect('keuangan/pengeluaran');
+        }
     }
 }

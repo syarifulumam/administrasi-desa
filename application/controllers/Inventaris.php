@@ -21,8 +21,8 @@ class Inventaris extends CI_Controller {
 	{
 		//form validation
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
-        $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required');
-        $this->form_validation->set_rules('asal_barang', 'Asal Barang', 'trim|required');
+        $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('asal_barang', 'Asal Barang', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('keadaan_awal_tahun', 'Keadaan Awal Tahun', 'trim|required');
         $this->form_validation->set_rules('jumlah_kondisi_baik', 'Jumlah Kondisi Baik', 'trim|required');
         $this->form_validation->set_rules('tanggal_penghapusan', 'Tanggal Penghapusan', 'trim|required');
@@ -41,8 +41,8 @@ class Inventaris extends CI_Controller {
 	{
 		//form validation
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
-        $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required');
-        $this->form_validation->set_rules('asal_barang', 'Asal Barang', 'trim|required');
+        $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('asal_barang', 'Asal Barang', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('keadaan_awal_tahun', 'Keadaan Awal Tahun', 'trim|required');
         $this->form_validation->set_rules('jumlah_kondisi_baik', 'Jumlah Kondisi Baik', 'trim|required');
         $this->form_validation->set_rules('tanggal_penghapusan', 'Tanggal Penghapusan', 'trim|required');
@@ -62,5 +62,14 @@ class Inventaris extends CI_Controller {
 	public function delete_inventaris($id)
 	{
 		$this->model_inventaris->delete_data($id);
+	}
+	//function validation alpha & space
+	function alpha_dash_space($str_in){
+		if (! preg_match("/^([-a-z_ ])+$/i", $str_in)) {
+			$this->form_validation->set_message('alpha_dash_space', '%s harap masukan huruf');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
 	}
 }

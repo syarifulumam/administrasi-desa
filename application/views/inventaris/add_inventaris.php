@@ -31,32 +31,27 @@
 		</div>
 		<div class="form-group">
 			<label>Jumlah Kondisi Baik</label>
-			<input type="text" class="form-control " name="jumlah_kondisi_baik"
-				value="<?= set_value('jumlah_kondisi_baik') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="jumlah_kondisi_baik" value="<?=set_value('jumlah_kondisi_baik') ?>" autocomplete="off">
 			<?= form_error('jumlah_kondisi_baik','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Jumlah Kondisi Rusak</label>
-			<input type="text" class="form-control " name="jumlah_kondisi_rusak"
-				value="<?= set_value('jumlah_kondisi_rusak') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="jumlah_kondisi_rusak" value="<?=set_value('jumlah_kondisi_rusak') ?>" autocomplete="off">
 			<?= form_error('jumlah_kondisi_rusak','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Jumlah Penghapusan Yang Rusak</label>
-			<input type="text" class="form-control " name="jumlah_penghapusan_rusak"
-				value="<?= set_value('jumlah_penghapusan_rusak') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="jumlah_penghapusan_rusak" value="<?=set_value('jumlah_penghapusan_rusak') ?>" autocomplete="off">
 			<?= form_error('jumlah_penghapusan_rusak','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Jumlah Penghapusan Yang Dijual</label>
-			<input type="text" class="form-control " name="jumlah_penghapusan_dijual"
-				value="<?= set_value('jumlah_penghapusan_dijual') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="jumlah_penghapusan_dijual" value="<?=set_value('jumlah_penghapusan_dijual') ?>" autocomplete="off">
 			<?= form_error('jumlah_penghapusan_dijual','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Jumlah Penghapusan Yang Disumbangkan</label>
-			<input type="text" class="form-control " name="jumlah_penghapusan_disumbangkan"
-				value="<?= set_value('jumlah_penghapusan_disumbangkan') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="jumlah_penghapusan_disumbangkan" value="<?=set_value('jumlah_penghapusan_disumbangkan') ?>" autocomplete="off">
 			<?= form_error('jumlah_penghapusan_disumbangkan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -66,7 +61,7 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" name="tanggal_penghapusan" class="form-control" data-inputmask-alias="datetime"
-					data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+					data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_penghapusan','<small class="text-danger pl-1">','</small>') ?>
 		</div>

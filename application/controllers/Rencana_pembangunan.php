@@ -21,10 +21,10 @@ class Rencana_pembangunan extends CI_Controller {
 	{
 		//form validation
         $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
-        $this->form_validation->set_rules('manfaat', 'Manfaat', 'trim|required');
+        $this->form_validation->set_rules('manfaat', 'Manfaat', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('dana_kota', 'Dana Kota', 'trim|required');
-        $this->form_validation->set_rules('pelaksana', 'Pelaksana', 'trim|required');
-        $this->form_validation->set_rules('nama_proyek', 'Nama Proyek', 'trim|required');
+        $this->form_validation->set_rules('pelaksana', 'Pelaksana', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('nama_proyek', 'Nama Proyek', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('dana_pemerintah', 'Dana Pemerintah', 'trim|required');
         $this->form_validation->set_rules('dana_provinsi', 'Dana Provinsi', 'trim|required');
         $this->form_validation->set_rules('dana_swadaya', 'Dana Swadaya', 'trim|required');
@@ -39,10 +39,10 @@ class Rencana_pembangunan extends CI_Controller {
 	{
 		//form validation
         $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
-        $this->form_validation->set_rules('manfaat', 'Manfaat', 'trim|required');
+        $this->form_validation->set_rules('manfaat', 'Manfaat', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('dana_kota', 'Dana Kota', 'trim|required');
-        $this->form_validation->set_rules('pelaksana', 'Pelaksana', 'trim|required');
-        $this->form_validation->set_rules('nama_proyek', 'Nama Proyek', 'trim|required');
+        $this->form_validation->set_rules('pelaksana', 'Pelaksana', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('nama_proyek', 'Nama Proyek', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('dana_pemerintah', 'Dana Pemerintah', 'trim|required');
         $this->form_validation->set_rules('dana_provinsi', 'Dana Provinsi', 'trim|required');
         $this->form_validation->set_rules('dana_swadaya', 'Dana Swadaya', 'trim|required');
@@ -58,5 +58,14 @@ class Rencana_pembangunan extends CI_Controller {
 	public function delete_rencana_pembangunan($id)
 	{
 		$this->model_rencana_pembangunan->delete_data($id);
+	}
+	//function validation alpha & space
+	function alpha_dash_space($str_in){
+		if (! preg_match("/^([-a-z_ ])+$/i", $str_in)) {
+			$this->form_validation->set_message('alpha_dash_space', '%s harap masukan huruf');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
 	}
 }

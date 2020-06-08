@@ -17,7 +17,7 @@ class dusun extends CI_Controller {
     }
     public function add_dusun()
     {
-        $this->form_validation->set_rules('dusun', 'Nama dusun', 'trim|required');
+        $this->form_validation->set_rules('dusun', 'Nama dusun', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('kelurahan', 'Kota', 'trim|required');
 		if ($this->form_validation->run() == true) {
 			$this->model_dusun->insert_data();
@@ -28,7 +28,7 @@ class dusun extends CI_Controller {
     }
     public function edit_dusun($id)
     {
-        $this->form_validation->set_rules('dusun', 'Nama dusun', 'trim|required');
+        $this->form_validation->set_rules('dusun', 'Nama dusun', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('kelurahan', 'Kota', 'trim|required');
 		if ($this->form_validation->run() == true) {
 			$this->model_dusun->edit_data();
@@ -41,6 +41,15 @@ class dusun extends CI_Controller {
 	public function delete_dusun($id)
 	{
 		$this->model_dusun->delete_data($id);
+	}
+	//function validation alpha & space
+	function alpha_dash_space($str_in){
+		if (! preg_match("/^([-a-z_ ])+$/i", $str_in)) {
+			$this->form_validation->set_message('alpha_dash_space', '%s harap masukan huruf');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
 	}
 }
     

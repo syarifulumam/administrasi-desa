@@ -27,7 +27,7 @@
 					<td><?= $key->no_akte ?></td>
 					<td><?= $key->no_kk ?></td>
 					<td><?= $key->nama_lengkap ?></td>
-					<td><?= $key->tempat_lahir . "," . $key->tanggal_lahir ?></td>
+					<td><?= $key->tempat_lahir . "," . date('d-m-Y', strtotime($key->tanggal_lahir)) ?></td>
 					<td><?= $key->anak_ke_berapa ?></td>
 					<td><?= $key->nama_ibu ?></td>
 					<td><?= $key->jenis_kelamin ?></td>

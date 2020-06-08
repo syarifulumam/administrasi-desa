@@ -24,7 +24,7 @@
 		</div>
 		<div class="form-group">
 			<label>Biaya</label>
-			<input type="text" class="form-control " name="biaya" value="<?= set_value('biaya') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="biaya" value="<?= set_value('biaya') ?>" autocomplete="off">
 			<?= form_error('biaya','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">

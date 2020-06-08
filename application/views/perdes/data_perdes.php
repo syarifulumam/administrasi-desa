@@ -23,7 +23,7 @@
 				<tr>
 					<td>1</td>
 					<td><?= $key->nomor_peraturan_desa ?></td>
-					<td><?= $key->tanggal_peraturan_desa ?></td>
+					<td><?= date('d-m-Y', strtotime($key->tanggal_peraturan_desa)) ?></td>
 					<td><?= $key->tentang ?></td>
 					<td><?= $key->uraian_singkat ?></td>
 					<td><?= $key->nomor_persetujuan_BPD ?></td>

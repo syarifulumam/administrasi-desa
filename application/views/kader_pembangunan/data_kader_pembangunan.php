@@ -23,7 +23,7 @@
 				<tr>
 					<td>1</td>
 					<td><?= $key->nama ?></td>
-					<td><?= $key->tempat_lahir . ", " . $key->tanggal_lahir ?></td>
+					<td><?= $key->tempat_lahir . ", " . date('d-m-Y', strtotime($key->tanggal_lahir)) ?></td>
 					<td><?= $key->jenis_kelamin ?></td>
 					<td><?= $key->pendidikan_terakhir ?></td>
 					<td style="width:105px">

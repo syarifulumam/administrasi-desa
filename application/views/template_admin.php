@@ -46,19 +46,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<div class="wrapper">
 
 		<!-- Navbar -->
-		<!-- <nav class="main-header navbar navbar-expand navbar-green navbar-light"> -->
+		<nav class="main-header navbar navbar-expand navbar-green navbar-light">
 			<!-- Left navbar links -->
-			<!-- <ul class="navbar-nav">
+			<ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
 				</li>
 			</ul>
-		</nav> -->
-		<!-- /.navbar -->
-
-		<!-- Navbar -->
-		<nav class="main-header navbar navbar-expand navbar-green navbar-light">
-			<!-- Right navbar links -->
 			<ul class="navbar-nav ml-auto">
 			<!-- Notifications Dropdown Menu -->
 			<li class="nav-item dropdown">
@@ -537,8 +531,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$('.select2').select2()
 
 			//Datemask yyyy/mm/dd
-			$('#datemask').inputmask('yyyy/mm/dd', {
-				'placeholder': 'yyyy/mm/dd'
+			$('#datemask').inputmask('dd/mm/yyyy', {
+				'placeholder': 'dd/mm/yyyy'
 			})
 			//Money Euro
 			$('[data-mask]').inputmask()

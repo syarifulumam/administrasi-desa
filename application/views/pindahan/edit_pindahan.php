@@ -6,14 +6,7 @@
 		<?= form_open_multipart('','',array('id'=>$pindahan->id_pindah_kependudukan));?>
 		<div class="form-group">
 			<label>Nama</label>
-			<select class="form-control select2" style="width: 100%;" name="nama" id="nama">
-				<option value="">-- Pilih Nama --</option>
-				<?php foreach ($penduduk as $key):?>
-				<option value="<?= $key->id_penduduk ?>"
-					<?= $key->id_penduduk == $pindahan->id_penduduk ? 'selected':'' ?>><?= $key->nama_lengkap ?>
-				</option>
-				<?php endforeach; ?>
-			</select>
+			<input type="text" name="nama" id="" readonly value="<?= $pindahan->nama_lengkap ?>" class="form-control">
 			<?= form_error('nama','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -22,8 +15,8 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
-				<input type="text" value="<?= $pindahan->tanggal_pindah ?>" name="tanggal_pindahan" class="form-control"
-					data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+				<input type="text" value="<?= date('d-m-Y', strtotime($pindahan->tanggal_pindah)) ?>" name="tanggal_pindahan" class="form-control"
+					data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_pindahan','<small class="text-danger pl-1">','</small>') ?>
 		</div>

@@ -12,13 +12,12 @@
 		</div>
 		<div class="form-group">
 			<label>Nomor Anggota</label>
-			<input type="text" class="form-control " name="nomor_anggota" value="<?= $anggota_bpd->nomor_anggota ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_anggota" value="<?= $anggota_bpd->nomor_anggota  ?>" autocomplete="off">
 			<?= form_error('nomor_anggota','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>NIP</label>
-			<input type="text" class="form-control " name="nip" value="<?= $anggota_bpd->nip ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nip" value="<?= $anggota_bpd->nip ?>" autocomplete="off">
 			<?= form_error('nip','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group clearfix">
@@ -48,8 +47,8 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
-				<input type="text" name="tanggal_lahir" value="<?= $anggota_bpd->tanggal_lahir ?>" class="form-control"
-					data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+				<input type="text" name="tanggal_lahir" value="<?= date('d-m-Y', strtotime($anggota_bpd->tanggal_lahir)) ?>" class="form-control"
+					data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_lahir','<small class="text-danger pl-1">','</small>') ?>
 		</div>
@@ -94,16 +93,15 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
-				<input type="text" name="tanggal_pengangkatan" value="<?= $anggota_bpd->tanggal_pengangkatan ?>"
-					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd"
+				<input type="text" name="tanggal_pengangkatan" value="<?= date('d-m-Y', strtotime($anggota_bpd->tanggal_pengangkatan)) ?>"
+					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
 					data-mask>
 			</div>
 			<?= form_error('tanggal_pengangkatan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Nomor Pengangkatan</label>
-			<input type="text" class="form-control " name="nomor_pengangkatan"
-				value="<?= $anggota_bpd->nomor_pengangkatan ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_pengangkatan" value="<?=  $anggota_bpd->nomor_pengangkatan  ?>" autocomplete="off">
 			<?= form_error('nomor_pengangkatan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -112,31 +110,28 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
-				<input type="text" name="tanggal_pemberhentian" value="<?= $anggota_bpd->tanggal_pemberhentian ?>"
-					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd"
+				<input type="text" name="tanggal_pemberhentian" value="<?= date('d-m-Y', strtotime($anggota_bpd->tanggal_pemberhentian)) ?>"
+					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
 					data-mask>
 			</div>
 			<?= form_error('tanggal_pemberhentian','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Nomor Pemberhentian</label>
-			<input type="text" class="form-control " name="nomor_pemberhentian"
-				value="<?= $anggota_bpd->nomor_pemberhentian ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_pemberhentian" value="<?= $anggota_bpd->nomor_pemberhentian ?>" autocomplete="off">
 			<?= form_error('nomor_pemberhentian','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group clearfix">
 			<label>Keaktifan</label><br>
 			<div class="icheck-primary d-inline">
 				<input type="radio" id="aktif" name="keaktifan" value="1"
-					<?= $anggota_bpd->keaktifan=="aktif"?"checked":"" ?>>
-				<label for="aktif">Aktif
-				</label>
+					<?= $anggota_bpd->keaktifan==1?"checked":"" ?>>
+				<label for="aktif">Aktif</label>
 			</div>
 			<div class="icheck-primary d-inline">
 				<input type="radio" id="tidak_aktif" name="keaktifan" value="0"
-					<?= $anggota_bpd->keaktifan=="tidak aktif"?"checked":"" ?>>
-				<label for="tidak_aktif">Tidak Aktif
-				</label>
+					<?= $anggota_bpd->keaktifan==0?"checked":"" ?>>
+				<label for="tidak_aktif">Tidak Aktif</label>
 			</div>
 		</div>
 		<div class="form-group">

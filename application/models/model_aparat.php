@@ -13,6 +13,9 @@ class model_aparat extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal_lahir =  str_replace('/', '-',$this->input->post('tanggal_lahir',true));
+        $tanggal_pengangkatan =  str_replace('/', '-',$this->input->post('tanggal_pengangkatan',true));
+        $tanggal_pemberhentian =  str_replace('/', '-',$this->input->post('tanggal_pemberhentian',true));
         $data = [
             'nip'	                => $this->input->post('nip',true),
             'niap'	                => $this->input->post('niap',true),
@@ -24,11 +27,11 @@ class model_aparat extends CI_Model {
             'pendidikan_terakhir'	=> $this->input->post('pendidikan',true),
             'nama_lengkap'	        => $this->input->post('nama_lengkap',true),
             'tempat_lahir'	        => $this->input->post('tempat_lahir',true),
-            'tanggal_lahir'	        => $this->input->post('tanggal_lahir',true),
+            'tanggal_lahir'	        => date('Y-m-d', strtotime($tanggal_lahir)),
             'nomor_pengangkatan'	=> $this->input->post('nomor_pengangkatan',true),
-            'tanggal_pengangkatan'	=> $this->input->post('tanggal_pengangkatan',true),
+            'tanggal_pengangkatan'	=> date('Y-m-d', strtotime($tanggal_pengangkatan)),
             'nomor_pemberhentian'	=> $this->input->post('nomor_pemberhentian',true),
-            'tanggal_pemberhentian'	=> $this->input->post('tanggal_pemberhentian',true),
+            'tanggal_pemberhentian'	=>date('Y-m-d', strtotime($tanggal_pemberhentian)),
 			'foto' 		            => $this->_upload()
         ];
         //insert data pindahan
@@ -54,6 +57,9 @@ class model_aparat extends CI_Model {
         } else {
             $data_file = $this->input->post('foto_db');
         }
+        $tanggal_lahir =  str_replace('/', '-',$this->input->post('tanggal_lahir',true));
+        $tanggal_pengangkatan =  str_replace('/', '-',$this->input->post('tanggal_pengangkatan',true));
+        $tanggal_pemberhentian =  str_replace('/', '-',$this->input->post('tanggal_pemberhentian',true));
         $data = [
             'nip'	                => $this->input->post('nip',true),
             'niap'	                => $this->input->post('niap',true),
@@ -65,11 +71,11 @@ class model_aparat extends CI_Model {
             'pendidikan_terakhir'	=> $this->input->post('pendidikan',true),
             'nama_lengkap'	        => $this->input->post('nama_lengkap',true),
             'tempat_lahir'	        => $this->input->post('tempat_lahir',true),
-            'tanggal_lahir'	        => $this->input->post('tanggal_lahir',true),
+            'tanggal_lahir'	        => date('Y-m-d', strtotime($tanggal_lahir)),
             'nomor_pengangkatan'	=> $this->input->post('nomor_pengangkatan',true),
-            'tanggal_pengangkatan'	=> $this->input->post('tanggal_pengangkatan',true),
+            'tanggal_pengangkatan'	=> date('Y-m-d', strtotime($tanggal_pengangkatan)),
             'nomor_pemberhentian'	=> $this->input->post('nomor_pemberhentian',true),
-            'tanggal_pemberhentian'	=> $this->input->post('tanggal_pemberhentian',true),
+            'tanggal_pemberhentian'	=>date('Y-m-d', strtotime($tanggal_pemberhentian)),
 			'foto' 		            => $data_file
         ];
         

@@ -13,9 +13,11 @@ class model_ekspedisi_bpd extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal_pengiriman =  str_replace('/', '-',$this->input->post('tanggal_pengiriman',true));
+        $tanggal_surat =  str_replace('/', '-',$this->input->post('tanggal_surat',true));
         $data = [
-            'tanggal_pengiriman'	 => $this->input->post('tanggal_pengiriman',true),
-			'tanggal_surat'	         => $this->input->post('tanggal_surat',true),
+            'tanggal_pengiriman'	 => date('Y-m-d', strtotime($tanggal_pengiriman)),
+			'tanggal_surat'	         => date('Y-m-d', strtotime($tanggal_surat)),
 			'nomor_surat'	         => $this->input->post('nomor_surat',true),
 			'isi_singkat'	         => $this->input->post('isi_singkat',true),
 			'tujuan'	             => $this->input->post('tujuan',true),
@@ -45,9 +47,11 @@ class model_ekspedisi_bpd extends CI_Model {
         // } else {
         //     $data_file = $this->input->post('file');
         // }
+        $tanggal_pengiriman =  str_replace('/', '-',$this->input->post('tanggal_pengiriman',true));
+        $tanggal_surat =  str_replace('/', '-',$this->input->post('tanggal_surat',true));
         $data = [
-            'tanggal_pengiriman'	 => $this->input->post('tanggal_pengiriman',true),
-			'tanggal_surat'	         => $this->input->post('tanggal_surat',true),
+            'tanggal_pengiriman'	 => date('Y-m-d', strtotime($tanggal_pengiriman)),
+			'tanggal_surat'	         => date('Y-m-d', strtotime($tanggal_surat)),
 			'nomor_surat'	         => $this->input->post('nomor_surat',true),
 			'isi_singkat'	         => $this->input->post('isi_singkat',true),
 			'tujuan'	             => $this->input->post('tujuan',true),

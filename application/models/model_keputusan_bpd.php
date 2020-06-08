@@ -13,12 +13,13 @@ class model_keputusan_bpd extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal =  str_replace('/', '-',$this->input->post('tanggal',true));
         $data = [
             'uraian_singkat'	     => $this->input->post('uraian',true),
 			'tentang'	             => $this->input->post('tentang',true),
 			'keterangan'	         => $this->input->post('keterangan',true),
-			'nomor_keputusan'	 => $this->input->post('nomor_keputusan',true),
-			'tanggal'	 => $this->input->post('tanggal',true),
+			'nomor_keputusan'	     => $this->input->post('nomor_keputusan',true),
+			'tanggal'	             => date('Y-m-d', strtotime($tanggal)),
 			'file_dokumen' 		     => $this->_upload()
         ];
         //insert data pindahan
@@ -44,12 +45,13 @@ class model_keputusan_bpd extends CI_Model {
         // } else {
         //     $data_file = $this->input->post('file');
         // }
+        $tanggal =  str_replace('/', '-',$this->input->post('tanggal',true));
         $data = [
             'uraian_singkat'	     => $this->input->post('uraian',true),
 			'tentang'	             => $this->input->post('tentang',true),
 			'keterangan'	         => $this->input->post('keterangan',true),
 			'nomor_keputusan'	 => $this->input->post('nomor_keputusan',true),
-			'tanggal'	 => $this->input->post('tanggal',true),
+			'tanggal'	             => date('Y-m-d', strtotime($tanggal)),
 			// 'file_dokumen' 		     => $data_file
         ];
         

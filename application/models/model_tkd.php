@@ -13,6 +13,11 @@ class model_tkd extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal_bantuan_lain =  str_replace('/', '-',$this->input->post('tanggal_perolehan_bantuan_lain',true));
+        $tanggal_bantuan_provinsi =  str_replace('/', '-',$this->input->post('tanggal_perolehan_bantuan_provinsi',true));
+        $tanggal_bantuan_kabupaten =  str_replace('/', '-',$this->input->post('tanggal_perolehan_bantuan_kabupaten',true));
+        $tanggal_bantuan_pemerintah =  str_replace('/', '-',$this->input->post('tanggal_perolehan_bantuan_pemerintah',true));
+        $tanggal_amd =  str_replace('/', '-',$this->input->post('tanggal_perolehan_amd',true));
         $data = [
             'klas'	                                => $this->input->post('kelas',true),
             'patok_tanda_batas'	                    => $this->input->post('patok',true),
@@ -31,12 +36,12 @@ class model_tkd extends CI_Model {
             'bantuan_kabupaten'	                    => $this->input->post('bantuan_kabupaten',true),
             'jumlah_tkd_tegalan'	                => $this->input->post('jumlah_tkd_tegalan',true),
             'bantuan_pemerintah'	                => $this->input->post('bantuan_pemerintah',true),
-            'tanggal_amd'	                        => $this->input->post('tanggal_perolehan_amd',true),
             'jumlah_tkd_tambak'	                    => $this->input->post('jumlah_tkd_tambak_kolam',true),
-            'tanggal_bantuan_lain'	                => $this->input->post('tanggal_perolehan_bantuan_lain',true),
-            'tanggal_bantuan_provinsi'          	=> $this->input->post('tanggal_perolehan_bantuan_provinsi',true),
-            'tanggal_bantuan_kabupaten'         	=> $this->input->post('tanggal_perolehan_bantuan_kabupaten',true),
-            'tanggal_bantuan_pemerintah'	        => $this->input->post('tanggal_perolehan_bantuan_pemerintah',true),
+            'tanggal_amd'	                        => date('Y-m-d', strtotime($tanggal_amd)),
+            'tanggal_bantuan_lain'	                => date('Y-m-d', strtotime($tanggal_bantuan_lain)),
+            'tanggal_bantuan_provinsi'          	=> date('Y-m-d', strtotime($tanggal_bantuan_provinsi)),
+            'tanggal_bantuan_kabupaten'         	=> date('Y-m-d', strtotime($tanggal_bantuan_kabupaten)),
+            'tanggal_bantuan_pemerintah'	        => date('Y-m-d', strtotime($tanggal_bantuan_pemerintah)),
 			'file_dokumen' 		                    => $this->_upload()
         ];
         //insert data pindahan
@@ -62,6 +67,11 @@ class model_tkd extends CI_Model {
         } else {
             $data_file = $this->input->post('file');
         }
+        $tanggal_bantuan_lain =  str_replace('/', '-',$this->input->post('tanggal_perolehan_bantuan_lain',true));
+        $tanggal_bantuan_provinsi =  str_replace('/', '-',$this->input->post('tanggal_perolehan_bantuan_provinsi',true));
+        $tanggal_bantuan_kabupaten =  str_replace('/', '-',$this->input->post('tanggal_perolehan_bantuan_kabupaten',true));
+        $tanggal_bantuan_pemerintah =  str_replace('/', '-',$this->input->post('tanggal_perolehan_bantuan_pemerintah',true));
+        $tanggal_amd =  str_replace('/', '-',$this->input->post('tanggal_perolehan_amd',true));
         $data = [
             'klas'	                                => $this->input->post('kelas',true),
             'patok_tanda_batas'	                    => $this->input->post('patok',true),
@@ -80,12 +90,12 @@ class model_tkd extends CI_Model {
             'bantuan_kabupaten'	                    => $this->input->post('bantuan_kabupaten',true),
             'jumlah_tkd_tegalan'	                => $this->input->post('jumlah_tkd_tegalan',true),
             'bantuan_pemerintah'	                => $this->input->post('bantuan_pemerintah',true),
-            'tanggal_amd'	                        => $this->input->post('tanggal_perolehan_amd',true),
             'jumlah_tkd_tambak'	                    => $this->input->post('jumlah_tkd_tambak_kolam',true),
-            'tanggal_bantuan_lain'	                => $this->input->post('tanggal_perolehan_bantuan_lain',true),
-            'tanggal_bantuan_provinsi'          	=> $this->input->post('tanggal_perolehan_bantuan_provinsi',true),
-            'tanggal_bantuan_kabupaten'         	=> $this->input->post('tanggal_perolehan_bantuan_kabupaten',true),
-            'tanggal_bantuan_pemerintah'	        => $this->input->post('tanggal_perolehan_bantuan_pemerintah',true),
+            'tanggal_amd'	                        => date('Y-m-d', strtotime($tanggal_amd)),
+            'tanggal_bantuan_lain'	                => date('Y-m-d', strtotime($tanggal_bantuan_lain)),
+            'tanggal_bantuan_provinsi'          	=> date('Y-m-d', strtotime($tanggal_bantuan_provinsi)),
+            'tanggal_bantuan_kabupaten'         	=> date('Y-m-d', strtotime($tanggal_bantuan_kabupaten)),
+            'tanggal_bantuan_pemerintah'	        => date('Y-m-d', strtotime($tanggal_bantuan_pemerintah)),
 			'file_dokumen' 		     => $data_file
         ];
         

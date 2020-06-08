@@ -21,7 +21,7 @@
 				<?php foreach ($kegiatan_bpd as $key):?>
 				<tr>
 					<td>1</td>
-					<td><?= $key->tanggal ?></td>
+					<td><?= date('d-m-Y', strtotime($key->tanggal)) ?></td>
 					<td><?= $key->tentang ?></td>
 					<td><?= $key->pelaksana ?></td>
 					<td><?= $key->pokok ?></td>

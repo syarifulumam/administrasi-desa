@@ -28,7 +28,7 @@
 					<td><?= $key->foto ?></td>
 					<td><?= $key->nik ?></td>
 					<td><?= $key->nama_lengkap ?></td>
-					<td><?= $key->tempat_lahir . ", " . $key->tanggal_lahir ?></td>
+					<td><?= $key->tempat_lahir . ", " . date('d-m-Y', strtotime($key->tanggal_lahir)) ?></td>
 					<td><?= $key->jenis_kelamin ?></td>
 					<td><?= $key->agama ?></td>
 					<td><?= $key->alamat ?></td>

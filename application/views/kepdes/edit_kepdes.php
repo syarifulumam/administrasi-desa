@@ -6,8 +6,7 @@
 		<?= form_open_multipart('','',array('id'=>$kepdes->id_kepala_desa,'file'=>$kepdes->file_dokumen));?>
 		<div class="form-group">
 			<label>Nomor Kepdes</label>
-			<input type="text" class="form-control " name="nomor_kepdes" value="<?= $kepdes->nomor_kepala_desa ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_kepdes" value="<?=  $kepdes->nomor_kepala_desa  ?>" autocomplete="off">
 			<?= form_error('nomor_kepdes','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -23,8 +22,7 @@
 		</div>
 		<div class="form-group">
 			<label>Nomor Dilaporkan</label>
-			<input type="text" class="form-control " name="nomor_laporkan" value="<?= $kepdes->nomor_dilaporkan ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_laporkan" value="<?= $kepdes->nomor_dilaporkan ?>" autocomplete="off">
 			<?= form_error('nomor_laporkan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -33,8 +31,8 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
-				<input type="text" name="tanggal_dilaporkan" value="<?= $kepdes->tanggal_dilaporkan ?>"
-					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd"
+				<input type="text" name="tanggal_dilaporkan" value="<?= date('d-m-Y', strtotime($kepdes->tanggal_dilaporkan)) ?>"
+					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
 					data-mask>
 			</div>
 			<?= form_error('tanggal_dilaporkan','<small class="text-danger pl-1">','</small>') ?>

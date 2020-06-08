@@ -6,8 +6,7 @@
 		<?= form_open_multipart('');?>
 		<div class="form-group">
 			<label>Nomor Kepdes</label>
-			<input type="text" class="form-control " name="nomor_kepdes" value="<?= set_value('nomor_kepdes') ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_kepdes" value="<?= set_value('nomor_kepdes') ?>" autocomplete="off">
 			<?= form_error('nomor_kepdes','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -24,8 +23,7 @@
 		</div>
 		<div class="form-group">
 			<label>Nomor Dilaporkan</label>
-			<input type="text" class="form-control " name="nomor_laporkan" value="<?= set_value('nomor_laporkan') ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_laporkan" value="<?= set_value('nomor_laporkan') ?>" autocomplete="off">
 			<?= form_error('nomor_laporkan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -35,7 +33,7 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" name="tanggal_dilaporkan" class="form-control" data-inputmask-alias="datetime"
-					data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+					data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_dilaporkan','<small class="text-danger pl-1">','</small>') ?>
 		</div>

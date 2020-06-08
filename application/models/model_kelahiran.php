@@ -29,6 +29,7 @@ class model_kelahiran extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal_lahir =  str_replace('/', '-',$this->input->post('tanggal_lahir',true));
         $get_data_ibu = $this->db->get_where('penduduk',array('nama_lengkap'=>$this->input->post('nama_ibu',true)))->row();
         $data_penduduk = [
 			'status_penduduk' 	  => 'Tetap',
@@ -37,7 +38,7 @@ class model_kelahiran extends CI_Model {
 			'no_kk'	              => $this->input->post('nomor_kk',true),
 			'nama_lengkap'	      => $this->input->post('nama_balita',true),
 			'tempat_lahir'	      => $this->input->post('tempat_lahir',true),
-			'tanggal_lahir'	      => $this->input->post('tanggal_lahir',true),
+			'tanggal_lahir'	      => date('Y-m-d', strtotime($tanggal_lahir)),
 			'jenis_kelamin'	      => $this->input->post('jenis_kelamin',true),
 			'agama'	              => $this->input->post('agama',true),
 			'kewarganegaraan'     => $get_data_ibu->kewarganegaraan,
@@ -54,14 +55,19 @@ class model_kelahiran extends CI_Model {
 			'nama_bapak'	      => $this->input->post('nama_ayah',true),
             'tanggal_input'       => date('Y-m-d')
         ];
-		$this->db->insert('penduduk',$data_penduduk);
-        $id_penduduk = $this->db->order_by('id_penduduk',"desc")->get('penduduk')->row();
+        $this->db->insert('penduduk',$data_penduduk);
+        $id_penduduk = $this->db->insert_id();
+        //insert data pindahan
+        $data_pindahan = [
+            'id_penduduk'         => $id_penduduk,
+        ];
+        $this->db->insert('pindah_kependudukan',$data_pindahan);
+        // $id_penduduk = $this->db->order_by('id_penduduk',"desc")->get('penduduk')->row();
         $data_kelahiran = [
-            'id_penduduk'   => intval($id_penduduk->id_penduduk),
+            'id_penduduk'   => $id_penduduk,
 			'anak_ke_berapa'=> $this->input->post('anak_ke',true),
 			'no_akte' 		=> $this->input->post('nomor_akte',true),
         ];
-
         $this->db->insert('kelahiran',$data_kelahiran);
         //nontifikasi
         date_default_timezone_set("Asia/Jakarta");
@@ -76,12 +82,13 @@ class model_kelahiran extends CI_Model {
     }
     public function edit_data()
     {
+        $tanggal_lahir =  str_replace('/', '-',$this->input->post('tanggal_lahir',true));
         $get_data_ibu = $this->db->get_where('penduduk',array('nama_lengkap'=>$this->input->post('nama_ibu',true)))->row();
         $data_penduduk = [
 			'no_kk'	              => $this->input->post('nomor_kk',true),
 			'nama_lengkap'	      => $this->input->post('nama_balita',true),
 			'tempat_lahir'	      => $this->input->post('tempat_lahir',true),
-			'tanggal_lahir'	      => $this->input->post('tanggal_lahir',true),
+			'tanggal_lahir'	      => date('Y-m-d', strtotime($tanggal_lahir)),
 			'jenis_kelamin'	      => $this->input->post('jenis_kelamin',true),
 			'agama'	              => $this->input->post('agama',true),
 			'kewarganegaraan'     => $get_data_ibu->kewarganegaraan,

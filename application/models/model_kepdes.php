@@ -13,13 +13,14 @@ class model_kepdes extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal =  str_replace('/', '-',$this->input->post('tanggal_dilaporkan',true));
         $data = [
             'uraian_singkat'	     => $this->input->post('uraian',true),
 			'tentang'	             => $this->input->post('tentang',true),
 			'keterangan'	         => $this->input->post('keterangan',true),
 			'nomor_kepala_desa'	 => $this->input->post('nomor_kepdes',true),
 			'nomor_dilaporkan'	     => $this->input->post('nomor_laporkan',true),
-			'tanggal_dilaporkan'	 => $this->input->post('tanggal_dilaporkan',true),
+			'tanggal_dilaporkan'	 => date('Y-m-d', strtotime($tanggal)),
 			'file_dokumen' 		     => $this->_upload()
         ];
         //insert data pindahan
@@ -45,13 +46,14 @@ class model_kepdes extends CI_Model {
         } else {
             $data_file = $this->input->post('file');
         }
+        $tanggal =  str_replace('/', '-',$this->input->post('tanggal_dilaporkan',true));
         $data = [
             'uraian_singkat'	     => $this->input->post('uraian',true),
 			'tentang'	             => $this->input->post('tentang',true),
 			'keterangan'	         => $this->input->post('keterangan',true),
 			'nomor_kepala_desa'	     => $this->input->post('nomor_kepdes',true),
 			'nomor_dilaporkan'	     => $this->input->post('nomor_laporkan',true),
-			'tanggal_dilaporkan'	 => $this->input->post('tanggal_dilaporkan',true),
+			'tanggal_dilaporkan'	 => date('Y-m-d', strtotime($tanggal)),
 			'file_dokumen' 		     => $data_file
         ];
         

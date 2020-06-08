@@ -22,7 +22,7 @@
 				<tr>
 					<td>1</td>
 					<td><?= $key->keterangan ?></td>
-					<td><?= $key->tanggal ?></td>
+					<td><?= date('d-m-Y', strtotime($key->tanggal)) ?></td>
 					<td>Rp.<?= number_format($key->harga,2,',','.'); ?></td>
 					<td style="width:105px">
 						<a href="<?= base_url('keuangan/edit_keuangan_pemasukan/'.$key->id_keuangan) ?>"

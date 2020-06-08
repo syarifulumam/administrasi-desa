@@ -53,6 +53,7 @@ class model_penduduk extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal_lahir =  str_replace('/', '-',$this->input->post('tanggal_lahir',true));
         $data_penduduk = [
 			'status_penduduk' 	  => $this->input->post('status_penduduk',true),
 			'no_kk'	              => $this->input->post('nomor_kk',true),
@@ -61,7 +62,7 @@ class model_penduduk extends CI_Model {
 			'nik'	              => $this->input->post('nomor_ktp',true),
 			'nama_lengkap'	      => $this->input->post('nama',true),
 			'tempat_lahir'	      => $this->input->post('tempat_lahir',true),
-			'tanggal_lahir'	      => date('Y-m-d', strtotime($this->input->post('tanggal_lahir',true))),
+			'tanggal_lahir'	      => date('Y-m-d', strtotime($tanggal_lahir)),
 			'jenis_kelamin'	      => $this->input->post('jenis_kelamin',true),
 			'agama'	              => $this->input->post('agama',true),
 			'pekerjaan'	          => $this->input->post('pekerjaan',true),
@@ -85,9 +86,10 @@ class model_penduduk extends CI_Model {
         //insert data penduduk
         $this->db->insert('penduduk',$data_penduduk);
 
+        $tanggal_pindahan =  str_replace('/', '-',$this->input->post('tanggal_pindahan',true));
         $data_pindahan = [
             'id_penduduk'           => $this->db->insert_id(),
-			'tanggal_pindah'	    => $this->input->post('tanggal_pindahan',true),
+			'tanggal_pindah'	    => date('Y-m-d', strtotime($tanggal_pindahan)),
 			'alamat_sebelumnya'	    => $this->input->post('alamat_sebelumnya',true),
 			// 'kode_pos'	            => $this->input->post('kode_pos_sebelumnya',true),
 			'keterangan'	        => $this->input->post('keterangan',true)
@@ -115,6 +117,7 @@ class model_penduduk extends CI_Model {
         } else {
             $data_foto = $this->input->post('foto_db');
         }
+        $tanggal_lahir =  str_replace('/', '-',$this->input->post('tanggal_lahir',true));
         $data_penduduk = [
 			'status_penduduk' 	  => $this->input->post('status_penduduk',true),
 			'no_kk'	              => $this->input->post('nomor_kk',true),
@@ -123,7 +126,7 @@ class model_penduduk extends CI_Model {
 			'nik'	              => $this->input->post('nomor_ktp',true),
 			'nama_lengkap'	      => $this->input->post('nama',true),
 			'tempat_lahir'	      => $this->input->post('tempat_lahir',true),
-			'tanggal_lahir'	      => date('Y-m-d', strtotime($this->input->post('tanggal_lahir',true))),
+			'tanggal_lahir'	      => date('Y-m-d', strtotime($tanggal_lahir)),
 			'jenis_kelamin'	      => $this->input->post('jenis_kelamin',true),
 			'agama'	              => $this->input->post('agama',true),
 			'pekerjaan'	          => $this->input->post('pekerjaan',true),

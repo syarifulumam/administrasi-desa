@@ -24,15 +24,17 @@ class model_pindahan extends CI_Model {
     {
         $this->db->select('nama_lengkap,id_penduduk');
         $this->db->not_like('status_penduduk','Pindah');
+        $this->db->not_like('status_hidup',1);
         return $this->db->get('penduduk')->result();
     }
     public function insert_data()
     {
+        $tanggal =  str_replace('/', '-',$this->input->post('tanggal_pindahan',true));
         $data = [
 			'id_penduduk' 	  => $this->input->post('nama',true),
 			'alamat_pindahan' => $this->input->post('alamat',true),
 			'keterangan' 	  => $this->input->post('keterangan',true),
-			'tanggal_pindah'  => $this->input->post('tanggal_pindahan',true),
+			'tanggal_pindah'  => date('Y-m-d', strtotime($tanggal)),
         ];
         $this->db->where('id_penduduk',$this->input->post('nama'));
         $this->db->update('pindah_kependudukan',$data);
@@ -52,11 +54,11 @@ class model_pindahan extends CI_Model {
     }
     public function edit_data()
     {
+        $tanggal =  str_replace('/', '-',$this->input->post('tanggal_pindahan',true));
         $data = [
-			'id_penduduk' 	  => $this->input->post('nama',true),
 			'alamat_pindahan' => $this->input->post('alamat',true),
 			'keterangan' 	  => $this->input->post('keterangan',true),
-			'tanggal_pindah'  => $this->input->post('tanggal_pindahan',true),
+			'tanggal_pindah'  => date('Y-m-d', strtotime($tanggal)),
         ];
         $this->db->where('id_pindah_kependudukan',$this->input->post('id'));
 		$this->db->update('pindah_kependudukan',$data);

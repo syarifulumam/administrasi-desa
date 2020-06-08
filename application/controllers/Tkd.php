@@ -24,17 +24,17 @@ class Tkd extends CI_Controller {
         $this->form_validation->set_rules('lokasi', 'lokasi', 'trim|required');
         $this->form_validation->set_rules('luas_ha', 'luas_ha', 'trim|required');
         $this->form_validation->set_rules('asal_tkd', 'asal_tkd', 'trim|required');
-        $this->form_validation->set_rules('peruntukan', 'peruntukan', 'trim|required');
+        $this->form_validation->set_rules('peruntukan', 'peruntukan', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('asli_milik', 'asli_milik', 'trim|required');
-        $this->form_validation->set_rules('bantuan_lain', 'bantuan_lain', 'trim|required');
+        $this->form_validation->set_rules('bantuan_lain', 'bantuan_lain', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('jumlah_tkd_sawah', 'jumlah_tkd_sawah', 'trim|required');
-        $this->form_validation->set_rules('bantuan_provinsi', 'bantuan_provinsi', 'trim|required');
+        $this->form_validation->set_rules('bantuan_provinsi', 'bantuan_provinsi', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('jumlah_tkd_kebun', 'jumlah_tkd_kebun', 'trim|required');
         $this->form_validation->set_rules('nomor_sertifikat', 'nomor_sertifikat', 'trim|required');
         $this->form_validation->set_rules('jumlah_tkd_darat', 'jumlah_tkd_darat', 'trim|required');
-        $this->form_validation->set_rules('bantuan_kabupaten', 'bantuan_kabupaten', 'trim|required');
+        $this->form_validation->set_rules('bantuan_kabupaten', 'bantuan_kabupaten', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('jumlah_tkd_tegalan', 'jumlah_tkd_tegalan', 'trim|required');
-        $this->form_validation->set_rules('bantuan_pemerintah', 'bantuan_pemerintah', 'trim|required');
+        $this->form_validation->set_rules('bantuan_pemerintah', 'bantuan_pemerintah', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('tanggal_perolehan_amd', 'tanggal_perolehan_amd', 'trim|required');
         $this->form_validation->set_rules('tanggal_perolehan_bantuan_pemerintah', 'tanggal_perolehan_bantuan_pemerintah', 'trim|required');
         $this->form_validation->set_rules('tanggal_perolehan_bantuan_provinsi', 'tanggal_perolehan_bantuan_provinsi', 'trim|required');
@@ -45,7 +45,7 @@ class Tkd extends CI_Controller {
 			$this->model_tkd->insert_data();
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
-        $this->template->load('template_admin','tkd/add_tkd');
+        $this->template->load('template_admin','tkd/add_tkd',$data);
 	}
 	public function edit_tkd($id)
 	{
@@ -54,17 +54,17 @@ class Tkd extends CI_Controller {
         $this->form_validation->set_rules('lokasi', 'lokasi', 'trim|required');
         $this->form_validation->set_rules('luas_ha', 'luas_ha', 'trim|required');
         $this->form_validation->set_rules('asal_tkd', 'asal_tkd', 'trim|required');
-        $this->form_validation->set_rules('peruntukan', 'peruntukan', 'trim|required');
+        $this->form_validation->set_rules('peruntukan', 'peruntukan', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('asli_milik', 'asli_milik', 'trim|required');
-        $this->form_validation->set_rules('bantuan_lain', 'bantuan_lain', 'trim|required');
+        $this->form_validation->set_rules('bantuan_lain', 'bantuan_lain', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('jumlah_tkd_sawah', 'jumlah_tkd_sawah', 'trim|required');
-        $this->form_validation->set_rules('bantuan_provinsi', 'bantuan_provinsi', 'trim|required');
+        $this->form_validation->set_rules('bantuan_provinsi', 'bantuan_provinsi', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('jumlah_tkd_kebun', 'jumlah_tkd_kebun', 'trim|required');
         $this->form_validation->set_rules('nomor_sertifikat', 'nomor_sertifikat', 'trim|required');
         $this->form_validation->set_rules('jumlah_tkd_darat', 'jumlah_tkd_darat', 'trim|required');
-        $this->form_validation->set_rules('bantuan_kabupaten', 'bantuan_kabupaten', 'trim|required');
+        $this->form_validation->set_rules('bantuan_kabupaten', 'bantuan_kabupaten', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('jumlah_tkd_tegalan', 'jumlah_tkd_tegalan', 'trim|required');
-        $this->form_validation->set_rules('bantuan_pemerintah', 'bantuan_pemerintah', 'trim|required');
+        $this->form_validation->set_rules('bantuan_pemerintah', 'bantuan_pemerintah', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('tanggal_perolehan_amd', 'tanggal_perolehan_amd', 'trim|required');
         $this->form_validation->set_rules('tanggal_perolehan_bantuan_pemerintah', 'tanggal_perolehan_bantuan_pemerintah', 'trim|required');
         $this->form_validation->set_rules('tanggal_perolehan_bantuan_provinsi', 'tanggal_perolehan_bantuan_provinsi', 'trim|required');
@@ -82,5 +82,14 @@ class Tkd extends CI_Controller {
 	public function delete_tkd($id)
 	{
 		$this->model_tkd->delete_data($id);
+    }
+    //function validation alpha & space
+	function alpha_dash_space($str_in){
+		if (! preg_match("/^([-a-z_ ])+$/i", $str_in)) {
+			$this->form_validation->set_message('alpha_dash_space', '%s harap masukan huruf');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
 	}
 }

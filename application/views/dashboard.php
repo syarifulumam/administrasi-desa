@@ -57,6 +57,158 @@
 	<!-- /.col -->
 </div>
 <!-- /.row -->
+
+<div class="row">
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box">
+			<span class="info-box-icon bg-info elevation-1 bg-blue"><i class="fas fa-home"></i></span>
+
+			<div class="info-box-content">
+				<span class="info-box-text">Dusun</span>
+				<span class="info-box-number"><?= $dusun ?></span>
+			</div>
+			<!-- /.info-box-content -->
+		</div>
+		<!-- /.info-box -->
+	</div>
+	<!-- /.col -->
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box mb-3">
+			<span class="info-box-icon bg-danger elevation-1 bg-purple"><i class="fas fa-cubes"></i></span>
+
+			<div class="info-box-content">
+				<span class="info-box-text">Ekspedisi</span>
+				<span class="info-box-number"><?= $ekspedisi_kearsipan ?></span>
+			</div>
+			<!-- /.info-box-content -->
+		</div>
+		<!-- /.info-box -->
+	</div>
+	<!-- /.col -->
+
+	<!-- fix for small devices only -->
+	<div class="clearfix hidden-md-up"></div>
+
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box mb-3">
+			<span class="info-box-icon bg-success elevation-1 bg-info"><i class="fas fa-cubes"></i></span>
+
+			<div class="info-box-content">
+				<span class="info-box-text">Ekspedisi BPD</span>
+				<span class="info-box-number"><?= $ekspedisi_bpd ?></span>
+			</div>
+			<!-- /.info-box-content -->
+		</div>
+		<!-- /.info-box -->
+	</div>
+	<!-- /.col -->
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box mb-3">
+			<span class="info-box-icon bg-warning elevation-1 bg-maroon"><i class="fas fa-envelope"></i></span>
+
+			<div class="info-box-content">
+				<span class="info-box-text">Surat</span>
+				<span class="info-box-number"><?= $surat ?></span>
+			</div>
+			<!-- /.info-box-content -->
+		</div>
+		<!-- /.info-box -->
+	</div>
+	<!-- /.col -->
+</div>
+<!-- /.row -->
+
+
+<div class="row">
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box">
+			<span class="info-box-icon bg-info elevation-1 bg-navy"><i class="fas fa-building"></i></span>
+
+			<div class="info-box-content">
+				<span class="info-box-text">Kecamatan</span>
+				<span class="info-box-number"><?= $kecamatan ?></span>
+			</div>
+			<!-- /.info-box-content -->
+		</div>
+		<!-- /.info-box -->
+	</div>
+	<!-- /.col -->
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box mb-3">
+			<span class="info-box-icon bg-danger elevation-1 bg-olive"><i class="fas fa-building"></i></span>
+
+			<div class="info-box-content">
+				<span class="info-box-text">Kelurahan</span>
+				<span class="info-box-number"><?= $kelurahan ?></span>
+			</div>
+			<!-- /.info-box-content -->
+		</div>
+		<!-- /.info-box -->
+	</div>
+	<!-- /.col -->
+
+	<!-- fix for small devices only -->
+	<div class="clearfix hidden-md-up"></div>
+
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box mb-3">
+			<span class="info-box-icon bg-success elevation-1 bg-orange"><i class="fas fa-building"></i></span>
+
+			<div class="info-box-content">
+				<span class="info-box-text">Kota / Kabupaten</span>
+				<span class="info-box-number"><?= $kota ?></span>
+			</div>
+			<!-- /.info-box-content -->
+		</div>
+		<!-- /.info-box -->
+	</div>
+	<!-- /.col -->
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box mb-3">
+			<span class="info-box-icon bg-warning elevation-1 bg-fuchsia"><i class="fas fa-building"></i></span>
+
+			<div class="info-box-content">
+				<span class="info-box-text">Provinsi</span>
+				<span class="info-box-number"><?= $provinsi ?></span>
+			</div>
+			<!-- /.info-box-content -->
+		</div>
+		<!-- /.info-box -->
+	</div>
+	<!-- /.col -->
+</div>
+<!-- /.row -->
+
+
+
+<div class="row">
+	<div class="col-12 col-sm-6 col-md-6">
+		<div class="info-box">
+			<span class="info-box-icon bg-info elevation-1 bg-green"><i class="fas fa-dollar-sign"></i></span>
+
+			<div class="info-box-content">
+				<span class="info-box-text">Total Pengeluaran</span>
+				<span class="info-box-number">Rp.<?= number_format($pengeluaran->totalnya,2,',','.') ?></span>
+			</div>
+			<!-- /.info-box-content -->
+		</div>
+		<!-- /.info-box -->
+	</div>
+	<div class="col-12 col-sm-6 col-md-6">
+		<div class="info-box">
+			<span class="info-box-icon bg-info elevation-1 bg-green"><i class="fas fa-dollar-sign"></i></span>
+
+			<div class="info-box-content">
+				<span class="info-box-text">Total Pemasukan</span>
+				<span class="info-box-number">Rp.<?= number_format($pemasukan->totalnya,2,',','.') ?></span>
+			</div>
+			<!-- /.info-box-content -->
+		</div>
+		<!-- /.info-box -->
+	</div>
+</div>
+<!-- /.row -->
+
 <!-- BAR CHART -->
 <div class="row">
 	<!-- /.col (LEFT) -->
@@ -111,60 +263,4 @@
 	</div>
 	<!-- /.col (RIGHT) -->
 </div>
-<!-- /.row -->
-<div class="row">
-<div class="col-12">
-<div class="card">
-	<div class="card-header">
-		<h3 class="card-title">Data Penduduk</h3>
-	</div>
-	<!-- /.card-header -->
-	<div class="card-body">
-		<table id="example1" class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>Keterangan</th>
-					<th>Jumlah</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Surat</td>
-					<td><?= $surat ?></td>
-				</tr>
-				<tr>
-					<td>Ekspedisi BPD</td>
-					<td><?= $ekspedisi_bpd ?></td>
-				</tr>
-				<tr>
-					<td>Ekspedisi</td>
-					<td><?= $ekspedisi_kearsipan ?></td>
-				</tr>
-				<tr>
-					<td>Dusun</td>
-					<td><?= $dusun ?></td>
-				</tr>
-				<tr>
-					<td>Provinsi</td>
-					<td><?= $provinsi ?></td>
-				</tr>
-				<tr>
-					<td>Kota /  Kabupaten</td>
-					<td><?= $kota ?></td>
-				</tr>
-				<tr>
-					<td>Kecamatan</td>
-					<td><?= $kecamatan ?></td>
-				</tr>
-				<tr>
-					<td>Kelurahan</td>
-					<td><?= $kelurahan ?></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<!-- /.card-body -->
-</div>
-<!-- /.card -->
-</div>
-</div>
+

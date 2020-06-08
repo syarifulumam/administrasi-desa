@@ -21,8 +21,8 @@
 				<?php foreach ($ekspedisi_bpd as $key):?>
 				<tr>
 					<td>1</td>
-					<td><?= $key->tanggal_pengiriman ?></td>
-					<td><?= $key->tanggal_surat ?></td>
+					<td><?= date('d-m-Y', strtotime($key->tanggal_pengiriman)) ?></td>
+					<td><?= date('d-m-Y', strtotime($key->tanggal_surat)) ?></td>
 					<td><?= $key->nomor_surat ?></td>
 					<td><?= $key->tujuan ?></td>
 					<td style="width:105px">

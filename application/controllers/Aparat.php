@@ -23,12 +23,12 @@ class aparat extends CI_Controller {
         $this->form_validation->set_rules('nip', 'NIP', 'trim|required');
         $this->form_validation->set_rules('niap', 'NIAP', 'trim|required');
         $this->form_validation->set_rules('agama', 'Agama', 'trim|required');
-        $this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required');
-        $this->form_validation->set_rules('pangkat', 'Pangkat', 'trim|required');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('pangkat', 'Pangkat', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('keaktifan', 'Keaktifan', 'trim|required');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
         $this->form_validation->set_rules('pendidikan', 'Pendidikan', 'trim|required');
-        $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required');
+        $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'trim|required');
         $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'trim|required');
         $this->form_validation->set_rules('nomor_pengangkatan', 'Nomor Pengangkatan', 'trim|required');
@@ -47,12 +47,12 @@ class aparat extends CI_Controller {
         $this->form_validation->set_rules('nip', 'NIP', 'trim|required');
         $this->form_validation->set_rules('niap', 'NIAP', 'trim|required');
         $this->form_validation->set_rules('agama', 'Agama', 'trim|required');
-        $this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required');
-        $this->form_validation->set_rules('pangkat', 'Pangkat', 'trim|required');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('pangkat', 'Pangkat', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('keaktifan', 'Keaktifan', 'trim|required');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
         $this->form_validation->set_rules('pendidikan', 'Pendidikan', 'trim|required');
-        $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required');
+        $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'trim|required');
         $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'trim|required');
         $this->form_validation->set_rules('nomor_pengangkatan', 'Nomor Pengangkatan', 'trim|required');
@@ -70,5 +70,14 @@ class aparat extends CI_Controller {
 	public function delete_aparat($id)
 	{
 		$this->model_aparat->delete_data($id);
+	}
+	//function validation alpha & space
+	function alpha_dash_space($str_in){
+		if (! preg_match("/^([-a-z_ ])+$/i", $str_in)) {
+			$this->form_validation->set_message('alpha_dash_space', '%s harap masukan huruf');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
 	}
 }

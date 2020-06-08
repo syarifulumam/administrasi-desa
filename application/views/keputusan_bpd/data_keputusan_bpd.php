@@ -23,7 +23,7 @@
 				<tr>
 					<td>1</td>
 					<td><?= $key->nomor_keputusan ?></td>
-					<td><?= $key->tanggal ?></td>
+					<td><?= date('d-m-Y', strtotime($key->tanggal)) ?></td>
 					<td><?= $key->tentang ?></td>
 					<td><?= $key->uraian_singkat ?></td>
 					<td><?= $key->keterangan ?></td>

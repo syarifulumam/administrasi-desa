@@ -49,7 +49,9 @@ class Kematian extends CI_Controller {
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kematian'] = $this->model_kematian->get_data($id);
-		$data['penduduk'] = $this->model_kematian->get_data_penduduk();
+		if ($data['kematian'] == null) {
+			redirect('kematian');
+		}
 		$this->template->load('template_admin','kematian/edit_kematian',$data);
 
 	}

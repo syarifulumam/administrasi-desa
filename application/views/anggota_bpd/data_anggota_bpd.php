@@ -23,7 +23,7 @@
 					<td>1</td>
 					<td><?= $key->nama ?></td>
 					<td><?= $key->nomor_anggota ?></td>
-					<td><?= $key->tempat_lahir . "," . $key->tanggal_lahir ?></td>
+					<td><?= $key->tempat_lahir . "," . date('d-m-Y', strtotime($key->tanggal_lahir)) ?></td>
 					<td><?= $key->nomor_pengangkatan ?></td>
 					<td style="width:105px">
 						<a href="<?= base_url('anggota_bpd/edit_anggota_bpd/'.$key->id_anggota_bpd) ?>"

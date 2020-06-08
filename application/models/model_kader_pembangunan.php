@@ -13,11 +13,12 @@ class model_kader_pembangunan extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal_lahir =  str_replace('/', '-',$this->input->post('tempat_lahir',true));
         $data = [
             'nama'	                => $this->input->post('nama_lengkap',true),
             'jenis_kelamin'	        => $this->input->post('kelamin',true),
             'tempat_lahir'	        => $this->input->post('tempat_lahir',true),
-            'tanggal_lahir'	        => $this->input->post('tanggal_lahir',true),
+            'tanggal_lahir'	        => date('Y-m-d', strtotime($tanggal_lahir)),
             'pendidikan_terakhir'	=> $this->input->post('pendidikan',true),
             'pekerjaan'	            => $this->input->post('pekerjaan',true),
             'bidang'	            => $this->input->post('bidang',true),
@@ -48,11 +49,12 @@ class model_kader_pembangunan extends CI_Model {
         } else {
             $data_file = $this->input->post('file');
         }
+        $tanggal_lahir =  str_replace('/', '-',$this->input->post('tempat_lahir',true));
         $data = [
             'nama'	                => $this->input->post('nama_lengkap',true),
             'jenis_kelamin'	        => $this->input->post('kelamin',true),
             'tempat_lahir'	        => $this->input->post('tempat_lahir',true),
-            'tanggal_lahir'	        => $this->input->post('tanggal_lahir',true),
+            'tanggal_lahir'	        => date('Y-m-d', strtotime($tanggal_lahir)),
             'pendidikan_terakhir'	=> $this->input->post('pendidikan',true),
             'pekerjaan'	            => $this->input->post('pekerjaan',true),
             'bidang'	            => $this->input->post('bidang',true),

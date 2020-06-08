@@ -6,8 +6,7 @@
 		<?= form_open_multipart('','',array('file'=>$perdes->file_dokumen,'id'=>$perdes->id_peraturan_desa));?>
 		<div class="form-group">
 			<label>Nomor Perdes</label>
-			<input type="text" class="form-control " name="nomor_perdes" value="<?= $perdes->nomor_peraturan_desa ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_perdes" value="<?= $perdes->nomor_peraturan_desa  ?>" autocomplete="off">
 			<?= form_error('nomor_perdes','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -16,8 +15,8 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
-				<input type="text" name="tanggal_perdes" value="<?= $perdes->tanggal_peraturan_desa ?>"
-					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd"
+				<input type="text" name="tanggal_perdes" value="<?= date('d-m-Y', strtotime($perdes->tanggal_peraturan_desa)) ?>"
+					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
 					data-mask>
 			</div>
 			<?= form_error('tanggal_perdes','<small class="text-danger pl-1">','</small>') ?>
@@ -34,9 +33,8 @@
 			<?= form_error('uraian','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
-			<label>Nomor Persetujuan BPD</label>
-			<input type="text" class="form-control " value="<?= $perdes->nomor_persetujuan_BPD ?>"
-				name="nomor_persetujuan_bpd" value="<?= set_value('nomor_persetujuan_bpd') ?>" autocomplete="off">
+			<label>Nomor Persetujuan BPD</label>		
+			<input type="number" min="0" class="form-control " name="nomor_persetujuan_bpd" value="<?= $perdes->nomor_persetujuan_BPD ?>" autocomplete="off">
 			<?= form_error('nomor_persetujuan_bpd','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -45,16 +43,15 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
-				<input type="text" name="tanggal_persetujuan_bpd" value="<?= $perdes->tanggal_persetujuan_BPD ?>"
-					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd"
+				<input type="text" name="tanggal_persetujuan_bpd" value="<?= date('d-m-Y', strtotime($perdes->tanggal_persetujuan_BPD)) ?>"
+					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
 					data-mask>
 			</div>
 			<?= form_error('tanggal_persetujuan_bpd','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Nomor Dilaporkan</label>
-			<input type="text" class="form-control " name="nomor_laporkan" value="<?= $perdes->nomor_dilaporkan ?>"
-				autocomplete="off">
+				<input type="number" min="0" class="form-control " name="nomor_laporkan" value="<?= $perdes->nomor_dilaporkan ?>" autocomplete="off">
 			<?= form_error('nomor_laporkan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -63,8 +60,8 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
-				<input type="text" name="tanggal_dilaporkan" value="<?= $perdes->tanggal_dilaporkan ?>"
-					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd"
+				<input type="text" name="tanggal_dilaporkan" value="<?= date('d-m-Y', strtotime($perdes->tanggal_dilaporkan)) ?>"
+					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
 					data-mask>
 			</div>
 			<?= form_error('tanggal_dilaporkan','<small class="text-danger pl-1">','</small>') ?>

@@ -13,16 +13,19 @@ class model_perdes extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal_peraturan_desa  =  str_replace('/', '-',$this->input->post('tanggal_perdes',true));
+        $tanggal_dilaporkan      =  str_replace('/', '-',$this->input->post('tanggal_dilaporkan',true));
+        $tanggal_persetujuan_BPD =  str_replace('/', '-',$this->input->post('tanggal_persetujuan_bpd',true));
         $data = [
             'uraian_singkat'	     => $this->input->post('uraian',true),
 			'tentang'	             => $this->input->post('tentang',true),
 			'keterangan'	         => $this->input->post('keterangan',true),
 			'nomor_peraturan_desa'	 => $this->input->post('nomor_perdes',true),
-			'tanggal_peraturan_desa' => $this->input->post('tanggal_perdes',true),
+			'tanggal_peraturan_desa' => date('Y-m-d', strtotime($tanggal_peraturan_desa)),
 			'nomor_dilaporkan'	     => $this->input->post('nomor_laporkan',true),
-			'tanggal_dilaporkan'	 => $this->input->post('tanggal_dilaporkan',true),
+			'tanggal_dilaporkan'	 => date('Y-m-d', strtotime($tanggal_dilaporkan)),
 			'nomor_persetujuan_BPD'	 => $this->input->post('nomor_persetujuan_bpd',true),
-			'tanggal_persetujuan_BPD'=> $this->input->post('tanggal_persetujuan_bpd',true),
+			'tanggal_persetujuan_BPD'=> date('Y-m-d', strtotime($tanggal_persetujuan_BPD)),
 			'file_dokumen' 		     => $this->_upload()
         ];
         //insert data pindahan
@@ -48,16 +51,19 @@ class model_perdes extends CI_Model {
         } else {
             $data_file = $this->input->post('file');
         }
+        $tanggal_peraturan_desa  =  str_replace('/', '-',$this->input->post('tanggal_perdes',true));
+        $tanggal_dilaporkan      =  str_replace('/', '-',$this->input->post('tanggal_dilaporkan',true));
+        $tanggal_persetujuan_BPD =  str_replace('/', '-',$this->input->post('tanggal_persetujuan_bpd',true));
         $data = [
             'uraian_singkat'	     => $this->input->post('uraian',true),
 			'tentang'	             => $this->input->post('tentang',true),
 			'keterangan'	         => $this->input->post('keterangan',true),
 			'nomor_peraturan_desa'	 => $this->input->post('nomor_perdes',true),
-			'tanggal_peraturan_desa' => $this->input->post('tanggal_perdes',true),
+			'tanggal_peraturan_desa' => date('Y-m-d', strtotime($tanggal_peraturan_desa)),
 			'nomor_dilaporkan'	     => $this->input->post('nomor_laporkan',true),
-			'tanggal_dilaporkan'	 => $this->input->post('tanggal_dilaporkan',true),
+			'tanggal_dilaporkan'	 => date('Y-m-d', strtotime($tanggal_dilaporkan)),
 			'nomor_persetujuan_BPD'	 => $this->input->post('nomor_persetujuan_bpd',true),
-			'tanggal_persetujuan_BPD'=> $this->input->post('tanggal_persetujuan_bpd',true),
+			'tanggal_persetujuan_BPD'=> date('Y-m-d', strtotime($tanggal_persetujuan_BPD)),
 			'file_dokumen' 		     => $data_file
         ];
         

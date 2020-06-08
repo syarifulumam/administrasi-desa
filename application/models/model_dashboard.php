@@ -172,9 +172,14 @@ class model_dashboard extends CI_Model {
     {
         return $this->db->get('kelurahan')->num_rows();
     }
-    public function coba()
+    public function get_pengeluaran()
     {
-        echo "e";
-        die();
+        $query = "SELECT SUM(harga) as totalnya FROM keuangan WHERE status = 'pengeluaran'";
+        return $this->db->query($query)->row();
+    }
+    public function get_pemasukan()
+    {
+        $query = "SELECT SUM(harga) as totalnya FROM keuangan WHERE status = 'pemasukan'";
+        return $this->db->query($query)->row();
     }
 }

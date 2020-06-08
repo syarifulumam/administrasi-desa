@@ -8,7 +8,11 @@ class model_kematian extends CI_Model {
             $query = "SELECT kematian.*,penduduk.nama_lengkap,penduduk.tempat_lahir,penduduk.tanggal_lahir,penduduk.foto FROM `kematian` JOIN penduduk ON kematian.id_penduduk=penduduk.id_penduduk ORDER BY kematian.id_kematian DESC";
             return $this->db->query($query)->result();
         }else{
-            return $this->db->get_where('kematian',array('id_kematian'=>$id))->row();
+            $this->db->select('kematian.*,penduduk.nama_lengkap');
+            $this->db->from('kematian');
+            $this->db->join('penduduk', 'kematian.id_penduduk = penduduk.id_penduduk');
+            $this->db->where('id_kematian',$id);
+            return $this->db->get()->row();
         }
     }
     public function get_data_penduduk()
@@ -17,6 +21,8 @@ class model_kematian extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal_pemakaman =  str_replace('/', '-',$this->input->post('tanggal_pemakaman',true));
+        $tanggal_meninggal =  str_replace('/', '-',$this->input->post('tanggal_kematian',true));
         $this->db->set('status_hidup',1);
         $this->db->where('id_penduduk',$this->input->post('nama',true));
         $this->db->update('penduduk');
@@ -24,9 +30,9 @@ class model_kematian extends CI_Model {
 			'sebab'	    => $this->input->post('sebab',true),
 			'id_penduduk' 		=> $this->input->post('nama',true),
 			'keterangan'	    => $this->input->post('keterangan',true),
-			'tanggal_meninggal'	=> $this->input->post('tanggal_kematian',true),
+			'tanggal_meninggal'	=> date('Y-m-d', strtotime($tanggal_meninggal)),
 			'tempat_meninggal'	    => $this->input->post('tempat_meninggal',true),
-			'tanggal_pemakaman'	    => $this->input->post('tanggal_pemakaman',true),
+			'tanggal_pemakaman'	    => date('Y-m-d', strtotime($tanggal_pemakaman)),
 			'tempat_pemakaman'	    => $this->input->post('tempat_pemakaman',true),
         ];
         $this->db->insert('kematian',$data_kematian);
@@ -43,13 +49,14 @@ class model_kematian extends CI_Model {
     }
     public function edit_data()
     {
+        $tanggal_pemakaman =  str_replace('/', '-',$this->input->post('tanggal_pemakaman',true));
+        $tanggal_meninggal =  str_replace('/', '-',$this->input->post('tanggal_kematian',true));
         $data = [
 			'sebab'	    => $this->input->post('sebab',true),
-			'id_penduduk' 		=> $this->input->post('nama',true),
 			'keterangan'	    => $this->input->post('keterangan',true),
-			'tanggal_meninggal'	=> $this->input->post('tanggal_kematian',true),
+			'tanggal_meninggal'	=> date('Y-m-d', strtotime($tanggal_meninggal)),
 			'tempat_meninggal'	    => $this->input->post('tempat_meninggal',true),
-			'tanggal_pemakaman'	    => $this->input->post('tanggal_pemakaman',true),
+			'tanggal_pemakaman'	    => date('Y-m-d', strtotime($tanggal_pemakaman)),
 			'tempat_pemakaman'	    => $this->input->post('tempat_pemakaman',true),
         ];
         $this->db->where('id_kematian',$this->input->post('id'));

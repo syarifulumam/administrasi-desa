@@ -12,13 +12,12 @@
 		</div>
 		<div class="form-group">
 			<label>Nomor Anggota</label>
-			<input type="text" class="form-control " name="nomor_anggota" value="<?= set_value('nomor_anggota') ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_anggota" value="<?= set_value('nomor_anggota') ?>" autocomplete="off">
 			<?= form_error('nomor_anggota','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>NIP</label>
-			<input type="text" class="form-control " name="nip" value="<?= set_value('nip') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nip" value="<?= set_value('nip') ?>" autocomplete="off">
 			<?= form_error('nip','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group clearfix">
@@ -47,7 +46,7 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" name="tanggal_lahir" class="form-control" data-inputmask-alias="datetime"
-					data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+					data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_lahir','<small class="text-danger pl-1">','</small>') ?>
 		</div>
@@ -93,14 +92,13 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" name="tanggal_pengangkatan" class="form-control" data-inputmask-alias="datetime"
-					data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+					data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_pengangkatan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Nomor Pengangkatan</label>
-			<input type="text" class="form-control " name="nomor_pengangkatan"
-				value="<?= set_value('nomor_pengangkatan') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_pengangkatan" value="<?= set_value('nomor_pengangkatan') ?>" autocomplete="off">
 			<?= form_error('nomor_pengangkatan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
@@ -110,14 +108,13 @@
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
 				<input type="text" name="tanggal_pemberhentian" class="form-control" data-inputmask-alias="datetime"
-					data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+					data-inputmask-inputformat="dd/mm/yyyy" data-mask>
 			</div>
 			<?= form_error('tanggal_pemberhentian','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Nomor Pemberhentian</label>
-			<input type="text" class="form-control " name="nomor_pemberhentian"
-				value="<?= set_value('nomor_pemberhentian') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_pemberhentian" value="<?= set_value('nomor_pemberhentian') ?>" autocomplete="off">
 			<?= form_error('nomor_pemberhentian','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group clearfix">

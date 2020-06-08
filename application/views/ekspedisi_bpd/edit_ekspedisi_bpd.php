@@ -10,8 +10,8 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
-				<input type="text" name="tanggal_pengiriman" value="<?= $ekspedisi_bpd->tanggal_pengiriman ?>"
-					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd"
+				<input type="text" name="tanggal_pengiriman" value="<?= date('d-m-Y', strtotime($ekspedisi_bpd->tanggal_pengiriman)) ?>"
+					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
 					data-mask>
 			</div>
 			<?= form_error('tanggal_pengiriman','<small class="text-danger pl-1">','</small>') ?>
@@ -22,16 +22,15 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 				</div>
-				<input type="text" name="tanggal_surat" value="<?= $ekspedisi_bpd->tanggal_surat ?>"
-					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd"
+				<input type="text" name="tanggal_surat" value="<?= date('d-m-Y', strtotime($ekspedisi_bpd->tanggal_surat)) ?>"
+					class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
 					data-mask>
 			</div>
 			<?= form_error('tanggal_surat','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Nomor Surat</label>
-			<input type="text" class="form-control " name="nomor_surat" value="<?= $ekspedisi_bpd->nomor_surat ?>"
-				autocomplete="off">
+			<input type="number" min="0" class="form-control " name="nomor_surat" value="<?= $ekspedisi_bpd->nomor_surat ?>" autocomplete="off">
 			<?= form_error('nomor_surat','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">

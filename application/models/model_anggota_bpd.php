@@ -13,19 +13,22 @@ class model_anggota_bpd extends CI_Model {
     }
     public function insert_data()
     {
+        $tanggal_lahir =  str_replace('/', '-',$this->input->post('tanggal_lahir',true));
+        $tanggal_pengangkatan =  str_replace('/', '-',$this->input->post('tanggal_pengangkatan',true));
+        $tanggal_pemberhentian =  str_replace('/', '-',$this->input->post('tanggal_pemberhentian',true));
         $data_anggota_bpd = [
 			'nama'                  => $this->input->post('nama_lengkap',true),
 			'nomor_anggota'	        => $this->input->post('nomor_anggota',true),
 			'nip'	                => $this->input->post('nip',true),
 			'tempat_lahir'	        => $this->input->post('tempat_lahir',true),
-			'tanggal_lahir'	        => $this->input->post('tanggal_lahir',true),
+			'tanggal_lahir'	        => date('Y-m-d', strtotime($tanggal_lahir)),
 			'agama'	                => $this->input->post('agama',true),
 			'pangkat'	            => $this->input->post('pangkat',true),
 			'jabatan'	            => $this->input->post('jabatan',true),
 			'pendidikan_terakhir'	=> $this->input->post('pendidikan',true),
-			'tanggal_pengangkatan'	=> $this->input->post('tanggal_pengangkatan',true),
+			'tanggal_pengangkatan'	=> date('Y-m-d', strtotime($tanggal_pengangkatan)),
 			'nomor_pengangkatan'    => $this->input->post('nomor_pengangkatan',true),
-			'tanggal_pemberhentian'	=> $this->input->post('tanggal_pemberhentian',true),
+			'tanggal_pemberhentian'	=> date('Y-m-d', strtotime($tanggal_pemberhentian)),
 			'nomor_pemberhentian'	=> $this->input->post('nomor_pemberhentian',true),
 			'keterangan'	        => $this->input->post('keterangan',true),
 			'jenis_kelamin'	        => $this->input->post('jenis_kelamin',true),
@@ -55,19 +58,22 @@ class model_anggota_bpd extends CI_Model {
         // } else {
         //     $data_foto = $this->input->post('foto_db');
         // }
+        $tanggal_lahir =  str_replace('/', '-',$this->input->post('tanggal_lahir',true));
+        $tanggal_pengangkatan =  str_replace('/', '-',$this->input->post('tanggal_pengangkatan',true));
+        $tanggal_pemberhentian =  str_replace('/', '-',$this->input->post('tanggal_pemberhentian',true));
         $data_anggota_bpd = [
 			'nama'                  => $this->input->post('nama_lengkap',true),
 			'nomor_anggota'	        => $this->input->post('nomor_anggota',true),
 			'nip'	                => $this->input->post('nip',true),
 			'tempat_lahir'	        => $this->input->post('tempat_lahir',true),
-			'tanggal_lahir'	        => $this->input->post('tanggal_lahir',true),
+			'tanggal_lahir'	        => date('Y-m-d', strtotime($tanggal_lahir)),
 			'agama'	                => $this->input->post('agama',true),
 			'pangkat'	            => $this->input->post('pangkat',true),
 			'jabatan'	            => $this->input->post('jabatan',true),
 			'pendidikan_terakhir'	=> $this->input->post('pendidikan',true),
-			'tanggal_pengangkatan'	=> $this->input->post('tanggal_pengangkatan',true),
+			'tanggal_pengangkatan'	=> date('Y-m-d', strtotime($tanggal_pengangkatan)),
 			'nomor_pengangkatan'    => $this->input->post('nomor_pengangkatan',true),
-			'tanggal_pemberhentian'	=> $this->input->post('tanggal_pemberhentian',true),
+			'tanggal_pemberhentian'	=> date('Y-m-d', strtotime($tanggal_pemberhentian)),
 			'nomor_pemberhentian'	=> $this->input->post('nomor_pemberhentian',true),
 			'keterangan'	        => $this->input->post('keterangan',true),
 			'jenis_kelamin'	        => $this->input->post('jenis_kelamin',true),
