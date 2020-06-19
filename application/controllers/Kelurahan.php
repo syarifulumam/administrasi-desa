@@ -35,6 +35,9 @@ class kelurahan extends CI_Controller {
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kelurahan'] = $this->model_kelurahan->get_data($id);
+		if ($data['kelurahan'] == null) {
+			redirect('kelurahan');
+		}
 		$data['kecamatan'] = $this->model_kelurahan->get_kecamatan();
         $this->template->load('template_admin','kelurahan/edit_kelurahan',$data);
     }

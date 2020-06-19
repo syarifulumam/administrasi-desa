@@ -56,6 +56,9 @@ class Kelahiran extends CI_Controller {
 		$data['ayah'] = $this->model_kelahiran->get_data_ayah();
 		$data['ibu']  = $this->model_kelahiran->get_data_ibu();
 		$data['kelahiran'] = $this->model_kelahiran->get_data($id);
+		if ($data['kelahiran'] == null) {
+			redirect('kelahiran');
+		}
 		$this->template->load('template_admin','kelahiran/edit_kelahiran',$data);
 
 	}

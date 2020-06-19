@@ -63,6 +63,9 @@ class aparat extends CI_Controller {
 			$this->model_aparat->edit_data();
 		}
 		$data['aparat'] = $this->model_aparat->get_data($id);
+		if ($data['aparat'] == null) {
+			redirect('aparat');
+		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','aparat/edit_aparat',$data);
 

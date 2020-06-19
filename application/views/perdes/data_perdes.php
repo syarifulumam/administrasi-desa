@@ -19,9 +19,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($perdes as $key):?>
+				<?php $no = 1; foreach ($perdes as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= $key->nomor_peraturan_desa ?></td>
 					<td><?= date('d-m-Y', strtotime($key->tanggal_peraturan_desa)) ?></td>
 					<td><?= $key->tentang ?></td>
@@ -62,7 +62,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

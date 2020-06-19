@@ -56,6 +56,9 @@ class Kegiatan_pembangunan extends CI_Controller {
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kegiatan_pembangunan'] = $this->model_kegiatan_pembangunan->get_data($id);
+		if ($data['kegiatan_pembangunan'] == null) {
+			redirect('kegiatan_pembangunan');
+		}
 		$this->template->load('template_admin','kegiatan_pembangunan/edit_kegiatan_pembangunan',$data);
 
 	}

@@ -18,9 +18,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($tanah_desa as $key):?>
+				<?php $no = 1; foreach ($tanah_desa as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= $key->nama_perorangan ?></td>
 					<td><?= $key->badan_hukum ?></td>
 					<td><?= $key->jumlah_luas_tanah ?></td>
@@ -60,7 +60,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

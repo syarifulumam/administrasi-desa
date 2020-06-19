@@ -21,9 +21,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($kelahiran as $key):?>
+				<?php $no = 1; foreach ($kelahiran as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= $key->no_akte ?></td>
 					<td><?= $key->no_kk ?></td>
 					<td><?= $key->nama_lengkap ?></td>
@@ -66,7 +66,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

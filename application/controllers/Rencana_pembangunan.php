@@ -51,6 +51,9 @@ class Rencana_pembangunan extends CI_Controller {
 			$this->model_rencana_pembangunan->edit_data();
 		}
 		$data['rencana_pembangunan'] = $this->model_rencana_pembangunan->get_data($id);
+		if ($data['rencana_pembangunan'] == null) {
+			redirect('rencana_pembangunan');
+		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','rencana_pembangunan/edit_rencana_pembangunan',$data);
 

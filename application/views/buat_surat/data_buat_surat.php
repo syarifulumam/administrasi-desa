@@ -18,9 +18,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($surat as $key):?>
+				<?php $no = 1; foreach ($surat as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= $key->nama_lengkap ?></td>
 					<td><?= $key->no_surat ?></td>
 					<td><?= $key->nama_surat_dinas ?></td>
@@ -64,7 +64,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

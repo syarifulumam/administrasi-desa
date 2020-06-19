@@ -43,6 +43,9 @@ class Keputusan_bpd extends CI_Controller {
 			$this->model_keputusan_bpd->edit_data();
 		}
 		$data['keputusan_bpd'] = $this->model_keputusan_bpd->get_data($id);
+		if ($data['keputusan_bpd'] == null) {
+			redirect('keputusan_bpd');
+		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','keputusan_bpd/edit_keputusan_bpd',$data);
 

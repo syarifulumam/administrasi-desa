@@ -32,6 +32,9 @@ class Master_surat extends CI_Controller {
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['master_surat'] = $this->model_master_surat->get_data($id);
+		if ($data['master_surat'] == null) {
+			redirect('master_surat');
+		}
         $this->template->load('template_admin','master_surat/edit_master_surat',$data);
     }
 	public function delete_master_surat($id)

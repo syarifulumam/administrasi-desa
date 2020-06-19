@@ -37,114 +37,122 @@
 		</div>
 		<div class="form-group">
 			<label>HM</label>
-			<input type="text" class="form-control " name="hm" value="<?= set_value('hm') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="hm" value="<?= set_value('hm') ?>"
+			autocomplete="off">
 			<?= form_error('hm','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>HGB</label>
-			<input type="text" class="form-control " name="hgb" value="<?= set_value('hgb') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="hgb" value="<?= set_value('hgb') ?>"
+			autocomplete="off">
 			<?= form_error('hgb','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>HP</label>
-			<input type="text" class="form-control " name="hp" value="<?= set_value('hp') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="hp" value="<?= set_value('hp') ?>"
+			autocomplete="off">
 			<?= form_error('hp','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>HGU</label>
-			<input type="text" class="form-control " name="hgu" value="<?= set_value('hgu') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="hgu" value="<?= set_value('hgu') ?>"
+			autocomplete="off">
 			<?= form_error('hgu','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>HPL</label>
-			<input type="text" class="form-control " name="hpl" value="<?= set_value('hpl') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="hpl" value="<?= set_value('hpl') ?>"
+			autocomplete="off">
 			<?= form_error('hpl','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>MA</label>
-			<input type="text" class="form-control " name="ma" value="<?= set_value('ma') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="ma" value="<?= set_value('ma') ?>"
+			autocomplete="off">
 			<?= form_error('ma','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>VI</label>
-			<input type="text" class="form-control " name="vi" value="<?= set_value('vi') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="vi" value="<?= set_value('vi') ?>"
+			autocomplete="off">
 			<?= form_error('vi','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>TN</label>
-			<input type="text" class="form-control " name="tn" value="<?= set_value('tn') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="tn" value="<?= set_value('tn') ?>"
+			autocomplete="off">
 			<?= form_error('tn','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Pengguna Tanah Perumahan</label>
-			<input type="text" class="form-control " name="pengguna_tanah_perumahan"
-				value="<?= set_value('pengguna_tanah_perumahan') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="pengguna_tanah_perumahan" value="<?= set_value('pengguna_tanah_perumahan') ?>"
+			autocomplete="off">
 			<?= form_error('pengguna_tanah_perumahan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Pengguna Tanah Perorangan</label>
-			<input type="text" class="form-control " name="pengguna_tanah_perorangan"
-				value="<?= set_value('pengguna_tanah_perorangan') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="pengguna_tanah_perorangan" value="<?= set_value('pengguna_tanah_perorangan') ?>"
+			autocomplete="off">
 			<?= form_error('pengguna_tanah_perorangan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Pengguna Tanah Perdagangan</label>
-			<input type="text" class="form-control " name="pengguna_tanah_perdagangan"
-				value="<?= set_value('pengguna_tanah_perdagangan') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="pengguna_tanah_perdagangan" value="<?= set_value('pengguna_tanah_perdagangan') ?>"
+			autocomplete="off">
 			<?= form_error('pengguna_tanah_perdagangan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Pengguna Tanah Perkantoran</label>
-			<input type="text" class="form-control " name="pengguna_tanah_perkantoran"
-				value="<?= set_value('pengguna_tanah_perkantoran') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="pengguna_tanah_perkantoran" value="<?= set_value('pengguna_tanah_perkantoran') ?>"
+			autocomplete="off">
 			<?= form_error('pengguna_tanah_perkantoran','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Pengguna Tanah Industri</label>
-			<input type="text" class="form-control " name="pengguna_tanah_industri"
-				value="<?= set_value('pengguna_tanah_industri') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="pengguna_tanah_industri" value="<?= set_value('pengguna_tanah_industri') ?>"
+			autocomplete="off">
 			<?= form_error('pengguna_tanah_industri','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Pengguna Tanah Industri</label>
-			<input type="text" class="form-control " name="pengguna_tanah_umum"
-				value="<?= set_value('pengguna_tanah_umum') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="pengguna_tanah_umum" value="<?= set_value('pengguna_tanah_umum') ?>"
+			autocomplete="off">
 			<?= form_error('pengguna_tanah_umum','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Pengguna Tanah Sawah</label>
-			<input type="text" class="form-control " name="pengguna_tanah_sawah"
-				value="<?= set_value('pengguna_tanah_sawah') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="pengguna_tanah_sawah" value="<?= set_value('pengguna_tanah_sawah') ?>"
+			autocomplete="off">
 			<?= form_error('pengguna_tanah_sawah','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Pengguna Tanah Tegalan</label>
-			<input type="text" class="form-control " name="pengguna_tanah_tegalan"
-				value="<?= set_value('pengguna_tanah_tegalan') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="pengguna_tanah_tegalan" value="<?= set_value('pengguna_tanah_tegalan') ?>"
+			autocomplete="off">
 			<?= form_error('pengguna_tanah_tegalan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Pengguna Tanah Perkebunan</label>
-			<input type="text" class="form-control " name="pengguna_tanah_perkebunan"
-				value="<?= set_value('pengguna_tanah_perkebunan') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="pengguna_tanah_perkebunan" value="<?= set_value('pengguna_tanah_perkebunan') ?>"
+			autocomplete="off">
 			<?= form_error('pengguna_tanah_perkebunan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Pengguna Tanah Pertenakan</label>
-			<input type="text" class="form-control " name="pengguna_tanah_pertenakan"
-				value="<?= set_value('pengguna_tanah_pertenakan') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="pengguna_tanah_pertenakan" value="<?= set_value('pengguna_tanah_pertenakan') ?>"
+			autocomplete="off">
 			<?= form_error('pengguna_tanah_pertenakan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Pengguna Tanah Hutan</label>
-			<input type="text" class="form-control " name="pengguna_tanah_hutan"
-				value="<?= set_value('pengguna_tanah_hutan') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="pengguna_tanah_hutan" value="<?= set_value('pengguna_tanah_hutan') ?>"
+			autocomplete="off">
 			<?= form_error('pengguna_tanah_hutan','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">
 			<label>Pengguna Tanah Kosong</label>
-			<input type="text" class="form-control " name="pengguna_tanah_kosong"
-				value="<?= set_value('pengguna_tanah_kosong') ?>" autocomplete="off">
+			<input type="number" min="0" class="form-control " name="pengguna_tanah_kosong" value="<?= set_value('pengguna_tanah_kosong') ?>"
+			autocomplete="off">
 			<?= form_error('pengguna_tanah_kosong','<small class="text-danger pl-1">','</small>') ?>
 		</div>
 		<div class="form-group">

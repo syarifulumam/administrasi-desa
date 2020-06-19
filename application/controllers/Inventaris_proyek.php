@@ -44,6 +44,9 @@ class Inventaris_proyek extends CI_Controller {
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['inventaris_proyek'] = $this->model_inventaris_proyek->get_data($id);
+		if ($data['inventaris_proyek'] == null) {
+			redirect('inventaris_proyek');
+		}
 		$this->template->load('template_admin','inventaris_proyek/edit_inventaris_proyek',$data);
 
 	}

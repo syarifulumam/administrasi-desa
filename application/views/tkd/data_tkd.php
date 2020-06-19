@@ -18,9 +18,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($tkd as $key):?>
+				<?php $no = 1; foreach ($tkd as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= $key->asal_tkd ?></td>
 					<td><?= $key->nomor_sertifikat ?></td>
 					<td><?= $key->luas ?></td>
@@ -59,7 +59,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

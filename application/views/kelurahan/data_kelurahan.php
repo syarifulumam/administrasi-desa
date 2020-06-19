@@ -18,9 +18,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($kelurahan as $key):?>
+				<?php $no = 1; foreach ($kelurahan as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= $key->nama_kelurahan ?></td>
 					<td><?= $key->nama_kecamatan ?></td>
 					<td><?= $key->nama_kota ?></td>
@@ -60,7 +60,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

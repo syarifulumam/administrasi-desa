@@ -22,9 +22,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($penduduk as $key):?>
+				<?php $no = 1; foreach ($penduduk as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= $key->foto ?></td>
 					<td><?= $key->nik ?></td>
 					<td><?= $key->nama_lengkap ?></td>
@@ -68,7 +68,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

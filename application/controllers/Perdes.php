@@ -53,6 +53,9 @@ class Perdes extends CI_Controller {
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['perdes'] = $this->model_perdes->get_data($id);
+		if ($data['perdes'] == null) {
+			redirect('perdes');
+		}
 		$this->template->load('template_admin','perdes/edit_perdes',$data);
 
 	}

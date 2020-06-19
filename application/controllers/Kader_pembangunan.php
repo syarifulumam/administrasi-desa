@@ -52,6 +52,9 @@ class Kader_pembangunan extends CI_Controller {
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kader_pembangunan'] = $this->model_kader_pembangunan->get_data($id);
+		if ($data['kader_pembangunan'] == null) {
+			redirect('kader_pembangunan');
+		}
 		$this->template->load('template_admin','kader_pembangunan/edit_kader_pembangunan',$data);
 
 	}

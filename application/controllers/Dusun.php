@@ -34,6 +34,9 @@ class dusun extends CI_Controller {
 			$this->model_dusun->edit_data();
 		}
 		$data['dusun'] = $this->model_dusun->get_data($id);
+		if ($data['dusun'] == null) {
+			redirect('dusun');
+		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kelurahan'] = $this->model_dusun->get_kelurahan();
         $this->template->load('template_admin','dusun/edit_dusun',$data);

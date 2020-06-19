@@ -45,6 +45,9 @@ class Ekspedisi extends CI_Controller {
 			$this->model_ekspedisi->edit_data();
 		}
 		$data['ekspedisi'] = $this->model_ekspedisi->get_data($id);
+		if ($data['ekspedisi'] == null) {
+			redirect('ekspedisi');
+		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','ekspedisi/edit_ekspedisi',$data);
 

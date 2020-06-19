@@ -36,6 +36,9 @@ class Struktur_organisasi extends CI_Controller {
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['struktur_organisasi'] = $this->model_struktur_organisasi->get_data($id);
+		if ($data['struktur_organisasi'] == null) {
+			redirect('struktur_organisasi');
+		}
         $this->template->load('template_admin','struktur_organisasi/edit_struktur_organisasi',$data);
     }
 	public function delete_struktur_organisasi($id)

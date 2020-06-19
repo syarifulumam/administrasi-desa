@@ -17,9 +17,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($kecamatan as $key):?>
+				<?php $no = 1; foreach ($kecamatan as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= $key->nama_kecamatan ?></td>
 					<td><?= $key->nama_kota ?></td>
 					<td><?= $key->nama_provinsi ?></td>
@@ -58,7 +58,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

@@ -20,9 +20,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($kegiatan_pembangunan as $key):?>
+				<?php $no = 1; foreach ($kegiatan_pembangunan as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= $key->nama_proyek ?></td>
 					<td><?= $key->lokasi ?></td>
 					<td><?= $key->pelaksana ?></td>
@@ -64,7 +64,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

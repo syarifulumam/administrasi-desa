@@ -23,6 +23,7 @@
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<div class="login-logo">
+			<img src="<?=base_url('assets/adminlte/dist/img/login_logo.png')?>" alt=""><br>
 			<a href="<?=base_url('assets/adminlte/')?>index2.html"><b>Sistem Informasi Desa</b></a>
 		</div>
 		<!-- /.login-logo -->

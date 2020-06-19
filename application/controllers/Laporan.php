@@ -65,6 +65,27 @@ class Laporan extends CI_Controller {
 		$data['dusun'] = $this->model_laporan->get_data_dusun();
 		$this->template->load('template_admin','laporan/data_laporan_dusun',$data);
 	}
+	public function keuangan($jenis)
+	{
+		$this->load->model('model_keuangan');
+		// get data export
+		if ($this->input->post()) {
+			$tanggal = $this->get_tanggal();
+			$jenis 	 = $this->input->post('jenis');
+			$data = $this->model_laporan->get_data_keuangan($tanggal);
+			$this->laporan_keuangan($data,$tanggal,$jenis);
+		}
+		//get data view keuangan
+		if ($jenis == 'pemasukan') {
+			$data['keuangan'] = $this->model_keuangan->get_data();
+			$data['jenis'] = 'pemasukan';
+		} else {
+			$data['keuangan'] = $this->model_keuangan->get_data_pengeluaran();
+			$data['jenis'] = 'pengeluaran';
+		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+		$this->template->load('template_admin','laporan/data_keuangan',$data);
+	}
 	public function get_tanggal()
 	{
 		$ubah_format_tanggal = str_replace(' ','',$this->input->post('tanggal'));
@@ -117,9 +138,9 @@ class Laporan extends CI_Controller {
 		}
 		$pdf->SetFont('Arial','',7);
 		$pdf->Cell(95,15,'',0,1);
-		$pdf->SetTitle('Laundry Kiloan');
+		$pdf->SetTitle('Laporan surat');
 
-		$pdf->Output('Laundry Kiloan','I');
+		$pdf->Output('Laporan surat','I');
 	}
 	public function laporan_ekspedisi_bpd($data,$tanggal)
 	{
@@ -162,9 +183,9 @@ class Laporan extends CI_Controller {
 		}
 		$pdf->SetFont('Arial','',7);
 		$pdf->Cell(95,15,'',0,1);
-		$pdf->SetTitle('Laundry Kiloan');
+		$pdf->SetTitle('Laporan ekspedisi bpd');
 
-		$pdf->Output('Laundry Kiloan','I');
+		$pdf->Output('Laporan ekspedisi bpd','I');
 	}
 	public function laporan_penduduk($data,$tanggal)
 	{
@@ -211,9 +232,9 @@ class Laporan extends CI_Controller {
 		}
 		$pdf->SetFont('Arial','',7);
 		$pdf->Cell(95,15,'',0,1);
-		$pdf->SetTitle('Laundry Kiloan');
+		$pdf->SetTitle('Laporan penduduk');
 
-		$pdf->Output('Laundry Kiloan','I');
+		$pdf->Output('Laporan penduduk','I');
 	}
 	public function laporan_dusun($penduduk,$tanggal,$dusun)
 	{
@@ -254,8 +275,57 @@ class Laporan extends CI_Controller {
 		}
 		$pdf->SetFont('Arial','',7);
 		$pdf->Cell(95,15,'',0,1);
-		$pdf->SetTitle('Laundry Kiloan');
+		$pdf->SetTitle('Laporan dusun');
 
-		$pdf->Output('Laundry Kiloan','I');
+		$pdf->Output('Laporan dusun','I');
+	}
+	public function laporan_keuangan($data,$tanggal,$jenis)
+	{
+		$gambar  =  base_url('assets/adminlte/dist/img/prov.png');
+		$pdf = new FPDF('L','mm','A5');
+        // membuat halaman baru
+        $pdf->AddPage();
+        // setting jenis font yang akan digunakan
+        $pdf->SetFont('Arial','B',16);
+		// mencetak string 
+		// cell(lebar,tinggi,text,border,next position,align,fill,url)
+        $pdf->Cell(170,7,'KABUPATEN PENUKAL ABAB LEMATANG ILIR',0,1,'C');
+        $pdf->Image($gambar,0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(107,7,'Jl. Silang Monas Gambir Jakarta Pusat',0,1,'C');
+		//ambil data dari db
+		// if ($akhir == null) {
+		// $row = $this->Model_laporan->getHarian($awal);
+		// } else {
+		// $row = $this->Model_laporan->getBulanan($awal,$akhir);
+		// }
+		// Memberikan space kebawah agar tidak terlalu rapat
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(190,7,'','B',1);
+		//buat line baru
+		$pdf->Cell(10,10,'LAPORAN ' . strtoupper($jenis) . ' KEUANGAN TANGGAL '. $tanggal[0] . ' - ' . $tanggal[1],0,1);
+		$pdf->Cell(10,6,'No',1,0);
+		$pdf->Cell(100,6,'Keterangan',1,0);
+		$pdf->Cell(40,6,'Tanggal',1,0);
+		$pdf->Cell(40,6,'Harga',1,1);
+		$no = 1;
+		$total_harga = 0;
+		foreach ($data as $key) {
+			$pdf->Cell(10,6,$no,1,0,);
+			$pdf->Cell(100,6,$key->keterangan,1,0,);
+			$pdf->Cell(40,6,$key->tanggal,1,0,);
+			$pdf->Cell(40,6,number_format($key->harga,2,',','.'),1,1);
+			$total_harga+=$key->harga;
+			$no++;
+		}
+		
+		$pdf->Cell(150,6,'Total',1,0);
+		$pdf->Cell(40,6,number_format($total_harga,2,',','.'),1,0);
+
+		$pdf->SetFont('Arial','',7);
+		$pdf->Cell(95,15,'',0,1);
+		$pdf->SetTitle('Laporan keuangan bpd');
+
+		$pdf->Output('Laporan keuangan bpd','I');
 	}
 }

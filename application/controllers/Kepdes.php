@@ -45,6 +45,9 @@ class Kepdes extends CI_Controller {
 			$this->model_kepdes->edit_data();
 		}
 		$data['kepdes'] = $this->model_kepdes->get_data($id);
+		if ($data['kepdes'] == null) {
+			redirect('kepdes');
+		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','kepdes/edit_kepdes',$data);
 

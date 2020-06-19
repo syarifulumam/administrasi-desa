@@ -55,6 +55,9 @@ class Inventaris extends CI_Controller {
 			$this->model_inventaris->edit_data();
 		}
 		$data['inventaris'] = $this->model_inventaris->get_data($id);
+		if ($data['inventaris'] == null) {
+			redirect('inventaris');
+		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','inventaris/edit_inventaris',$data);
 

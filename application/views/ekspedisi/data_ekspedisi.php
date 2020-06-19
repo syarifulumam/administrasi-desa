@@ -18,9 +18,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($ekspedisi as $key):?>
+				<?php $no = 1; foreach ($ekspedisi as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= $key->tanggal_pengiriman ?></td>
 					<td><?= date('d-m-Y', strtotime($key->tanggal_surat)) ?></td>
 					<td><?= $key->nomor_surat ?></td>
@@ -60,7 +60,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

@@ -31,6 +31,9 @@ class Provinsi extends CI_Controller {
 			$this->model_provinsi->edit_data();
 		}
 		$data['provinsi'] = $this->model_provinsi->get_data($id);
+		if ($data['provinsi'] == null) {
+			redirect('provinsi');
+		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
         $this->template->load('template_admin','provinsi/edit_provinsi',$data);
     }

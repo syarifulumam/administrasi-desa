@@ -43,6 +43,9 @@ class Pindahan extends CI_Controller {
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['pindahan'] = $this->model_pindahan->get_data($id);
+		if ($data['pindahan'] == null) {
+			redirect('pindahan');
+		}
 		$this->template->load('template_admin','pindahan/edit_pindahan',$data);
 
 	}

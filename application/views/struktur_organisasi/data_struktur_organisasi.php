@@ -18,9 +18,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($struktur_organisasi as $key):?>
+				<?php $no = 1; foreach ($struktur_organisasi as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= $key->nama_jabatan ?></td>
 					<td><?= $key->nama ?></td>
 					<td><?= $key->nip ?></td>
@@ -60,7 +60,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

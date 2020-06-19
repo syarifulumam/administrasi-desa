@@ -15,9 +15,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($provinsi as $key):?>
+				<?php $no = 1; foreach ($provinsi as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= $key->nama_provinsi ?></td>
 					<td style="width:105px">
 						<a href="<?= base_url('provinsi/edit_provinsi/'.$key->id_provinsi) ?>"
@@ -54,7 +54,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

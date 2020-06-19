@@ -35,6 +35,9 @@ class kecamatan extends CI_Controller {
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kecamatan'] = $this->model_kecamatan->get_data($id);
+		if ($data['kecamatan'] == null) {
+			redirect('kecamatan');
+		}
 		$data['kota'] = $this->model_kecamatan->get_kota();
         $this->template->load('template_admin','kecamatan/edit_kecamatan',$data);
     }

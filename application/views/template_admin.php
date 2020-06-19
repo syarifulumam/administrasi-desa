@@ -15,7 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-	<title>AdminLTE 3 | Starter</title>
+	<title>SIDISA</title>
 
 	<!-- Font Awesome Icons -->
 	<link rel="stylesheet" href="<?=base_url('assets/adminlte/')?>plugins/fontawesome-free/css/all.min.css">
@@ -95,7 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1511da !important">
 			<!-- Brand Logo -->
-			<a href="index3.html" class="brand-link">
+			<a href="<?=base_url('dashboard')?>" class="brand-link">
 				<img src="<?=base_url('assets/adminlte/')?>dist/img/logoprov.png" alt="AdminLTE Logo"
 					class="brand-image img-circle elevation-3" style="opacity: .8">
 				<span class="brand-text font-weight-light">SIDISA</span>
@@ -347,7 +347,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<p>
 									Laporan
 									<i class="right fas fa-angle-left"></i>
-									<span class="badge badge-info right">5</span>
+									<span class="badge badge-info right">7</span>
 								</p>
 							</a>
 							<ul class="nav nav-treeview">
@@ -379,6 +379,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<a href="<?=base_url('laporan/perdusun')?>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Perdusun</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?=base_url('laporan/keuangan/pengeluaran')?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Keuangan Pengeluaran</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?=base_url('laporan/keuangan/pemasukan')?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Keuangan Pemasukan</p>
 									</a>
 								</li>
 							</ul>
@@ -488,12 +500,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<!-- Main Footer -->
 		<footer class="main-footer">
 			<!-- To the right -->
-			<div class="float-right d-none d-sm-inline">
-				Anything you want
-			</div>
 			<!-- Default to the left -->
-			<strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-			reserved.
+			<strong>Copyright &copy; 2020 <a href="<?= base_url() ?>">Sidisa</a>.</strong> 
 		</footer>
 	</div>
 	<!-- ./wrapper -->

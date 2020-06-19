@@ -19,9 +19,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($dusun as $key):?>
+				<?php $no = 1; foreach ($dusun as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= $key->nama_dusun ?></td>
 					<td><?= $key->nama_kelurahan ?></td>
 					<td><?= $key->nama_kecamatan ?></td>
@@ -61,7 +61,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

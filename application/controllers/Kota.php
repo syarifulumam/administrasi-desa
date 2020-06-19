@@ -35,6 +35,9 @@ class kota extends CI_Controller {
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['kota'] = $this->model_kota->get_data($id);
+		if ($data['kota'] == null) {
+			redirect('kota');
+		}
 		$data['provinsi'] = $this->model_kota->get_provinsi();
         $this->template->load('template_admin','kota/edit_kota',$data);
     }

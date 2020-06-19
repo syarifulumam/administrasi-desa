@@ -94,6 +94,9 @@ class Buat_surat extends CI_Controller {
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['buat_surat'] = $this->model_buat_surat->get_data($id);
+		if ($data['buat_surat'] == null) {
+			redirect('buat_surat');
+		}
 		$data['penduduk'] = $this->model_buat_surat->get_data_penduduk();
 		$this->template->load('template_admin','buat_surat/edit_buat_surat',$data);
 
@@ -154,9 +157,9 @@ class Buat_surat extends CI_Controller {
 
 		$pdf->SetFont('Arial','',7);
 		$pdf->Cell(95,15,'',0,1);
-		$pdf->SetTitle('Laundry Kiloan');
+		$pdf->SetTitle('Laporan surat domisili');
 
-		$pdf->Output('Laundry Kiloan','I');
+		$pdf->Output('Laporan surat domisili','I');
 	}
 	public function laporan_surat_KTP($id)
 	{
@@ -212,9 +215,9 @@ class Buat_surat extends CI_Controller {
 
 		$pdf->SetFont('Arial','',7);
 		$pdf->Cell(95,15,'',0,1);
-		$pdf->SetTitle('Laundry Kiloan');
+		$pdf->SetTitle('Laporan surat ktp');
 
-		$pdf->Output('Laundry Kiloan','I');
+		$pdf->Output('Laporan surat ktp','I');
 	}
 	public function laporan_surat_kematian($id)
 	{
@@ -271,9 +274,9 @@ class Buat_surat extends CI_Controller {
 
 		$pdf->SetFont('Arial','',7);
 		$pdf->Cell(95,15,'',0,1);
-		$pdf->SetTitle('Laundry Kiloan');
+		$pdf->SetTitle('Laporan surat kematian');
 
-		$pdf->Output('Laundry Kiloan','I');
+		$pdf->Output('Laporan surat kematian','I');
 	}
 	public function laporan_surat_tidak_mampu($id)
 	{
@@ -326,9 +329,9 @@ class Buat_surat extends CI_Controller {
 
 		$pdf->SetFont('Arial','',7);
 		$pdf->Cell(95,15,'',0,1);
-		$pdf->SetTitle('Laundry Kiloan');
+		$pdf->SetTitle('Laporan surat tidak mampu');
 
-		$pdf->Output('Laundry Kiloan','I');
+		$pdf->Output('Laporan surat tidak mampu','I');
 	}
 	public function laporan_surat_berkelakuan_baik($id)
 	{
@@ -381,8 +384,8 @@ class Buat_surat extends CI_Controller {
 
 		$pdf->SetFont('Arial','',7);
 		$pdf->Cell(95,15,'',0,1);
-		$pdf->SetTitle('Laundry Kiloan');
+		$pdf->SetTitle('Laporan surat berkelakuan baik');
 
-		$pdf->Output('Laundry Kiloan','I');
+		$pdf->Output('Laporan surat berkelakuan baik','I');
 	}
 }

@@ -74,7 +74,10 @@ class Tkd extends CI_Controller {
 		if ($this->form_validation->run() == true) {
 			$this->model_tkd->edit_data();
 		}
-		$data['tkd'] = $this->model_tkd->get_data($id);
+        $data['tkd'] = $this->model_tkd->get_data($id);
+        if ($data['tkd'] == null) {
+			redirect('tkd');
+		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','tkd/edit_tkd',$data);
 

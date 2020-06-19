@@ -13,8 +13,8 @@
 		<div class="form-group clearfix">
 			<label>Jenis Kelamin</label><br>
 			<div class="icheck-primary d-inline">
-				<input type="radio" id="laki" name="kelamin" value="Laki-Laki"
-					<?= $kader_pembangunan->jenis_kelamin=="Laki-Laki"?'checked':'' ?>>
+				<input type="radio" id="laki" name="kelamin" value="Laki - Laki"
+					<?= $kader_pembangunan->jenis_kelamin=="Laki - Laki"?'checked':'' ?>>
 				<label for="laki">Laki - Laki
 				</label>
 			</div>

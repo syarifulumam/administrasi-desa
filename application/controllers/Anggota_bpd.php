@@ -61,6 +61,9 @@ class anggota_bpd extends CI_Controller {
 			$this->model_anggota_bpd->edit_data();
 		}
 		$data['anggota_bpd'] = $this->model_anggota_bpd->get_data($id);
+		if ($data['anggota_bpd'] == null) {
+			redirect('anggota_bpd');
+		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','anggota_bpd/edit_anggota_bpd',$data);
 

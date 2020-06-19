@@ -64,4 +64,11 @@ class model_laporan extends CI_Model {
     {
         return $this->db->get('master_surat')->result();
     }
+    public function get_data_keuangan($tanggal)
+    {
+        $this->db->where('tanggal >=', $tanggal[0]);
+        $this->db->where('tanggal <=', $tanggal[1]);
+        $this->db->where('status', $this->input->post('jenis'));
+        return $this->db->get('keuangan')->result();
+    }
 }

@@ -45,6 +45,9 @@ class Kegiatan_bpd extends CI_Controller {
 			$this->model_kegiatan_bpd->edit_data();
 		}
 		$data['kegiatan_bpd'] = $this->model_kegiatan_bpd->get_data($id);
+		if ($data['kegiatan_bpd'] == null) {
+			redirect('kegiatan_bpd');
+		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','kegiatan_bpd/edit_kegiatan_bpd',$data);
 

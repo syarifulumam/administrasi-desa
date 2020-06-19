@@ -35,6 +35,7 @@ class model_kelahiran extends CI_Model {
 			'status_penduduk' 	  => 'Tetap',
 			'status_perkawinan'	  => 'Belum Menikah',
 			'status_dalam_keluarga'=>'Anak',
+			'status_hidup'        => 0,
 			'no_kk'	              => $this->input->post('nomor_kk',true),
 			'nama_lengkap'	      => $this->input->post('nama_balita',true),
 			'tempat_lahir'	      => $this->input->post('tempat_lahir',true),

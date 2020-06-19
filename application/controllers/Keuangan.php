@@ -30,6 +30,9 @@ class Keuangan extends CI_Controller {
         }
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
         $data['keuangan'] = $this->model_keuangan->get_data($id);
+        if ($data['keuangan'] == null) {
+			redirect('keuangan');
+		}
         $this->template->load('template_admin','keuangan_pemasukan/edit_keuangan_pemasukan',$data);
     }
     public function edit_keuangan_pengeluaran($id)
@@ -41,6 +44,9 @@ class Keuangan extends CI_Controller {
         }
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
         $data['keuangan'] = $this->model_keuangan->get_data($id);
+        if ($data['keuangan'] == null) {
+			redirect('keuangan');
+		}
         $this->template->load('template_admin','keuangan_pengeluaran/edit_keuangan_pengeluaran',$data);
     }
     public function add_keuangan_pemasukan()

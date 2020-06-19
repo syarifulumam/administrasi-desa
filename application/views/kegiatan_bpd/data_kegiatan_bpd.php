@@ -18,9 +18,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($kegiatan_bpd as $key):?>
+				<?php $no = 1; foreach ($kegiatan_bpd as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td><?= date('d-m-Y', strtotime($key->tanggal)) ?></td>
 					<td><?= $key->tentang ?></td>
 					<td><?= $key->pelaksana ?></td>
@@ -60,7 +60,7 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<!-- /.modal -->
-				<?php endforeach; ?>
+				<?php $no++; endforeach; ?>
 			</tbody>
 		</table>
 	</div>

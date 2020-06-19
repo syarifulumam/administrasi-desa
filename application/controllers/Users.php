@@ -39,6 +39,9 @@ class Users extends CI_Controller {
 			$this->model_user->edit_data();
 		}
 		$data['user'] = $this->model_user->get_data($id);
+		if ($data['user'] == null) {
+			redirect('user');
+		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','users/edit_user',$data);
 

@@ -22,12 +22,12 @@ class Penduduk extends CI_Controller {
 		//form validation
         $this->form_validation->set_rules('nomor_kk', 'Nomor KK', 'trim|required');
         $this->form_validation->set_rules('nomor_ktp', 'Nomor KTP / NIK', 'trim|required');
-        $this->form_validation->set_rules('nama', 'Nama', 'alpha|trim|required|callback_alpha_dash_space');
-        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'alpha|trim|required');
+        $this->form_validation->set_rules('nama', 'Nama', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'trim|required');
         $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'trim|required');
         $this->form_validation->set_rules('agama', 'Agama', 'trim|required');
-        $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'alpha|trim|required|callback_alpha_dash_space');
-        $this->form_validation->set_rules('negaraan', 'Negaraan', 'alpha|trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('negaraan', 'Negaraan', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('provinsi', 'Provinsi', 'trim|required');
         $this->form_validation->set_rules('kota', 'Kota', 'trim|required');
         $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'trim|required');
@@ -38,8 +38,8 @@ class Penduduk extends CI_Controller {
         $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
         $this->form_validation->set_rules('kode_pos', 'Kode Pos', 'trim|required');
         $this->form_validation->set_rules('nomor_telepon', 'Nomor Telepon', 'trim|required');
-        $this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'alpha|trim|required|callback_alpha_dash_space');
-        $this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'alpha|trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('pendidikan', 'Pendidikan', 'trim|required');
 		if ($this->form_validation->run() == true) {
 			$this->model_penduduk->insert_data();
@@ -55,11 +55,11 @@ class Penduduk extends CI_Controller {
         $this->form_validation->set_rules('nomor_kk', 'Nomor KK', 'trim|required');
         $this->form_validation->set_rules('nomor_ktp', 'Nomor KTP / NIK', 'trim|required');
 		$this->form_validation->set_rules('nama', 'Nama','required|trim|callback_alpha_dash_space');
-        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'alpha|trim|required');
+        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'trim|required');
         $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'trim|required');
         $this->form_validation->set_rules('agama', 'Agama', 'trim|required');
-        $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'alpha|trim|required|callback_alpha_dash_space');
-        $this->form_validation->set_rules('negaraan', 'Negaraan', 'alpha|trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('negaraan', 'Negaraan', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('provinsi', 'Provinsi', 'trim|required');
         $this->form_validation->set_rules('kota', 'Kota', 'trim|required');
         $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'trim|required');
@@ -70,8 +70,8 @@ class Penduduk extends CI_Controller {
         $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
         $this->form_validation->set_rules('kode_pos', 'Kode Pos', 'trim|required');
         $this->form_validation->set_rules('nomor_telepon', 'Nomor Telepon', 'trim|required');
-        $this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'alpha|trim|required|callback_alpha_dash_space');
-        $this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'alpha|trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'trim|required|callback_alpha_dash_space');
+        $this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'trim|required|callback_alpha_dash_space');
         $this->form_validation->set_rules('pendidikan', 'Pendidikan', 'trim|required');
 		if ($this->form_validation->run() == true) {
 			$this->model_penduduk->edit_data();
@@ -79,6 +79,9 @@ class Penduduk extends CI_Controller {
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$data['provinsi'] = $this->model_penduduk->get_data_provinsi();
 		$data['penduduk'] = $this->model_penduduk->get_data($id);
+		if ($data['penduduk'] == null) {
+			redirect('penduduk');
+		}
 		$this->template->load('template_admin','penduduk/edit_penduduk',$data);
 
 	}

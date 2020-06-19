@@ -17,9 +17,9 @@
 			</thead>
 			<tbody>
 				<?php $total_harga = 0; ?>
-				<?php foreach ($keuangan as $key):?>
+				<?php $no = 1; foreach ($keuangan as $key):?>
 				<tr>
-					<td>1</td>
+					<td><?= $no ?></td>
 					<td>Rp.<?= $key->keterangan ?></td>
 					<td>Rp.<?= $key->harga ?></td>
 					<td style="width:105px">
@@ -59,6 +59,7 @@
 				<!-- /.modal -->
 				<?php
 					$total_harga+=$key->harga;
+					$no++;
 					endforeach; 
 				?>
 			</tbody>

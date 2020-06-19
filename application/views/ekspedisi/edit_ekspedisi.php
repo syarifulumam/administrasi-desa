@@ -29,8 +29,6 @@
 		</div>
 		<div class="form-group">
 			<label>Nomor Surat</label>
-			<input type="text" class="form-control " name="nomor_surat" value="<?= $ekspedisi->nomor_surat ?>"
-				autocomplete="off">
 			<input type="number" min="0" class="form-control " name="nomor_surat" value="<?= $ekspedisi->nomor_surat ?>" autocomplete="off">
 			<?= form_error('nomor_surat','<small class="text-danger pl-1">','</small>') ?>
 		</div>

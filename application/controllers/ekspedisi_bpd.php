@@ -45,6 +45,9 @@ class Ekspedisi_bpd extends CI_Controller {
 			$this->model_ekspedisi_bpd->edit_data();
 		}
 		$data['ekspedisi_bpd'] = $this->model_ekspedisi_bpd->get_data($id);
+		if ($data['ekspedisi_bpd'] == null) {
+			redirect('ekspedisi_bpd');
+		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','ekspedisi_bpd/edit_ekspedisi_bpd',$data);
 

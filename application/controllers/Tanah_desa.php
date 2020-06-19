@@ -83,7 +83,10 @@ class Tanah_desa extends CI_Controller {
 			$this->model_tanah_desa->edit_data();
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
-		$data['tanah_desa'] = $this->model_tanah_desa->get_data($id);
+        $data['tanah_desa'] = $this->model_tanah_desa->get_data($id);
+        if ($data['tanah_desa'] == null) {
+			redirect('tanah_desa');
+		}
 		$this->template->load('template_admin','tanah_desa/edit_tanah_desa',$data);
 
 	}
