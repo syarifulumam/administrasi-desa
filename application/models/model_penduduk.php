@@ -54,6 +54,7 @@ class model_penduduk extends CI_Model {
     public function insert_data()
     {
         $tanggal_lahir =  str_replace('/', '-',$this->input->post('tanggal_lahir',true));
+        $tahun_lahir = explode('-',$tanggal_lahir);
         $data_penduduk = [
 			'status_penduduk' 	  => $this->input->post('status_penduduk',true),
 			'no_kk'	              => $this->input->post('nomor_kk',true),
@@ -81,15 +82,14 @@ class model_penduduk extends CI_Model {
 			'nama_bapak'	      => $this->input->post('nama_ayah',true),
 			'pendidikan_terakhir' => $this->input->post('pendidikan',true),
             'foto' 		          => $this->_upload(),
-            'tanggal_input'       => date('Y-m-d')
+            'tanggal_input'       => date('Y-m-d'),
+            'umur'                => date('Y') - $tahun_lahir[2]
         ];
         //insert data penduduk
         $this->db->insert('penduduk',$data_penduduk);
 
-        $tanggal_pindahan =  str_replace('/', '-',$this->input->post('tanggal_pindahan',true));
         $data_pindahan = [
             'id_penduduk'           => $this->db->insert_id(),
-			'tanggal_pindah'	    => date('Y-m-d', strtotime($tanggal_pindahan)),
 			'alamat_sebelumnya'	    => $this->input->post('alamat_sebelumnya',true),
 			// 'kode_pos'	            => $this->input->post('kode_pos_sebelumnya',true),
 			'keterangan'	        => $this->input->post('keterangan',true)
@@ -118,6 +118,7 @@ class model_penduduk extends CI_Model {
             $data_foto = $this->input->post('foto_db');
         }
         $tanggal_lahir =  str_replace('/', '-',$this->input->post('tanggal_lahir',true));
+        $tahun_lahir = explode('-',$tanggal_lahir);
         $data_penduduk = [
 			'status_penduduk' 	  => $this->input->post('status_penduduk',true),
 			'no_kk'	              => $this->input->post('nomor_kk',true),
@@ -144,6 +145,7 @@ class model_penduduk extends CI_Model {
 			'nama_ibu'	          => $this->input->post('nama_ibu',true),
 			'nama_bapak'	      => $this->input->post('nama_ayah',true),
 			'pendidikan_terakhir' => $this->input->post('pendidikan',true),
+            'umur'                => date('Y') - $tahun_lahir[2],
 			'foto' 		          => $data_foto
         ];
         
@@ -194,4 +196,13 @@ class model_penduduk extends CI_Model {
         return "avatar.jpg";
         
     } 
+    public function import($data)
+    {
+        $jumlah = count($data);
+        if ($jumlah > 0) {
+            $this->db->insert('penduduk',$data);
+            $this->session->set_flashdata('pesan','Data Berhasil di Import');
+            redirect('penduduk');
+        }
+    }
 }

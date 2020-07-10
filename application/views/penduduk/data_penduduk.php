@@ -2,7 +2,10 @@
 <div class="card">
 	<div class="card-header">
 		<h3 class="card-title">Data Penduduk</h3>
-		<a href="<?= base_url('penduduk/add_penduduk') ?>" class="btn btn-primary float-right">Tambah</a>
+		<a href="<?= base_url('penduduk/add_penduduk') ?>" class="btn btn-primary float-right ml-2">Tambah</a>
+		<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal-import">
+			Import 
+		</button>
 	</div>
 	<!-- /.card-header -->
 	<div class="card-body table-responsive">
@@ -73,5 +76,38 @@
 		</table>
 	</div>
 	<!-- /.card-body -->
+	<!-- modal import  -->
+	<div class="modal fade" id="modal-import">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Import Data</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<?php echo form_open_multipart('penduduk/import_penduduk'); ?>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="exampleInputFile">File Excell</label>
+						<input type="file" class="form-control-file" name="file" accept=".xlsx,xls">
+					</div>
+					<?= form_error('file','<small class="text-danger pl-1">','</small>') ?>
+					<p class="text-muted">Unduh Format file <a href="">disini</a></p>
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+					<!-- <a href="<?= base_url('penduduk/import_penduduk/') ?>">
+						<div class="btn btn-primary toastrDefaultSuccess">Import</div>
+					</a> -->
+					<input type="submit" value="Import" class="btn btn-primary toastrDefaultSuccess">
+				</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 </div>
 <!-- /.card -->

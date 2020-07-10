@@ -209,8 +209,12 @@
 				<option>SD</option>
 				<option>SMP</option>
 				<option>SMA</option>
-				<option>DIPLOMA</option>
-				<option>SARJANA</option>
+				<option>DIPLOMA 1</option>
+				<option>DIPLOMA 2</option>
+				<option>DIPLOMA 3</option>
+				<option>STRATA 1</option>
+				<option>STRATA 2</option>
+				<option>STRATA 3</option>
 			</select>
 			<?= form_error('pendidikan','<small class="text-danger pl-1">','</small>') ?>
 		</div>

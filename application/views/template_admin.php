@@ -47,6 +47,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 		<!-- Navbar -->
 		<nav class="main-header navbar navbar-expand navbar-green navbar-light">
+		<!-- <nav class="main-header navbar navbar-expand navbar-green navbar-light"> -->
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -93,7 +94,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		</nav>
 		<!-- /.navbar -->
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1511da !important">
+		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+		<!-- <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1511da !important"> -->
 			<!-- Brand Logo -->
 			<a href="<?=base_url('dashboard')?>" class="brand-link">
 				<img src="<?=base_url('assets/adminlte/')?>dist/img/logoprov.png" alt="AdminLTE Logo"
@@ -376,6 +378,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									</a>
 								</li>
 								<li class="nav-item">
+									<a href="<?=base_url('laporan/kelahiran')?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Kelahiran</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?=base_url('laporan/pindah_kependudukan')?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Pindah Kependudukan</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="<?=base_url('laporan/kematian')?>" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Kematian</p>
+									</a>
+								</li>
+								<li class="nav-item">
 									<a href="<?=base_url('laporan/perdusun')?>" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Perdusun</p>
@@ -501,7 +521,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<footer class="main-footer">
 			<!-- To the right -->
 			<!-- Default to the left -->
-			<strong>Copyright &copy; 2020 <a href="<?= base_url() ?>">Sidisa</a>.</strong> 
+			<strong>COPYRIGHT &copy; 2020 <a href="<?= base_url() ?>">SIDISA</a>.</strong> 
 		</footer>
 	</div>
 	<!-- ./wrapper -->
@@ -873,6 +893,157 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			})
 
 		})
+
+		      //-------------
+      //- DONUT CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+      var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+      var donutData = {
+        labels: [
+          'SD',
+          'SMP',
+          'SMA',
+          'D1',
+          'D2',
+          'D3',
+          'S1',
+          'S2',
+          'S3',
+        ],
+        datasets: [{
+          data: [700, 500, 400, 600, 300, 100, 600, 300, 100],
+          data: [<?= $pendidikan[0]->SD .','. $pendidikan[0]->SMP .','. $pendidikan[0]->SMA .','. $pendidikan[0]->D1 .','. $pendidikan[0]->D2 .','. $pendidikan[0]->D3 .','. $pendidikan[0]->S1 .','. $pendidikan[0]->S2 .','. $pendidikan[0]->S3  ?>],
+          backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de' , '#00c3af' , '#ddf5c2', '#ffae90'],
+        }]
+      }
+      var donutOptions = {
+        maintainAspectRatio: false,
+        responsive: true,
+      }
+      //Create pie or douhnut chart
+      // You can switch between pie and douhnut using the method below.
+      var donutChart = new Chart(donutChartCanvas, {
+        type: 'doughnut',
+        data: donutData,
+        options: donutOptions
+      })
+
+      //-------------
+      //- PIE CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+      var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+	  var pieData = {
+        labels: [
+          <?php foreach ($umur as $key) {
+			if ($key->umur == 0) {
+				echo  1 . ',';
+			}else{
+				echo  $key->umur . ',';	
+			}
+		  } ?>
+        ],
+        datasets: [{
+          data: [<?php foreach ($umur as $key) echo $key->jumlah . ","; ?>],
+          backgroundColor: [<?php foreach ($umur as $key){ echo "'#" . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT)."'".",";} ?>],
+        }]
+      }
+      var pieOptions = {
+        maintainAspectRatio: false,
+        responsive: true,
+      }
+      //Create pie or douhnut chart
+      // You can switch between pie and douhnut using the method below.
+      var pieChart = new Chart(pieChartCanvas, {
+        type: 'pie',
+        data: pieData,
+        options: pieOptions
+      })
+      //-------------
+      //- LINE CHART -
+      //--------------
+	  var areaChartData = {
+        labels: [<?php foreach ($penduduk_tahunan as $key) { echo $key->tahun .","; } ?>],
+        datasets: [{
+          label: 'Penduduk',
+          backgroundColor: 'rgba(60,141,188,0.9)',
+          borderColor: 'rgba(60,141,188,0.8)',
+          pointRadius: false,
+          pointColor: '#3b8bba',
+          pointStrokeColor: 'rgba(60,141,188,1)',
+          pointHighlightFill: '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data: [<?php foreach ($penduduk_tahunan as $key) { echo $key->jumlah .","; } ?>]
+        },
+        {
+          label: 'Kelahiran',
+          backgroundColor: 'rgba(210, 214, 222, 1)',
+          borderColor: 'rgba(210, 214, 222, 1)',
+          pointRadius: false,
+          pointColor: 'rgba(210, 214, 222, 1)',
+          pointStrokeColor: '#c1c7d1',
+          pointHighlightFill: '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data: [<?php foreach ($kelahiran_tahunan as $key) { echo $key .","; } ?>]
+        },
+        {
+          label: 'Kematian',
+          backgroundColor: 'rgba(255,150,80,1)',
+          borderColor: 'rgba(255,150,80,1)',
+          pointRadius: false,
+          pointColor: 'rgba(255,150,80,1)',
+          pointStrokeColor: '#c1c7d1',
+          pointHighlightFill: '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data: [<?php foreach ($kematian_tahunan as $key) { echo $key .","; } ?>]
+        },
+        {
+          label: 'Pindah Kependudukan',
+          backgroundColor: 'rgba(127,198,80,1)',
+          borderColor: 'rgba(127,198,80,1)',
+          pointRadius: false,
+          pointColor: 'rgba(127,198,80,1)',
+          pointStrokeColor: '#c1c7d1',
+          pointHighlightFill: '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data: [<?php foreach ($pindah_kependudukan_tahunan as $key) { echo $key .","; } ?>]
+        },
+        ]
+      }
+
+      var areaChartOptions = {
+        maintainAspectRatio: false,
+        responsive: true,
+        legend: {
+          display: true
+        },
+        scales: {
+          xAxes: [{
+            gridLines: {
+              display: true,
+            }
+          }],
+          yAxes: [{
+            gridLines: {
+              display: true,
+            }
+          }]
+        }
+      }
+
+      var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+      var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
+      var lineChartData = jQuery.extend(true, {}, areaChartData)
+      lineChartData.datasets[0].fill = false;
+      lineChartData.datasets[1].fill = false;
+      lineChartOptions.datasetFill = false
+
+      var lineChart = new Chart(lineChartCanvas, {
+        type: 'line',
+        data: lineChartData,
+        options: lineChartOptions
+      })
 
 	</script>
 

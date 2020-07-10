@@ -18,6 +18,10 @@
 				</div>
 				<!-- /.input group -->
 			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" name="nomor_kk">
+				<?= form_error('nomor_kk','<small class="text-danger pl-1">','</small>') ?>
+			</div>
 			<!-- /.form group -->
 			<div class="form-group">
 				<select name="status" class="form-control custom-select">

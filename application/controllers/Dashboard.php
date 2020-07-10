@@ -29,6 +29,11 @@ class Dashboard extends CI_Controller {
             $data['kematian_perbulan'] = $this->model_dashboard->get_kematian_perbulan();
             $data['pindah_perbulan'] = $this->model_dashboard->get_pindah_kependudukan_perbulan();
         }
+        //data tahunan
+        $data['penduduk_tahunan'] = $this->model_dashboard->get_penduduk_pertahun();
+        $data['kelahiran_tahunan'] = $this->model_dashboard->get_kelahiran_pertahun();
+        $data['kematian_tahunan'] = $this->model_dashboard->get_kematian_pertahun();
+        $data['pindah_kependudukan_tahunan'] = $this->model_dashboard->get_pindah_kependudukan_pertahun();
         //data jumlah gender
         $data['gender_penduduk'] = $this->model_dashboard->get_gender_penduduk();
         $data['gender_kelahiran'] = $this->model_dashboard->get_gender_kelahiran();
@@ -48,6 +53,12 @@ class Dashboard extends CI_Controller {
         //data total keuangan
         $data['pengeluaran'] = $this->model_dashboard->get_pengeluaran();
         $data['pemasukan']   = $this->model_dashboard->get_pemasukan();
+        //data pendidikan
+        $data['pendidikan'] = $this->model_dashboard->get_pendidikan();
+        //data umur
+        $data['umur'] = $this->model_dashboard->get_umur();
+
+
         $this->template->load('template_admin','dashboard',$data);
     }
 }

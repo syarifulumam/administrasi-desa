@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Sistem Informasi Management Desa</title>
+	<title>SIDISA</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,7 +24,7 @@
 	<div class="login-box">
 		<div class="login-logo">
 			<img src="<?=base_url('assets/adminlte/dist/img/login_logo.png')?>" alt=""><br>
-			<a href="<?=base_url('assets/adminlte/')?>index2.html"><b>Sistem Informasi Desa</b></a>
+			<a href="<?=base_url('assets/adminlte/')?>index2.html"><b>Sistem Administrasi Desa</b></a>
 		</div>
 		<!-- /.login-logo -->
 		<div class="card">

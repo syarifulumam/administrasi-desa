@@ -39,6 +39,9 @@ class model_laporan extends CI_Model {
     {
         $this->db->where('tanggal_input >=', $tanggal[0]);
         $this->db->where('tanggal_input <=', $tanggal[1]);
+        if (!empty($this->input->post('nomor_kk'))) {
+            $this->db->where('no_kk', $this->input->post('nomor_kk'));
+        }
         if ($this->input->post('status') != 'Semua') {
             $this->db->where('status_penduduk', $this->input->post('status'));
         }
@@ -70,5 +73,34 @@ class model_laporan extends CI_Model {
         $this->db->where('tanggal <=', $tanggal[1]);
         $this->db->where('status', $this->input->post('jenis'));
         return $this->db->get('keuangan')->result();
+    }
+    public function get_data_kelahiran($tanggal)
+    {
+        $this->db->select('kelahiran.*,penduduk.nama_lengkap,penduduk.no_kk,penduduk.tempat_lahir,penduduk.tanggal_lahir,penduduk.jenis_kelamin,penduduk.agama,penduduk.nama_ibu,penduduk.nama_bapak');
+        $this->db->from('kelahiran');
+        $this->db->join('penduduk', 'kelahiran.id_penduduk = penduduk.id_penduduk');
+        $this->db->where('tanggal_input >=', $tanggal[0]);
+        $this->db->where('tanggal_input <=', $tanggal[1]);
+        return $this->db->get()->result();
+    }
+    public function get_data_pindah_kependudukan($tanggal)
+    {
+        $this->db->select('*');
+        $this->db->from('pindah_kependudukan');
+        $this->db->join('penduduk', 'pindah_kependudukan.id_penduduk = penduduk.id_penduduk');
+        $this->db->where('tanggal_pindah >=', $tanggal[0]);
+        $this->db->where('tanggal_pindah <=', $tanggal[1]);
+        $this->db->where('status_penduduk', 'Pindah');
+        return $this->db->get()->result();
+    }
+    public function get_data_kematian($tanggal)
+    {
+        $this->db->select('*');
+        $this->db->from('kematian');
+        $this->db->join('penduduk', 'kematian.id_penduduk = penduduk.id_penduduk');
+        $this->db->where('tanggal_meninggal >=', $tanggal[0]);
+        $this->db->where('tanggal_meninggal <=', $tanggal[1]);
+        $this->db->where('status_hidup', 1);
+        return $this->db->get()->result();
     }
 }

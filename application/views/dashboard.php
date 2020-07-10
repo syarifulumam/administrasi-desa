@@ -216,7 +216,7 @@
 		<!-- BAR CHART -->
 		<div class="card card-success">
 			<div class="card-header">
-				<h3 class="card-title">Grafik</h3>
+				<h3 class="card-title">Grafik Bulan</h3>
 				<div class="card-tools">
 					<?= form_open('') ?>
 					<input type="text" name="tahun" class="w-75">
@@ -237,8 +237,31 @@
 	<!-- /.col (RIGHT) -->
 </div>
 <div class="row">
+	<div class="col-md-6">
+		<!-- LINE CHART -->
+		<div class="card card-success">
+			<div class="card-header">
+				<h3 class="card-title">Grafik Tahun</h3>
+
+				<div class="card-tools">
+				<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+				</button>
+				<button type="button" class="btn btn-tool" data-card-widget="remove"><i
+					class="fas fa-times"></i></button>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="chart">
+				<canvas id="lineChart"
+					style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+				</div>
+			</div>
+			<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
+	</div>
 	<!-- /.col (LEFT) -->
-	<div class="col-md-12">
+	<div class="col-md-6">
 		<!-- BAR CHART -->
 		<div class="card card-success">
 			<div class="card-header">
@@ -262,5 +285,46 @@
 		<!-- /.card -->
 	</div>
 	<!-- /.col (RIGHT) -->
+	<div class="col-md-6">
+		<!-- DONUT CHART -->
+		<div class="card card-success">
+			<div class="card-header">
+				<h3 class="card-title">Grafik Pendidikan</h3>
+
+				<div class="card-tools">
+				<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+				</button>
+				<button type="button" class="btn btn-tool" data-card-widget="remove"><i
+					class="fas fa-times"></i></button>
+				</div>
+			</div>
+			<div class="card-body">
+				<canvas id="donutChart"
+				style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+			</div>
+			<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
+	</div>
+	<div class="col-md-6">
+		<div class="card card-success">
+			<div class="card-header">
+			<h3 class="card-title">Grafik Umur</h3>
+
+			<div class="card-tools">
+				<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+				</button>
+				<button type="button" class="btn btn-tool" data-card-widget="remove"><i
+					class="fas fa-times"></i></button>
+			</div>
+			</div>
+			<div class="card-body">
+			<canvas id="pieChart"
+				style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+			</div>
+			<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
+	</div>
 </div>
 

@@ -1,5 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
+
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
 class Penduduk extends CI_Controller {
 
@@ -111,6 +114,85 @@ class Penduduk extends CI_Controller {
 			return FALSE;
 		} else {
 			return TRUE;
+		}
+	}
+	//import data excell
+	public function import_penduduk()
+	{
+		//upload foto
+		$config['upload_path']          = './upload/file_import';
+		$config['allowed_types']        = 'xlsx|xls';
+		$config['file_name'] 			= 'doc' . time();
+        //load library
+		$this->load->library('upload', $config);
+		// validasi upload foto
+		if ($this->upload->do_upload('file')) {
+			$file = $this->upload->data();
+			$reader = ReaderEntityFactory::createXLSXReader();
+			$reader->setShouldFormatDates(true);
+			$reader->open('./upload/file_import/'. $file['file_name']);
+			foreach ($reader->getSheetIterator() as $sheet) {
+				$numRow = 1;
+				foreach ($sheet->getRowIterator() as $row) {
+					if ($numRow > 1) {
+						$tanggal_lahir = $row->getCellAtIndex(3);
+						$tahun_lahir = explode('-',$tanggal_lahir);
+						$tahun_lahir = date('Y') - $tahun_lahir[2];
+						if ($tahun_lahir == 0) {
+							$tahun_lahir = 1;
+						}
+						$provinsi = $this->db->get_where('provinsi',array('nama_provinsi'=>strtoupper($row->getCellAtIndex(14))))->row();
+						$kota = $this->db->get_where('kota',array('nama_kota'=>strtoupper($row->getCellAtIndex(15))))->row();
+						$kecamatan = $this->db->get_where('kecamatan',array('nama_kecamatan'=>strtoupper($row->getCellAtIndex(16))))->row();
+						$kelurahan = $this->db->get_where('kelurahan',array('nama_kelurahan'=>strtoupper($row->getCellAtIndex(17))))->row();
+						$dusun = $this->db->get_where('dusun',array('nama_dusun'=>strtoupper($row->getCellAtIndex(18))))->row();
+						
+						if ($row->getCellAtIndex(10) != 'Hidup') {
+							$status_hidup = 1;
+						}else{
+							$status_hidup = 0;
+						}
+						$data = array(
+							'nama_lengkap' 			=> $row->getCellAtIndex(1),
+							'tempat_lahir' 			=> $row->getCellAtIndex(2),
+							'tanggal_lahir' 		=> date('Y-m-d', strtotime($tanggal_lahir)),
+							'jenis_kelamin' 		=> $row->getCellAtIndex(4),
+							'agama' 				=> $row->getCellAtIndex(5),
+							'pekerjaan' 			=> $row->getCellAtIndex(6),
+							'status_perkawinan'		=> $row->getCellAtIndex(7),
+							'status_penduduk' 		=> $row->getCellAtIndex(8),
+							'status_dalam_keluarga' => $row->getCellAtIndex(9),
+							'status_hidup' 			=> $status_hidup,
+							'nik' 					=> $row->getCellAtIndex(11),
+							'no_kk' 				=> $row->getCellAtIndex(12),
+							'kewarganegaraan'	    => $row->getCellAtIndex(13),
+							'provinsi' 				=> $provinsi->id_provinsi,
+							'kota' 					=> $kota->id_kota,
+							'kecamatan' 			=> $kecamatan->id_kecamatan,
+							'kelurahan' 			=> $kelurahan->id_kelurahan,
+							'dusun' 				=> $dusun->id_dusun,
+							'rt' 					=> $row->getCellAtIndex(19),
+							'rw' 					=> $row->getCellAtIndex(20),
+							'alamat' 				=> $row->getCellAtIndex(21),
+							'kode_pos' 				=> $row->getCellAtIndex(22),
+							'no_telepon' 			=> $row->getCellAtIndex(23),
+							'pendidikan_terakhir' 	=> $row->getCellAtIndex(24),
+							'nama_ibu' 				=> $row->getCellAtIndex(25),
+							'nama_bapak' 			=> $row->getCellAtIndex(26),
+							'tanggal_input' 		=> date('Y-m-d'),
+							'foto' 					=> "avatar.png",
+							'umur' 					=> $tahun_lahir,
+						);
+						$this->model_penduduk->import($data);
+					}
+					$numRow++;
+				}
+				$reader->close();
+				unlink(('./upload/file_import/'. $file['file_name']));
+			}
+		}else{
+			$this->session->set_flashdata('pesan',$this->upload->display_errors());
+			redirect('penduduk');
 		}
 	}
 }

@@ -220,8 +220,12 @@
 				<option <?= $penduduk->pendidikan_terakhir == 'SD' ? 'selected':''?>>SD</option>
 				<option <?= $penduduk->pendidikan_terakhir == 'SMP' ? 'selected':''?>>SMP</option>
 				<option <?= $penduduk->pendidikan_terakhir == 'SMA' ? 'selected':''?>>SMA</option>
-				<option <?= $penduduk->pendidikan_terakhir == 'DIPLOMA' ? 'selected':''?>>DIPLOMA</option>
-				<option <?= $penduduk->pendidikan_terakhir == 'SARJANA' ? 'selected':''?>>SARJANA</option>
+				<option <?= $penduduk->pendidikan_terakhir == 'DIPLOMA 1' ? 'selected':''?>>DIPLOMA 1</option>
+				<option <?= $penduduk->pendidikan_terakhir == 'DIPLOMA 2' ? 'selected':''?>>DIPLOMA 2</option>
+				<option <?= $penduduk->pendidikan_terakhir == 'DIPLOMA 3' ? 'selected':''?>>DIPLOMA 3</option>
+				<option <?= $penduduk->pendidikan_terakhir == 'STRATA 1' ? 'selected':''?>>STRATA 1</option>
+				<option <?= $penduduk->pendidikan_terakhir == 'STRATA 2' ? 'selected':''?>>STRATA 2</option>
+				<option <?= $penduduk->pendidikan_terakhir == 'STRATA 3' ? 'selected':''?>>STRATA 3</option>
 			</select>
 			<?= form_error('pendidikan','<small class="text-danger pl-1">','</small>') ?>
 		</div>

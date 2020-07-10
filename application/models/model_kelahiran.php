@@ -30,6 +30,7 @@ class model_kelahiran extends CI_Model {
     public function insert_data()
     {
         $tanggal_lahir =  str_replace('/', '-',$this->input->post('tanggal_lahir',true));
+        $tahun_lahir = explode('-',$tanggal_lahir);
         $get_data_ibu = $this->db->get_where('penduduk',array('nama_lengkap'=>$this->input->post('nama_ibu',true)))->row();
         $data_penduduk = [
 			'status_penduduk' 	  => 'Tetap',
@@ -54,7 +55,8 @@ class model_kelahiran extends CI_Model {
 			'kode_pos'	          => $get_data_ibu->kode_pos,
 			'nama_ibu'	          => $this->input->post('nama_ibu',true),
 			'nama_bapak'	      => $this->input->post('nama_ayah',true),
-            'tanggal_input'       => date('Y-m-d')
+            'tanggal_input'       => date('Y-m-d'),
+            'umur'                => date('Y') - $tahun_lahir[2]
         ];
         $this->db->insert('penduduk',$data_penduduk);
         $id_penduduk = $this->db->insert_id();
@@ -84,6 +86,7 @@ class model_kelahiran extends CI_Model {
     public function edit_data()
     {
         $tanggal_lahir =  str_replace('/', '-',$this->input->post('tanggal_lahir',true));
+        $tahun_lahir = explode('-',$tanggal_lahir);
         $get_data_ibu = $this->db->get_where('penduduk',array('nama_lengkap'=>$this->input->post('nama_ibu',true)))->row();
         $data_penduduk = [
 			'no_kk'	              => $this->input->post('nomor_kk',true),
@@ -104,6 +107,7 @@ class model_kelahiran extends CI_Model {
 			'kode_pos'	          => $get_data_ibu->kode_pos,
 			'nama_ibu'	          => $this->input->post('nama_ibu',true),
 			'nama_bapak'	      => $this->input->post('nama_ayah',true),
+            'umur'                => date('Y') - $tahun_lahir[2]
         ];
         $this->db->where('id_penduduk',$this->input->post('id_penduduk'));
 		$this->db->update('penduduk',$data_penduduk);

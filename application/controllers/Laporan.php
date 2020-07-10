@@ -44,6 +44,7 @@ class Laporan extends CI_Controller {
 	public function kependudukan()
 	{
 		$this->form_validation->set_rules('status', 'Status', 'trim|required');
+		$this->form_validation->set_rules('nomor_kk', 'Nomor KK', 'trim|numeric');
 		if ($this->form_validation->run() == true) {
 			$tanggal = $this->get_tanggal();
 			$data = $this->model_laporan->get_data_penduduk($tanggal);
@@ -85,6 +86,36 @@ class Laporan extends CI_Controller {
 		}
 		$data['notifikasi'] = $this->model_notifikasi->get_data();
 		$this->template->load('template_admin','laporan/data_keuangan',$data);
+	}
+	public function kelahiran()
+	{
+		if ($this->input->post()) {
+			$tanggal = $this->get_tanggal();
+			$data = $this->model_laporan->get_data_kelahiran($tanggal);
+			$this->laporan_kelahiran($data,$tanggal);
+		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+		$this->template->load('template_admin','laporan/data_laporan_kelahiran',$data);
+	}
+	public function pindah_kependudukan()
+	{
+		if ($this->input->post()) {
+			$tanggal = $this->get_tanggal();
+			$data = $this->model_laporan->get_data_pindah_kependudukan($tanggal);
+			$this->laporan_pindah_kependudukan($data,$tanggal);
+		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+		$this->template->load('template_admin','laporan/data_laporan_pindah_kependudukan',$data);
+	}
+	public function kematian()
+	{
+		if ($this->input->post()) {
+			$tanggal = $this->get_tanggal();
+			$data = $this->model_laporan->get_data_kematian($tanggal);
+			$this->laporan_kematian($data,$tanggal);
+		}
+		$data['notifikasi'] = $this->model_notifikasi->get_data();
+		$this->template->load('template_admin','laporan/data_laporan_kematian',$data);
 	}
 	public function get_tanggal()
 	{
@@ -314,18 +345,162 @@ class Laporan extends CI_Controller {
 			$pdf->Cell(10,6,$no,1,0,);
 			$pdf->Cell(100,6,$key->keterangan,1,0,);
 			$pdf->Cell(40,6,$key->tanggal,1,0,);
-			$pdf->Cell(40,6,number_format($key->harga,2,',','.'),1,1);
+			$pdf->Cell(40,6,"Rp." . number_format($key->harga,2,',','.'),1,1);
 			$total_harga+=$key->harga;
 			$no++;
 		}
 		
 		$pdf->Cell(150,6,'Total',1,0);
-		$pdf->Cell(40,6,number_format($total_harga,2,',','.'),1,0);
+		$pdf->Cell(40,6,"Rp." . number_format($total_harga,2,',','.'),1,0);
 
 		$pdf->SetFont('Arial','',7);
 		$pdf->Cell(95,15,'',0,1);
 		$pdf->SetTitle('Laporan keuangan bpd');
 
 		$pdf->Output('Laporan keuangan bpd','I');
+	}
+	public function laporan_kelahiran($data,$tanggal)
+	{
+		$gambar  =  base_url('assets/adminlte/dist/img/prov.png');
+		$pdf = new FPDF('L','mm','A4');
+        // membuat halaman baru
+        $pdf->AddPage();
+        // setting jenis font yang akan digunakan
+        $pdf->SetFont('Arial','B',16);
+		// mencetak string 
+		// cell(lebar,tinggi,text,border,next position,align,fill,url)
+        $pdf->Cell(170,7,'KABUPATEN PENUKAL ABAB LEMATANG ILIR',0,1,'C');
+        $pdf->Image($gambar,0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(107,7,'Jl. Silang Monas Gambir Jakarta Pusat',0,1,'C');
+		//ambil data dari db
+		// if ($akhir == null) {
+		// $row = $this->Model_laporan->getHarian($awal);
+		// } else {
+		// $row = $this->Model_laporan->getBulanan($awal,$akhir);
+		// }
+		// Memberikan space kebawah agar tidak terlalu rapat
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(277,7,'','B',1);
+		//buat line baru
+		$pdf->Cell(10,10,'LAPORAN KELAHIRAN TANGGAL '. $tanggal[0] . ' - ' . $tanggal[1],0,1);
+		$pdf->Cell(10,6,'No',1,0);
+		$pdf->Cell(35,6,'No Akte',1,0);
+		$pdf->Cell(35,6,'No KK',1,0);
+		$pdf->Cell(58,6,'Nama',1,0);
+		$pdf->Cell(55,6,'Tempat, Tanggal Lahir',1,0);
+		$pdf->Cell(25,6,'Jenis Kelamin',1,0);
+		$pdf->Cell(58,6,'Nama Ibu',1,1);
+		$no = 1;
+		foreach ($data as $key) {
+			$pdf->Cell(10,6,$no,1,0,);
+			$pdf->Cell(35,6,$key->no_akte,1,0,);
+			$pdf->Cell(35,6,$key->no_kk,1,0,);
+			$pdf->Cell(58,6,$key->nama_lengkap,1,0);
+			$pdf->Cell(55,6,$key->tempat_lahir . "," .$key->tanggal_lahir ,1,0);
+			$pdf->Cell(25,6,$key->jenis_kelamin,1,0);
+			$pdf->Cell(58,6,$key->nama_ibu,1,1);
+			$no++;
+		}
+		$pdf->SetFont('Arial','',7);
+		$pdf->Cell(95,15,'',0,1);
+		$pdf->SetTitle('Laporan kelahiran bpd');
+
+		$pdf->Output('Laporan kelahiran bpd','I');
+	}
+	public function laporan_pindah_kependudukan($data,$tanggal)
+	{
+		$gambar  =  base_url('assets/adminlte/dist/img/prov.png');
+		$pdf = new FPDF('L','mm','A4');
+        // membuat halaman baru
+        $pdf->AddPage();
+        // setting jenis font yang akan digunakan
+        $pdf->SetFont('Arial','B',16);
+		// mencetak string 
+		// cell(lebar,tinggi,text,border,next position,align,fill,url)
+        $pdf->Cell(170,7,'KABUPATEN PENUKAL ABAB LEMATANG ILIR',0,1,'C');
+        $pdf->Image($gambar,0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(107,7,'Jl. Silang Monas Gambir Jakarta Pusat',0,1,'C');
+		//ambil data dari db
+		// if ($akhir == null) {
+		// $row = $this->Model_laporan->getHarian($awal);
+		// } else {
+		// $row = $this->Model_laporan->getBulanan($awal,$akhir);
+		// }
+		// Memberikan space kebawah agar tidak terlalu rapat
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(277,7,'','B',1);
+		//buat line baru
+		$pdf->Cell(10,10,'LAPORAN PINDAH KEPENDUDUKAN TANGGAL '. $tanggal[0] . ' - ' . $tanggal[1],0,1);
+		$pdf->Cell(10,6,'No',1,0);
+		$pdf->Cell(58,6,'Nama',1,0);
+		$pdf->Cell(80,6,'Alamat Pindahan',1,0);
+		$pdf->Cell(45,6,'Tanggal Pindah',1,0);
+		$pdf->Cell(83,6,'Keterangan',1,1);
+		$no = 1;
+		foreach ($data as $key) {
+			$pdf->Cell(10,6,$no,1,0,);
+			$pdf->Cell(58,6,$key->nama_lengkap,1,0,);
+			$pdf->Cell(80,6,$key->alamat_pindahan,1,0,);
+			$pdf->Cell(45,6,$key->tanggal_pindah,1,0);
+			$pdf->Cell(83,6,$key->keterangan,1,1);
+			$no++;
+		}
+		$pdf->SetFont('Arial','',7);
+		$pdf->Cell(95,15,'',0,1);
+		$pdf->SetTitle('Laporan pindah kependudukan bpd');
+
+		$pdf->Output('Laporan pindah kependudukan bpd','I');
+	}
+	public function laporan_kematian($data,$tanggal)
+	{
+		$gambar  =  base_url('assets/adminlte/dist/img/prov.png');
+		$pdf = new FPDF('L','mm','A4');
+        // membuat halaman baru
+        $pdf->AddPage();
+        // setting jenis font yang akan digunakan
+        $pdf->SetFont('Arial','B',16);
+		// mencetak string 
+		// cell(lebar,tinggi,text,border,next position,align,fill,url)
+        $pdf->Cell(170,7,'KABUPATEN PENUKAL ABAB LEMATANG ILIR',0,1,'C');
+        $pdf->Image($gambar,0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(107,7,'Jl. Silang Monas Gambir Jakarta Pusat',0,1,'C');
+		//ambil data dari db
+		// if ($akhir == null) {
+		// $row = $this->Model_laporan->getHarian($awal);
+		// } else {
+		// $row = $this->Model_laporan->getBulanan($awal,$akhir);
+		// }
+		// Memberikan space kebawah agar tidak terlalu rapat
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(277,7,'','B',1);
+		//buat line baru
+		$pdf->Cell(10,10,'LAPORAN KEMATIAN TANGGAL '. $tanggal[0] . ' - ' . $tanggal[1],0,1);
+		$pdf->Cell(10,6,'No',1,0);
+		$pdf->Cell(58,6,'Nama',1,0);
+		$pdf->Cell(55,6,'Tempat, Tanggal Lahir',1,0);
+		$pdf->Cell(55,6,'Tempat,Tanggal Meninggal',1,0);
+		$pdf->Cell(55,6,'Tempat,Tanggal Pemakaman',1,0);
+		$pdf->Cell(13,6,'Umur',1,0);
+		$pdf->Cell(30,6,'Sebab',1,1);
+		$no = 1;
+		foreach ($data as $key) {
+			$tanggal_lahir = explode("-",$key->tanggal_lahir);
+			$pdf->Cell(10,6,$no,1,0,);
+			$pdf->Cell(58,6,$key->nama_lengkap,1,0,);
+			$pdf->Cell(55,6,$key->tempat_lahir .",". $key->tanggal_lahir,1,0,);
+			$pdf->Cell(55,6,$key->tempat_meninggal .",". $key->tanggal_meninggal,1,0,);
+			$pdf->Cell(55,6,$key->tempat_pemakaman .",". $key->tanggal_pemakaman,1,0,);
+			$pdf->Cell(13,6,date('Y') - $tanggal_lahir[0],1,0);
+			$pdf->Cell(30,6,$key->sebab,1,1);
+			$no++;
+		}
+		$pdf->SetFont('Arial','',7);
+		$pdf->Cell(95,15,'',0,1);
+		$pdf->SetTitle('Laporan pindah kependudukan bpd');
+
+		$pdf->Output('Laporan pindah kependudukan bpd','I');
 	}
 }
