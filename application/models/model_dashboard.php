@@ -93,6 +93,7 @@ class model_dashboard extends CI_Model {
         $tahun = $this->db->query($get_tahun)->result();
         $get_kelahiran = "SELECT COUNT(penduduk.tanggal_input) as jumlah, year(penduduk.tanggal_input) as tahun FROM `penduduk` JOIN kelahiran on penduduk.id_penduduk=kelahiran.id_penduduk GROUP BY year(tanggal_input)";
         $kelahiran = $this->db->query($get_kelahiran)->result();
+        $result = array();
         foreach ($kelahiran as $key) {
             for ($i= $tahun[0]->tahun_awal; $i <= $tahun[0]->tahun_terakhir ; $i++) { 
                 if ($i != $key->tahun) {

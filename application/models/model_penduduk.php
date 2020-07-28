@@ -198,9 +198,21 @@ class model_penduduk extends CI_Model {
     } 
     public function import($data)
     {
+        
         $jumlah = count($data);
         if ($jumlah > 0) {
-            $this->db->insert('penduduk',$data);
+            for ($i= 0; $i < $jumlah; $i++) {
+                $this->db->insert('penduduk',$data[$i]);
+            }
+            
+            //nontifikasi
+            date_default_timezone_set("Asia/Jakarta");
+            $data_notifikasi = [
+                'keterangan' => 'data berhasil di import',
+                'url'        => 'penduduk',
+                'waktu'        => date("Y-m-d H:i:s"),
+            ];
+            $this->db->insert('notifikasi',$data_notifikasi);
             $this->session->set_flashdata('pesan','Data Berhasil di Import');
             redirect('penduduk');
         }

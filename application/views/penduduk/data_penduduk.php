@@ -93,7 +93,7 @@
 						<input type="file" class="form-control-file" name="file" accept=".xlsx,xls">
 					</div>
 					<?= form_error('file','<small class="text-danger pl-1">','</small>') ?>
-					<p class="text-muted">Unduh Format file <a href="">disini</a></p>
+					<p class="text-muted">Unduh Format file <a href="<?= base_url('penduduk/downloadTemplateExcell') ?>">disini</a></p>
 				</div>
 				<div class="modal-footer justify-content-between">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
